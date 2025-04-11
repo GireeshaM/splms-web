@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "splms-web:build:production"
+              "buildTarget": "splms-web:build:production"
             },
             "development": {
-              "browserTarget": "splms-web:build:development"
+              "buildTarget": "splms-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "splms-web:build"
+            "buildTarget": "splms-web:build"
           }
         },
         "test": {
