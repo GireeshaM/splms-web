@@ -1,0 +1,14 @@
+.custom-modal-height {
+    height: 90vh; /* or whatever suits your design */
+    overflow-y: auto; /* scrolls if content exceeds height */
+  }
+  .modal-content {
+    background-color: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* optional shadow */
+  }
+  
+  
+  .custom-modal-height-body {
+    height: 80vh; /* makes just the body taller */
+    
+  }

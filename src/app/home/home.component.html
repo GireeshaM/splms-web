@@ -1,1 +1,17 @@
-<div class="bg-light">Hello Page work starts here</div>
+<app-carousel></app-carousel>
+<app-top-trends></app-top-trends>
+<app-homereviews></app-homereviews>
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="registerModalLabel">Login / Register</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body custom-modal-height-body">
+          <app-register></app-register> <!-- Embedded RegisterComponent -->
+        </div>
+      </div>
+    </div>
+  </div>

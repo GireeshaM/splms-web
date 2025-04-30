@@ -1,0 +1,88 @@
+<!-- HERO SECTION -->
+<!-- HERO SECTION -->
+<section class="hero">
+  <video autoplay muted loop class="hero-video" playsinline crossorigin="anonymous">
+    <source src="assets/images/about-us.mp4" type="video/mp4">
+    Your browser does not support the video tag. Please update your browser or try a different one.
+  </video>
+
+  <!-- Overlay content on video -->
+  <div class="hero-overlay">
+    <p class="vision-subtitle">Our Vision</p>
+    <h1 class="vision-heading">
+      We envision a world where <span>anyone, anywhere</span> has the power to <span>transform their lives through learning.</span>
+    </h1>
+    <button class="vision-btn">Hear from our community</button>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story-section">
+  <div class="story-content">
+    <h2>Our Story</h2>
+    <p>Sprint Park was founded with a vision to innovate digital learning for modern enterprises. With real-time analytics,
+       AI-curated content, and immersive experiences, we empower professionals to lead with confidence and agility.</p>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats">
+  <div class="stat">
+    <h3>50K+</h3>
+    <p>Professionals Trained</p>
+  </div>
+  <div class="stat">
+    <h3>97%</h3>
+    <p>Client Satisfaction</p>
+  </div>
+  <div class="stat">
+    <h3>20+</h3>
+    <p>Enterprise Partners</p>
+  </div>
+  <div class="stat">
+    <h3>15</h3>
+    <p>Industries Covered</p>
+  </div>
+</section>
+
+<!-- VALUES SECTION -->
+<section class="values-section">
+  <h2 class="section-title">Our Core Values</h2>
+  <div class="value-cards">
+    <div class="value-card" *ngFor="let val of values">
+      <h3>{{ val.title }}</h3>
+      <p>{{ val.detail }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIONS SECTION -->
+<section class="collaborations">
+  <h2>Strategic Partners</h2>
+<p>We collaborate closely with industry leaders to offer cutting-edge solutions,
+SprintPark's strategic alliances include:</p>
+<div class="collab-slider">
+  <div class="collab-track">
+    <img src="https://sprintpark.com/assets/home/copado.png" alt="Copado">
+    <img src="https://sprintpark.com/assets/home/microsoft.png" alt="Microsoft">
+    <img src="https://sprintpark.com/assets/home/google.png" alt="Google">
+    <img src="https://sprintpark.com/assets/home/salesforce.png" alt="Salesforce">
+   
+
+    <!-- Duplicated logos for seamless scrolling -->
+    <img src="https://sprintpark.com/assets/home/copado.png" alt="Copado">
+    <img src="https://sprintpark.com/assets/home/microsoft.png" alt="Microsoft">
+    <img src="https://sprintpark.com/assets/home/google.png" alt="Google">
+    <img src="https://sprintpark.com/assets/home/salesforce.png" alt="Salesforce">
+   
+  </div>
+</div>
+</section>
+
+
+<!-- CTA SECTION -->
+<section class="cta-glass">
+  <h2>Ready to Transform Your Workforce?</h2>
+  <p>Contact us today to discover how Sprint Park can elevate your organization's learning journey.</p>
+  <a routerLink="/contact" class="cta-glass-btn">Talk to Us</a>
+</section>

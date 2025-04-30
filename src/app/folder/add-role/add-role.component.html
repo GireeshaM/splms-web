@@ -1,0 +1,27 @@
+<!-- src/app/components/add-role/add-role.component.html -->
+<div class="container mt-5 p-4  rounded shadow-sm">
+  <h3 class="mb-4 text-center">
+    Add New Role
+  </h3>
+
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-3">
+      <label for="name" class="form-label fw-bold">Role Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.is-invalid]="submitted && roleForm.controls['name'].errors"
+        placeholder="Enter role name"
+      />
+      <div *ngIf="submitted && roleForm.controls['name']?.errors" class="invalid-feedback">
+        Role name is required
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit">
+      <i class="bi bi-plus-circle me-1"></i> Add Role
+    </button>
+  </form>
+</div>

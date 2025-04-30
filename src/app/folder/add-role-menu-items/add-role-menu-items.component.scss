@@ -1,0 +1,132 @@
+.container {
+    font-family: 'Cambria', 'Cochin', Georgia, 'Times', 'Times New Roman', serif;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fdfdfd;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  
+    h4.text-center {
+      color: #4b006e;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+  
+    h5.text-success {
+      color: #27ae60;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    form {
+      margin-bottom: 2rem;
+  
+      .form-group {
+        margin-bottom: 1.25rem;
+  
+        .form-select {
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+          font-size: 0.95rem;
+          background-color: #f8f9fa;
+          transition: all 0.3s ease;
+  
+          &:focus {
+            border-color: #4b006e;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(75, 0, 110, 0.2);
+          }
+        }
+      }
+  
+      button {
+        background-color: #4b006e;
+        border: none;
+        padding: 0.9rem;
+        font-size: 1.05rem;
+        font-weight: 500;
+        border-radius: 30px;
+        width: 100%;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+  
+        &:hover {
+          background-color: #3a0056;
+          transform: scale(1.03);
+        }
+  
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+  
+    hr {
+      border-top: 1px solid #e0e0e0;
+      margin: 2rem 0;
+    }
+  
+    .list-group {
+      .list-group-item {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        padding: 1rem;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #f8f9fa;
+        }
+  
+        strong {
+          color: #4b006e;
+        }
+  
+        .btn-outline-danger {
+          padding: 0.3rem 0.6rem;
+          font-size: 0.85rem;
+          border-radius: 20px;
+          border: 1px solid #e74c3c;
+          color: #e74c3c;
+          transition: background-color 0.3s ease, color 0.3s ease;
+  
+          &:hover {
+            background-color: #e74c3c;
+            color: white;
+          }
+        }
+      }
+    }
+  
+    // Responsive
+    @media (max-width: 576px) {
+      padding: 1.5rem;
+  
+      h4.text-primary {
+        font-size: 1.3rem;
+      }
+  
+      h5.text-success {
+        font-size: 1.05rem;
+      }
+  
+      form {
+        .form-select {
+          font-size: 0.9rem;
+        }
+  
+        button {
+          font-size: 1rem;
+        }
+      }
+    }
+  }

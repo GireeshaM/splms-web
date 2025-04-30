@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h4 class="text-center">Assign Menu Item to Role</h4>
+
+  <form [formGroup]="roleMenuForm" (ngSubmit)="addRoleMenuItem()">
+    <div class="form-group mb-2">
+      <select class="form-select" formControlName="roleId">
+        <option [ngValue]="null">-- Select Role --</option>
+        <option *ngFor="let role of roles" [ngValue]="role.rolesId">{{ role.name }}</option>
+      </select>     
+    </div>
+
+    <div class="form-group mb-2">
+      <select class="form-select" formControlName="menuId">
+        <option [ngValue]="null">-- Select Menu Item --</option>
+        <option *ngFor="let menu of menuItems" [ngValue]="menu.menuId">{{ menu.menuItemName }}</option>
+      </select>
+      
+    </div>
+
+    <button class="btn btn-success w-100">Assign</button>
+  </form>
+
+  <hr />
+
+  <h5 class="text-success mt-3">Existing Role-Menu Assignments</h5>
+  <ul class="list-group">
+    <li *ngFor="let rm of roleMenuItems" class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        <strong>Role:</strong> {{ getRoleName(rm.roleId) }} |
+        <strong>Menu:</strong> {{ getMenuName(rm.menuId) }}
+      </span>
+      <!-- <button class="btn btn-sm btn-outline-danger" (click)="deleteRoleMenuItem(rm.roleMenuId)">
+        <i class="bi bi-dash-circle"></i> Remove
+      </button> -->
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h4 class="text-center">Add Category</h4>
+  <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <div class="form-group mb-2">
+          <input type="text" class="form-control" placeholder="Category name" formControlName="name" />
+      </div>
+      <button class="btn btn-success w-100">Add Category</button>
+  </form>
+  <hr />
+  <!-- Existing Categories -->
+  <h5 class="text-info">Existing Categories</h5>
+<div class="d-flex flex-wrap gap-2">
+<div *ngFor="let cat of categories" class="badge rounded-pill bg-light text-dark px-5 py-4 d-flex align-items-center">
+  <span class="me-2 text-primary fw-semibold">{{ cat.name }}</span>
+  <i class="bi bi-trash text-dark" role="button" (click)="deleteCategory(cat.categoriesId)"></i>
+</div>
+</div>
+
+<hr />
+
+  <h4 class="text-center">Add Subcategory</h4>
+  <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+    <div class="row mb-2">
+      <div class="col-md-6 mb-2 mb-md-0">
+        <select class="form-select" formControlName="categoryId">
+          <option [ngValue]="null">-- Select Category --</option>
+          <option *ngFor="let cat of categories" [value]="cat.categoriesId">{{ cat.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Subcategory name" formControlName="name" />
+      </div>
+    </div>
+    <button class="btn btn-primary w-100">Add Subcategory</button>
+  </form>
+  
+
+  <hr />
+
+  <!-- Existing Subcategories -->
+  <h5 class="text-info mt-4">Existing Subcategories</h5>
+<div class="d-flex flex-wrap gap-2">
+<div *ngFor="let sub of subcategories" class="badge rounded-pill bg-light text-dark px-3 py-2 d-flex align-items-center">
+  <span class="me-2">
+    {{ sub.name }}
+    <small class="text-muted">(Category: {{ getCategoryNameById(sub.categoryId) }})</small>
+  </span>
+  <i class="bi bi-trash text-dark" role="button" (click)="deleteSubCategory(sub.subCategoriesId)"></i>
+</div>
+</div>
+</div>

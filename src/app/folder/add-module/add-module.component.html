@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h4 class="text-center">Add Module</h4>
+  <form [formGroup]="moduleForm" (ngSubmit)="addModule()">
+    <div class="form-group mb-2">
+      <input type="text" class="form-control" placeholder="Module Name" formControlName="moduleName" />
+    </div>
+    <div class="form-group mb-2">
+      <input type="text" class="form-control" placeholder="Icon class (e.g., bi-book)" formControlName="icon" />
+    </div>
+    <div class="form-group mb-2">
+      <input type="text" class="form-control" placeholder="URL (e.g., /dashboard/module)" formControlName="url" />
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" formControlName="status" />
+      <label class="form-check-label">Active</label>
+    </div>
+    <button class="btn btn-success w-100">Add Module</button>
+  </form>
+
+  <hr />
+
+  <h5 class="text-success mt-3">Existing Modules</h5>
+  <ul class="list-group">
+    <li *ngFor="let mod of modules" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <i [class]="mod.icon"></i> {{ mod.moduleName }}  
+        <small class="text-muted">({{ mod.url }})</small>
+        <span *ngIf="mod.status" class="badge bg-success ms-2">Active</span>
+        <span *ngIf="!mod.status" class="badge bg-secondary ms-2">Inactive</span>
+      </div>
+      <!-- <button class="btn btn-sm btn-outline-danger" (click)="deleteModule(mod.moduleId)">
+        <i class="bi bi-dash-circle"></i> Remove
+      </button> -->
+    </li>
+  </ul>
+</div>

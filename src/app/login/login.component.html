@@ -1,1 +1,109 @@
-<p>login works!</p>
+<div class="container">
+  <div class="form-container">
+
+    <!-- Login Form -->
+    <form *ngIf="!isForgotPasswordMode && !showOtpInput && !showResetPasswordForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          required
+        />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+          Valid Email is required.
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          required
+        />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+          Password is required.
+        </div>
+      </div>
+
+      <div class="forgot-password">
+        <a (click)="toggleForgotPassword()">Forgot Password?</a>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Forgot Password - Send OTP -->
+    <form *ngIf="isForgotPasswordMode && !showOtpInput && !showResetPasswordForm" [formGroup]="forgotPasswordForm" (ngSubmit)="onSendOtp()">
+      <h2>Forgot Password</h2>
+      <div class="input-group">
+        <label for="forgotEmail">Email:</label>
+        <input
+          type="email"
+          id="forgotEmail"
+          formControlName="email"
+          placeholder="Enter your email"
+          required
+        />
+        <div *ngIf="forgotPasswordForm.get('email')?.invalid && forgotPasswordForm.get('email')?.touched" class="error">
+          Valid Email is required.
+        </div>
+      </div>
+      <button type="submit">Send OTP</button>
+      <button type="button" (click)="toggleForgotPassword()">Go Back</button>
+    </form>
+
+    <!-- OTP Verification -->
+    <form *ngIf="showOtpInput && !showResetPasswordForm" [formGroup]="forgotPasswordForm" (ngSubmit)="onVerifyOtp()">
+      <h2>Verify OTP</h2>
+      <div class="input-group">
+        <label for="otp">Enter OTP:</label>
+        <input
+          type="text"
+          id="otp"
+          formControlName="otp"
+          placeholder="Enter the OTP"
+          required
+        />
+        <div *ngIf="forgotPasswordForm.get('otp')?.invalid && forgotPasswordForm.get('otp')?.touched" class="error">
+          OTP is required.
+        </div>
+      </div>
+      <button type="submit" [disabled]="forgotPasswordForm.invalid">Verify OTP</button>
+    </form>
+
+    <!-- Reset Password Form -->
+    <form *ngIf="showResetPasswordForm" [formGroup]="resetPasswordForm" (ngSubmit)="onResetPassword()">
+      <h2>Reset Password</h2>
+      <div class="input-group">
+        <label for="newPassword">New Password:</label>
+        <input
+          type="password"
+          id="newPassword"
+          formControlName="newPassword"
+          placeholder="Enter your new password"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          placeholder="Confirm your new password"
+          required
+        />
+      </div>
+
+      <button type="submit">Reset Password</button>
+    </form>
+
+  </div>
+</div>

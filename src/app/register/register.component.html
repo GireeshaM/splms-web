@@ -1,0 +1,249 @@
+<div class="auth-wrapper"> 
+  <div class="auth-box" style="position: relative;">
+
+    <div class="main-wrapper">
+      <!-- Toggle Buttons -->
+      <!-- Left Side Image and Content -->
+      <div class="left-side">
+        <div class="overlay-content" *ngIf="!isRegisterMode">
+          <h2>Welcome Back!</h2>
+          <p>Log in or create a new account to continue your learning journey.</p>
+          <button class="all-btns" *ngIf="!isRegisterMode" (click)="toggleRegister()">Sign Up</button>
+        </div>
+        <div class="overlay-content" *ngIf="isRegisterMode">
+          <h2>Hello!</h2>
+          <p> create a new account to continue your learning journey or Log in .</p>
+          <button class="all-btns"  *ngIf="isRegisterMode" (click)="toggleLogin()">Sign in</button>
+        </div>
+      </div>
+      <!-- Right Side Dynamic Forms -->
+      <div class="right-side">      
+        <div class="form-wrapper">
+          <!-- REGISTER FORM -->
+          <div *ngIf="isRegisterMode">
+            <div class="stepper">
+              <div [class.active]="step === 1">1</div>
+              <div [class.active]="step === 2">2</div>
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+              <h2>Register</h2>
+                  <!-- Step 1 -->
+
+                <div *ngIf="step === 1">
+                  <div class="form-group ">
+
+                    <label for="profilePhoto">Select Photo</label>
+                    <input type="file" id="profilePhoto" (change)="onPhotoSelected($event)" />
+                  </div>
+                  <div class="row g-3">
+                  <div class="form-container">
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input id="fullName" formControlName="fullName" placeholder="Enter full name" />
+                    <small class="error-msg" *ngIf="registerForm.get('fullName')?.hasError('required') && registerForm.get('fullName')?.touched">
+                      Full name is required.
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input formControlName="email" placeholder="Enter email" />
+                    <small class="error-msg" *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+                      Email is required.
+                    </small>
+                    <small class="error-msg" *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">
+                      Enter a valid email.
+                    </small>
+                  </div>               
+                  <div class="form-group col-md-6">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input id="phoneNumber" formControlName="phoneNumber" placeholder="Enter phone number" />
+                    <small class="error-msg" *ngIf="registerForm.get('phoneNumber')?.hasError('required') && registerForm.get('phoneNumber')?.touched">
+                      Phone number is required.
+                    </small>
+                  </div>                 
+                  <!-- Password Field -->
+                  <div class="form-group col-md-6">
+                    <label for="password">Password</label>
+                    <input 
+                      type="password" 
+                      id="password" 
+                      formControlName="password" 
+                      placeholder="Enter the password" 
+                    />
+                    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors">
+                      <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
+                      <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                        Password must be at least 6 characters long.
+                      </small>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input 
+                      type="password" 
+                      id="confirmPassword" 
+                      formControlName="confirmPassword" 
+                      [appConfirmEqualValidator]="'password'" 
+                      placeholder="Confirm your password" 
+                    />
+                    <div class="error-msg" *ngIf="registerForm.get('confirmPassword')?.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched">
+                      Passwords do not match.
+                    </div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="roleId">Role</label>
+                    <select class="role" id="roleId" formControlName="roleId">
+                      <option value="">-- Select Role --</option>
+                      <option *ngFor="let role of roles" [value]="role.rolesId">{{ role.name }}</option>
+                      <small class="error-msg" *ngIf="registerForm.get('roleId')?.hasError('required') && registerForm.get('roleId')?.touched">
+                        Role is required.
+                      </small>
+                    </select>
+                  </div>
+                </div>
+                </div>
+                  <div class="form-actions">
+                    <button type="button" class="all-btn" (click)="goToStep(2)" [disabled]="!registerFormStep1.valid">Next</button>
+                  </div>
+                </div>
+                <!-- Step 2 -->
+                <div *ngIf="step === 2">
+                  <div class="interest-section p-3 bg-light rounded shadow-sm">
+                    <label class="form-label fw-bold">Choose Interests:</label>
+                  
+                    <!-- Show dropdowns only when adding a new interest -->
+                    <div *ngIf="editingIndex !== null" formArrayName="interests">
+                      <div [formGroupName]="editingIndex" class="mb-3">
+                  
+                        <!-- Category Row -->
+                        <div class="mb-3">
+                          <label class="form-label">Category</label>
+                          <select class="form-select" formControlName="categoryId" (change)="onCategoryChange($event, editingIndex)">
+                            <option value="">-- Select Category --</option>
+                            <option *ngFor="let category of categories" [value]="category.categoriesId">{{ category.name }}</option>
+                          </select>
+                        </div>
+                  
+                        <!-- Subcategory Row -->
+                        <div class="mb-3">
+                          <label class="form-label">Subcategory</label>
+                          <select class="form-select" formControlName="subCategoryId">
+                            <option value="">-- Select Subcategory --</option>
+                            <option *ngFor="let sub of subCategoriesList[editingIndex]" [value]="sub.subCategoriesId">{{ sub.name }}</option>
+                          </select>
+                        </div>
+                  
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2">
+                          <button type="button" class="all-btn " (click)="saveInterest(editingIndex)">Save</button>
+                          <button type="button" class=" all-btn" (click)="cancelEdit()">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <!-- Show "Add Interest" button when not editing -->
+                    <button *ngIf="editingIndex === null" type="button" class="btn all-btn  mt-2" (click)="addInterest()">Add Interest</button>
+                  </div>
+                  <!-- Display selected interests -->
+                  <div class="selected-interests mt-4">
+                    <label class="form-label fw-bold">My Interests</label>
+                    <div class="badge-container d-flex flex-wrap gap-2 mt-2">
+                      <ng-container *ngFor="let interest of selectedInterests; let i = index">
+                        <span class="interest-badge px-3 py-2 d-inline-flex align-items-center rounded-pill">
+                          {{ interest.categoryName }} - {{ interest.subCategoryName }}
+                          <button type="button" class="btn-close ms-2" (click)="removeSelectedInterest(i)" aria-label="Remove"></button>
+                        </span>
+                      </ng-container>
+                    </div>
+                  </div>
+          <div class="form-actions">
+            <button type="button" class="all-btn " (click)="goToStep(1)">Back</button>
+            <button type="submit" class="all-btn " [disabled]="isSubmitting">Register</button>
+          </div>
+      </div>
+    </form>
+          </div>
+          <!-- LOGIN/FORGOT/OTP/RESET -->
+          <div *ngIf="!isRegisterMode">
+            <div class="avatar">
+              <img src="assets/images/user-login.jpeg" alt="User Icon" />
+            </div>
+            <h2 *ngIf="!isForgotPasswordMode && !showOtpInput && !showResetPasswordForm">Sign in</h2>
+            <h2 *ngIf="isForgotPasswordMode && !showOtpInput && !showResetPasswordForm">Forgot Password</h2>
+            <h2 *ngIf="showOtpInput && !showResetPasswordForm">Verify OTP</h2>
+            <h2 *ngIf="showResetPasswordForm">Reset Password</h2>
+            <!-- LOGIN -->
+            <form *ngIf="!isForgotPasswordMode && !showOtpInput && !showResetPasswordForm" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+              <div class="input-group">
+                <label>Email:</label>
+                <input type="email" formControlName="email" />
+                <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" style="color: red;">
+                  Please enter a valid email.
+                </small>
+              </div>
+              <div class="input-group">
+                <label>Password:</label>
+                <input type="password" formControlName="password" />
+                <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" style="color: red;">
+                  Password is required.
+                </small>
+              </div>
+              <div class="auth-links">
+                <a (click)="toggleForgotPassword()">Forgot Password?</a>
+                <!-- <span>|</span> -->
+                <span>Not registered? <a (click)="toggleRegister()">Create an account!</a></span>
+              </div>
+              <button  class="all-btn"[disabled]="loginForm.invalid" style=" width: 50%; height:40px; margin-left: 120px;">Login</button>
+            </form>
+            <!-- FORGOT PASSWORD -->
+            <form *ngIf="isForgotPasswordMode && !showOtpInput && !showResetPasswordForm" [formGroup]="forgotPasswordForm" (ngSubmit)="onSendOtp()">
+              <label>Email:</label>
+              <input type="email" formControlName="email" />
+              <small class="error-msg" *ngIf="forgotPasswordForm.get('email')?.invalid && forgotPasswordForm.get('email')?.touched">
+                Please enter a valid email address.
+              </small>
+              <small class="error-msg">OTP will be sent to your registered email address.</small>
+
+              <button class="all-btn" type="submit">Send OTP</button>
+              
+              <button class="all-btn" type="button" (click)="toggleForgotPassword()">Go Back</button>
+            </form>
+            <!-- VERIFY OTP -->
+            <form *ngIf="showOtpInput && !showResetPasswordForm" [formGroup]="forgotPasswordForm" (ngSubmit)="onVerifyOtp()">
+              <label>Enter OTP:</label>
+              <input type="text" formControlName="otp" />
+              <small *ngIf="forgotPasswordForm.get('otp')?.invalid && forgotPasswordForm.get('otp')?.touched" class="error-msg">
+                Please enter the OTP sent to your email.
+              </small>
+              <button class="all-btn" type="submit">Verify OTP</button>
+            </form>
+            <!-- RESET PASSWORD -->
+            <form *ngIf="showResetPasswordForm" [formGroup]="resetPasswordForm" (ngSubmit)="onResetPassword()">
+              <label>New Password:</label>
+              <input type="password" formControlName="newPassword" />
+              <small *ngIf="resetPasswordForm.get('newPassword')?.invalid && resetPasswordForm.get('newPassword')?.touched" class="error-msg">
+                Password must be at least 6 characters.
+              </small>
+
+              <label>Confirm Password:</label>
+              <input 
+                      type="password" 
+                      id="confirmPassword" 
+                      formControlName="confirmPassword" 
+                      [appConfirmEqualValidator]="'password'" 
+                      placeholder="Confirm your password" 
+                    />
+                    <div class="error-msg" *ngIf="registerForm.get('confirmPassword')?.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched">
+                      Passwords do not match.
+                    </div>
+              <button class="all-btn" type="submit">Reset Password</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

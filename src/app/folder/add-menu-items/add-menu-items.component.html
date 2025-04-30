@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h4 class="text-center">Add Menu Item</h4>
+  <form [formGroup]="menuForm" (ngSubmit)="addMenuItem()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <input type="text" class="form-control" placeholder="Menu Item Name" formControlName="menuItemName" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <select class="form-select" formControlName="moduleId">
+          <option [ngValue]="null">-- Select Module --</option>
+          <option *ngFor="let mod of modules" [value]="mod.moduleId">{{ mod.moduleName }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <input type="text" class="form-control" placeholder="Icon class (e.g., bi-gear)" formControlName="icon" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <input type="text" class="form-control" placeholder="URL (e.g., /settings)" formControlName="url" />
+      </div>
+    </div>
+
+    <button class="btn  w-100">Add Menu Item</button>
+  </form>
+
+  <hr />
+
+ 
+  <h5 class="text-center mt-3">Existing Menu Items</h5>
+<div class="d-flex flex-wrap gap-2">
+  <div *ngFor="let item of menuItems" class="badge rounded-pill bg-light text-dark px-3 py-2 d-flex align-items-center">
+    <span class="me-2">
+      <i [class]="item.icon" class="me-1"></i> {{ item.menuItemName }}
+      <!-- <small class="text-muted">{{ item.url }}</small> -->
+      <span class="badge badge-module ms-2">{{ getModuleName(item.moduleId) }}</span>
+
+    </span>
+    <!-- Uncomment below to enable delete -->
+    <!--
+    <i class="bi bi-trash text-dark" role="button" (click)="deleteMenuItem(item.menuId)"></i>
+    -->
+  </div>
+</div>
+
+</div>
