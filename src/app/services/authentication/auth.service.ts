@@ -13,9 +13,10 @@ export class AuthService {
     2: 'instructor',
     3: 'user'
   };
-  private isLoggedInSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
   getRoleFromToken(): string | null {
+    
     const token = this.getToken();
     if (!token) return null;
   
@@ -53,29 +54,36 @@ export class AuthService {
   
   getUserIdFromToken(): string | null {
     const token = this.getToken();
-    if (!token) return null;
+    if (!token) {
+      console.error('Token not found');
+      return null;
+    }
   
     try {
       const payloadBase64 = token.split('.')[1];
       const decoded = atob(payloadBase64);
       const payload = JSON.parse(decoded);
-      
-      console.log('Full Payload:', payload); // Inspect where userId is actually stored
   
-      return payload.sub || payload.userId || null; // Add fallback keys if needed
+      console.log('Full Payload:', payload); // Debugging
+  
+      // Extract the user ID from the correct claim
+      return payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'] || null;
     } catch (error) {
-      console.error('Invalid token:', error);
+      console.error('Error decoding token:', error);
       return null;
     }
   }
-  
-  
   
   private API_URL = 'https://localhost:7215/api/auth';
 // 🔗 your backend base URL
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    const token = this.getToken();
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      this.isLoggedInSubject.next(true); // Restore login state on app load
+    }
+  }
  
   // Register a new user
   register(userData: any): Observable<any> {
@@ -85,7 +93,7 @@ export class AuthService {
  
   // Login user
   login(credentials: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/login`, credentials).pipe(
+    return this.http.post(`https://localhost:7215/api/Auth/login`, credentials).pipe(
       tap((res: any) => {
         localStorage.setItem('token', res.token);
         localStorage.setItem('userId', res.userId);
@@ -100,7 +108,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.isLoggedInSubject.next(false);
+    this.isLoggedInSubject.next(false); 
     this.router.navigate(['']);
   }
  
@@ -175,5 +183,8 @@ export class AuthService {
     };
   }
 
+  createCourse(courseData: any): Observable<any> {
+    return this.http.post('https://localhost:7215/api/Courses/create', courseData);
+  }
+
 }
- 

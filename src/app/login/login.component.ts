@@ -50,7 +50,7 @@ export class LoginComponent {
         } else if (role === 'instructor') {
           this.router.navigate(['/instructor/dashboard']);
         } else if (role === 'user') {
-          this.router.navigate(['/user/dashboard']);
+          this.router.navigate(['core/user/dashboard']);
         } else {
           // fallback route if role is missing or unknown
           this.router.navigate(['/login']);

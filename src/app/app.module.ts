@@ -10,9 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { TopTrendsComponent } from './top-trends/top-trends.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { ModrenComponent } from './modren/modren.component';
+import { TopTrendsComponent } from './homepage/top-trends/top-trends.component';
+import { CarouselComponent } from './homepage/carousel/carousel.component';
+import { ModrenComponent } from './homepage/modren/modren.component';
 
 @NgModule({
   declarations: [AppComponent],

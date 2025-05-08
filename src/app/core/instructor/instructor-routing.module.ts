@@ -4,7 +4,6 @@ import { InstructorDashboardComponent } from './instructor-dashboard/instructor-
 
 const routes: Routes = [{path:'',component:InstructorDashboardComponent},
   {path:'instructor/instructor-profile',loadComponent: () => import('./instructor-profile/instructor-profile.component').then(m => m.InstructorProfileComponent)},
-{path:'instructor/instructor-settings', loadComponent: () => import('./instructor-settings/instructor-settings.component').then(m => m.InstructorSettingsComponent)},
 {path:'instructor/learning-paths', loadComponent: () => import('./learning-paths/learning-paths.component').then(m => m.LearningPathsComponent)},
 {path:'instructor/create-course', loadComponent: () => import('./create-course/create-course.component').then(m => m.CreateCourseComponent)},
 {path:'instructor/user-feedback', loadComponent: () => import('./user-feedback/user-feedback.component').then(m => m.UserFeedbackComponent)},

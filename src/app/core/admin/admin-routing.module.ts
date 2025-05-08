@@ -4,7 +4,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 
 const routes: Routes = [{path:'',component:AdminDashboardComponent},
   {path:'admin/admin-profile',loadComponent: () => import('./admin-profile/admin-profile.component').then(m => m.AdminProfileComponent)},
-  {path:'admin/admin-settings',loadComponent: () => import('./admin-settings/admin-settings.component').then(m => m.AdminSettingsComponent)},
   {path:'admin/see-instructor-profile',loadComponent: () => import('./see-instructor-profile/see-instructor-profile.component').then(m => m.SeeInstructorProfileComponent)},
   {path:'admin/see-user-reviews',loadComponent: () => import('./see-user-reviews/see-user-reviews.component').then(m => m.SeeUserReviewsComponent)},
   {path:'admin/see-user-insights',loadComponent: () => import('./see-user-insights/see-user-insights.component').then(m => m.SeeUserInsightsComponent)},

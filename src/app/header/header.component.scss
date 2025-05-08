@@ -1,169 +1,22 @@
-:root {
-  --primary-color: #3d5a40;
-  --secondary-color: #a4c3d6;
-  --hover-color: #1c3d26;
-  --background-color: #eaf4ea;
-  --text-color: #333;
-  --white: #fff;
-  --gradient-start: #3d5a40; /* Dark green */
-  --gradient-end: #a4c3d6;   /* Light blue */
+.custom-dropdown-menu {
+  left: -50px; // Move the dropdown to the left
 }
-
+/* Reduce overall navbar height */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Gradient background */
-  padding: 0.8rem 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  min-height: 50px; /* Or any height you find suitable */
 }
 
-.navbar:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
-}
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  cursor: pointer;
-}
-
+/* Reduce logo image height */
 .logo-img {
-  height: 50px;
+  height: 70px; /* Adjust size */
   width: auto;
 }
 
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--white); /* White text for contrast */
+/* Reduce font-size and spacing of nav links */
+.navbar-nav .nav-link {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.9rem;
 }
-
-.navbar-search {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  border: 1px solid var(--secondary-color);
-  border-radius: 25px;
-  overflow: hidden;
-  background-color: var(--white);
-}
-
-.search-input {
-  flex: 1;
-  padding: 0.6rem 1rem;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.search-button {
-  background-color: var(--secondary-color);
-  border: none;
-  color: var(--white);
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: var(--hover-color);
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.nav-links .dropdown {
-  position: relative;
-}
-
-.nav-links .dropdown-toggle {
-  color: var(--white); /* White text for contrast */
-  font-weight: 500;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links .dropdown-toggle:hover {
-  color: var(--hover-color);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: none;
-  padding: 0.5rem 0;
-  min-width: 200px;
-  z-index: 999;
-  transition: all 0.3s ease;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li a {
-  display: block;
-  padding: 0.6rem 1rem;
-  color: var(--text-color);
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-menu li a:hover {
-  background-color: var(--secondary-color);
-  color: var(--white);
-}
-
-.logout-button {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); /* Gradient background */
-  color: var(--white);
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px; /* Rounded button for a modern look */
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase; /* Make text uppercase for a professional look */
-  letter-spacing: 0.05rem; /* Add slight spacing between letters */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-}
-
-.logout-button:hover {
-  background: linear-gradient(135deg, var(--hover-color), var(--secondary-color)); /* Change gradient on hover */
-  transform: scale(1.05); /* Slightly enlarge the button on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
-}  
-
-.logout-button:active {
-  transform: scale(0.98); /* Slightly shrink the button when clicked */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
-}  

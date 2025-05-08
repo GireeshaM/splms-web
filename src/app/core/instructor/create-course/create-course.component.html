@@ -1,1 +1,44 @@
-<p>create-course works!</p>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="form">
+  <!-- Course Name -->
+  <input formControlName="courseName" placeholder="Course Name" />
+
+  <!-- Category Dropdown -->
+  <select formControlName="categoryId" (change)="onCategoryChange($event)">
+    <option value="">Select Category</option>
+    <option *ngFor="let cat of categories" [value]="cat.categoriesId">
+      {{ cat.name }}
+    </option>
+  </select>
+
+  <!-- Subcategory Dropdown -->
+  <select formControlName="subCategoryId" [disabled]="!subCategories.length">
+    <option value="">Select Subcategory</option>
+    <option *ngFor="let subCat of subCategories" [value]="subCat.subCategoriesId">
+      {{ subCat.name }}
+    </option>
+  </select>
+
+  <!-- Level Input -->
+  <input formControlName="level" placeholder="Enter Level (e.g., Beginner, Intermediate, Advanced)" />
+
+  <!-- Duration -->
+  <input formControlName="duration" placeholder="Duration (e.g., 6 Weeks)" />
+
+  <!-- What You Will Learn -->
+  <input formControlName="whatYouWillLearn" placeholder="What You Will Learn" />
+
+  <!-- Thumbnail -->
+  <input type="file" (change)="onThumbnailSelected($event)" accept="image/*" />
+
+  <!-- Pre-requisites -->
+  <input formControlName="preRequisites" placeholder="Pre-requisites" />
+
+  <!-- Description -->
+  <textarea formControlName="description" placeholder="Course Description"></textarea>
+
+  <!-- Demo Video -->
+  <input type="file" (change)="onVideoSelected($event)" accept="video/*" />
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="courseForm.invalid">Create Course</button>
+</form>

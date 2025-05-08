@@ -21,15 +21,14 @@
         <div class="form-wrapper">
           <!-- REGISTER FORM -->
           <div *ngIf="isRegisterMode">
-            <div class="stepper">
+            <!-- <div class="stepper">
               <div [class.active]="step === 1">1</div>
-              <div [class.active]="step === 2">2</div>
-            </div>
+            </div> -->
             <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
               <h2>Register</h2>
                   <!-- Step 1 -->
 
-                <div *ngIf="step === 1">
+                
                   <div class="form-group ">
 
                     <label for="profilePhoto">Select Photo</label>
@@ -56,10 +55,16 @@
                   </div>               
                   <div class="form-group col-md-6">
                     <label for="phoneNumber">Phone Number</label>
-                    <input id="phoneNumber" formControlName="phoneNumber" placeholder="Enter phone number" />
+                    <input id="phoneNumber" type="tel" formControlName="phoneNumber" placeholder="Enter phone number" maxlength="10"(keypress)="allowOnlyNumbers($event)" class="form-control"
+/>
+
                     <small class="error-msg" *ngIf="registerForm.get('phoneNumber')?.hasError('required') && registerForm.get('phoneNumber')?.touched">
                       Phone number is required.
                     </small>
+                    <small class="error-msg" *ngIf="registerForm.get('phoneNumber')?.hasError('pattern') && registerForm.get('phoneNumber')?.touched">
+                      Enter a valid 10-digit phone number. It can start with +91, +91-, or 0, and contain only numbers.
+                    </small>
+                    
                   </div>                 
                   <!-- Password Field -->
                   <div class="form-group col-md-6">
@@ -105,64 +110,11 @@
                 </div>
                 </div>
                   <div class="form-actions">
-                    <button type="button" class="all-btn" (click)="goToStep(2)" [disabled]="!registerFormStep1.valid">Next</button>
+                    <!-- <button type="button" class="all-btn" (click)="goToStep(2)" [disabled]="!registerFormStep1.valid">Next</button> -->
+                    <button type="submit" class="all-btn " [disabled]="isSubmitting">Register</button>
                   </div>
-                </div>
-                <!-- Step 2 -->
-                <div *ngIf="step === 2">
-                  <div class="interest-section p-3 bg-light rounded shadow-sm">
-                    <label class="form-label fw-bold">Choose Interests:</label>
-                  
-                    <!-- Show dropdowns only when adding a new interest -->
-                    <div *ngIf="editingIndex !== null" formArrayName="interests">
-                      <div [formGroupName]="editingIndex" class="mb-3">
-                  
-                        <!-- Category Row -->
-                        <div class="mb-3">
-                          <label class="form-label">Category</label>
-                          <select class="form-select" formControlName="categoryId" (change)="onCategoryChange($event, editingIndex)">
-                            <option value="">-- Select Category --</option>
-                            <option *ngFor="let category of categories" [value]="category.categoriesId">{{ category.name }}</option>
-                          </select>
-                        </div>
-                  
-                        <!-- Subcategory Row -->
-                        <div class="mb-3">
-                          <label class="form-label">Subcategory</label>
-                          <select class="form-select" formControlName="subCategoryId">
-                            <option value="">-- Select Subcategory --</option>
-                            <option *ngFor="let sub of subCategoriesList[editingIndex]" [value]="sub.subCategoriesId">{{ sub.name }}</option>
-                          </select>
-                        </div>
-                  
-                        <!-- Action Buttons -->
-                        <div class="d-flex gap-2">
-                          <button type="button" class="all-btn " (click)="saveInterest(editingIndex)">Save</button>
-                          <button type="button" class=" all-btn" (click)="cancelEdit()">Cancel</button>
-                        </div>
-                      </div>
-                    </div>
-                  
-                    <!-- Show "Add Interest" button when not editing -->
-                    <button *ngIf="editingIndex === null" type="button" class="btn all-btn  mt-2" (click)="addInterest()">Add Interest</button>
-                  </div>
-                  <!-- Display selected interests -->
-                  <div class="selected-interests mt-4">
-                    <label class="form-label fw-bold">My Interests</label>
-                    <div class="badge-container d-flex flex-wrap gap-2 mt-2">
-                      <ng-container *ngFor="let interest of selectedInterests; let i = index">
-                        <span class="interest-badge px-3 py-2 d-inline-flex align-items-center rounded-pill">
-                          {{ interest.categoryName }} - {{ interest.subCategoryName }}
-                          <button type="button" class="btn-close ms-2" (click)="removeSelectedInterest(i)" aria-label="Remove"></button>
-                        </span>
-                      </ng-container>
-                    </div>
-                  </div>
-          <div class="form-actions">
-            <button type="button" class="all-btn " (click)="goToStep(1)">Back</button>
-            <button type="submit" class="all-btn " [disabled]="isSubmitting">Register</button>
-          </div>
-      </div>
+               
+ 
     </form>
           </div>
           <!-- LOGIN/FORGOT/OTP/RESET -->

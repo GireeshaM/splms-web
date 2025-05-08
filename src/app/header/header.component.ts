@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+
 interface Module {
   moduleId: number;
   moduleName: string;
@@ -48,29 +49,33 @@ export class HeaderComponent {
   ) {}
 
   ngOnInit(): void {
-    const user = this.authService.getLoggedInUser();
-    this.isLoggedIn = this.authService.isAuthenticated();
-    
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
   
-    if (user) {
-      this.fullName = user.fullName;
-      this.photoUrl = user.photoPath?.startsWith('data:image')
-        ? user.photoPath
-        : 'assets/default-user.png';
-    }
+      if (loggedIn) {
+        const user = this.authService.getLoggedInUser();
+        if (user) {
+          this.fullName = user.fullName;
+          this.photoUrl = user.photoPath;
+        }
   
-    const role = this.authService.getUserRole(); // e.g., 'admin'
-    if (role) {
-      this.loadNavbarItems(role);
-    }
+        const role = this.authService.getUserRole();
+        if (role) {
+          this.loadNavbarItems(role);
+        }
+      } else {
+        this.fullName = '';
+        this.photoUrl = 'assets/default-user.png';
+        this.filteredModules = [];
+      }
+    });
+  
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isHomePage = event.urlAfterRedirects === '/';
       }
     });
   }
-
-
 
   async loadNavbarItems(roleName: string) {
     try {
@@ -118,6 +123,7 @@ export class HeaderComponent {
     localStorage.removeItem('token'); 
     this.isLoggedIn = false; // Update login status
     this.router.navigate(['']);
+      this.filteredModules = [];
   }
 
   goToDashboard(): void {
@@ -136,6 +142,9 @@ export class HeaderComponent {
   
   onSearch(): void {
   }
-
+  viewProfile() {
+    this.router.navigate(['/profile']);
+  }
+  
 
 }
