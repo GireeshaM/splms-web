@@ -1,23 +1,26 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" (slide.bs.carousel)="onSlide($event)">
+<div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    (slide.bs.carousel)="onSlide($event)"
+>
     <header class="horizontal-header">
-      <a href="#">
-        <img src="assets/images/sushma.png" alt="SLMS Logo" class="logo">
-      </a>
-      <div class="search-bar-container">
-        <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Search for anything">
-          <button class="search-btn">🔍</button>
+        <a href="#">
+            <img src="assets/images/sushma.png" alt="SLMS Logo" class="logo" />
+        </a>
+        <div class="search-bar-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for anything" />
+                <button class="search-btn">🔍</button>
+            </div>
         </div>
-      </div>
-      <!-- <nav class="nav-links">
+        <!-- <nav class="nav-links">
         <a href="assets/User-dashboard">User</a>
         <a href="assets/instructor-dashboard">Instructor</a>
         <a href="assets/admin-dashboard">Admin</a>
         <a href="assets/create-path">Mandatory Courses</a>
       </nav> -->
-      <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#registerModal">
-        Login
-      </button>
+        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#registerModal"> Login </button>
     </header>
     <!-- <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -25,82 +28,92 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div> -->
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <video class="d-block w-100" autoplay muted loop>
-          <source src="assets/images/video2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="dynamic-text">
-          <h2 class="title">{{ dynamicText.title }}</h2>
-          <p class="description">{{ dynamicText.description }}</p>
-          <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+        <div class="carousel-item active">
+            <video class="d-block w-100" autoplay muted loop>
+                <source src="assets/images/video2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="dynamic-text">
+                <h2 class="title">{{ dynamicText.title }}</h2>
+                <p class="description">{{ dynamicText.description }}</p>
+                <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <video class="d-block w-100" autoplay muted loop>
-          <source src="assets/images/video1.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="dynamic-text">
-          <h2 class="title">{{ dynamicText.title }}</h2>
-          <p class="description">{{ dynamicText.description }}</p>
-          <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+        <div class="carousel-item">
+            <video class="d-block w-100" autoplay muted loop>
+                <source src="assets/images/video1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="dynamic-text">
+                <h2 class="title">{{ dynamicText.title }}</h2>
+                <p class="description">{{ dynamicText.description }}</p>
+                <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <video class="d-block w-100" autoplay muted loop>
-          <source src="assets/images/video3.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="dynamic-text">
-          <h2 class="title">{{ dynamicText.title }}</h2>
-          <p class="description">{{ dynamicText.description }}</p>
-          <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+        <div class="carousel-item">
+            <video class="d-block w-100" autoplay muted loop>
+                <source src="assets/images/video3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="dynamic-text">
+                <h2 class="title">{{ dynamicText.title }}</h2>
+                <p class="description">{{ dynamicText.description }}</p>
+                <button class="cta-button" (click)="openLoginModal()">Start Now</button>
+            </div>
         </div>
-      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+    <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+    >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+    <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+    >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
     </button>
-  </div>
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
+</div>
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
     <div class="modal-content login-modal-content">
-      <button class="close-modal-btn" (click)="closeLoginModal()">×</button>
-      <div class="modal-body">
-        <!-- Left Column: Image -->
-        <div class="login-image">
-          <img src="assets/images\l.png" alt="Login Illustration">
-        </div>
-        <!-- Right Column: Login Form -->
-        <div class="login-form">
-          <div class="login-header">
-            <button class="login-tab active">Sign In</button>
-            <button class="login-tab">Sign Up</button>
-          </div>
-          <h2>Sign In</h2>
-          <form (submit)="onLoginSubmit($event)">
-            <div class="form-group">
-              <input type="text" placeholder="Username" required>
+        <button class="close-modal-btn" (click)="closeLoginModal()">×</button>
+        <div class="modal-body">
+            <!-- Left Column: Image -->
+            <div class="login-image">
+                <img src="assets/images\l.png" alt="Login Illustration" />
             </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" required>
+            <!-- Right Column: Login Form -->
+            <div class="login-form">
+                <div class="login-header">
+                    <button class="login-tab active">Sign In</button>
+                    <button class="login-tab">Sign Up</button>
+                </div>
+                <h2>Sign In</h2>
+                <form (submit)="onLoginSubmit($event)">
+                    <div class="form-group">
+                        <input type="text" placeholder="Username" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required />
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit" class="login-submit-btn">Sign In →</button>
+                </form>
+                <div class="social-login">
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
-            <a href="#" class="forgot-password">Forgot Password?</a>
-            <button type="submit" class="login-submit-btn">Sign In →</button>
-          </form>
-          <div class="social-login">
-            <a href="#"><i class="fab fa-google"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>

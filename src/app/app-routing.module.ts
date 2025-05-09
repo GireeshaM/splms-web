@@ -11,48 +11,47 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { TopTrendsComponent } from './top-trends/top-trends.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'core',
-    loadChildren: () =>
-      import('../app/core/core.module').then((m) => m.CoreModule),
-  },
+    {
+        path: '',
+        component: HomeComponent
+    },
+    {
+        path: 'core',
+        loadChildren: () => import('../app/core/core.module').then((m) => m.CoreModule)
+    },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
 
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  {
-    path: 'add-category',
-    component: AddCategoryComponent,
-  },
-  {
-    path: 'add-module',
-    component: AddModuleComponent,
-  },
-  {
-    path: 'add-menu-items',
-    component: AddMenuItemsComponent,
-  },
-  {
-    path: 'add-role-menu-items',
-    component: AddRoleMenuItemsComponent,
-  },
-  {
-    path: 'carousel',
-    component: CarouselComponent,
-  },
-  {
-    path: 'top-trends',
-    component: TopTrendsComponent,
-  },
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    {
+        path: 'add-category',
+        component: AddCategoryComponent
+    },
+    {
+        path: 'add-module',
+        component: AddModuleComponent
+    },
+    {
+        path: 'add-menu-items',
+        component: AddMenuItemsComponent
+    },
+    {
+        path: 'add-role-menu-items',
+        component: AddRoleMenuItemsComponent
+    },
+    {
+        path: 'carousel',
+        component: CarouselComponent
+    },
+    {
+        path: 'top-trends',
+        component: TopTrendsComponent
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {}
