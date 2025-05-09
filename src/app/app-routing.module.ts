@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AdminModule } from './core/admin/admin.module';
-import { AdminGuard } from './guards/admin.guard';
-import { InstructorModule } from './core/instructor/instructor.module';
-import { instructorGuard } from './guards/instructor.guard';
-import { UserModule } from './core/user/user.module';
-import { userGuard } from './guards/user.guard';
-
+import { AddCategoryComponent } from './folder/add-category/add-category.component';
+import { AddModuleComponent } from './folder/add-module/add-module.component';
+import { AddMenuItemsComponent } from './folder/add-menu-items/add-menu-items.component';
+import { AddRoleMenuItemsComponent } from './folder/add-role-menu-items/add-role-menu-items.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { TopTrendsComponent } from './top-trends/top-trends.component';
 
 const routes: Routes = [
   {
@@ -21,37 +20,35 @@ const routes: Routes = [
     loadChildren: () =>
       import('../app/core/core.module').then((m) => m.CoreModule),
   },
-  
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // { 
-  //   path: 'admin', 
-  //   loadChildren: () => 
-  //     import('./core/admin/admin.module').then((m) => m.AdminModule), 
-  //   canActivate: [AdminGuard] 
-  // },
-  // { 
-  //   path: 'instructor', 
-  //   loadChildren: () => 
-  //     import('./core/instructor/instructor.module').then((m) => m.InstructorModule), 
-  //   canActivate: [instructorGuard] 
-  // },
-  // { 
-  //   path: 'user', 
-  //   loadChildren: () => 
-  //     import('./core/user/user.module').then((m) => m.UserModule), 
-  //   canActivate: [userGuard] 
-  // },
-  {path:'admin/dashboard', loadChildren: () => import('./core/admin/admin.module').then(m => m.AdminModule), canActivate: [AdminGuard]},
-  {path:'instructor/dashboard', loadChildren: () => import('./core/instructor/instructor.module').then(m => m.InstructorModule), canActivate: [instructorGuard]},
-  {path:'user/dashboard', loadChildren: () => import('./core/user/user.module').then(m => m.UserModule), canActivate: [userGuard]},
-  { path: '', component:HomeComponent, pathMatch: 'full' },
-  {path:'add-category',loadComponent:()=>import('./folder/add-category/add-category.component').then(m=>m.AddCategoryComponent)},
-  {path:'add-module',loadComponent:()=>import('./folder/add-module/add-module.component').then(m=>m.AddModuleComponent)},
-  {path:'add-menu-items',loadComponent:()=>import('./folder/add-menu-items/add-menu-items.component').then(m=>m.AddMenuItemsComponent)},
-  {path:'add-role-menu-items',loadComponent:()=>import('./folder/add-role-menu-items/add-role-menu-items.component').then(m=>m.AddRoleMenuItemsComponent)},
-  {path:'carousel',loadComponent:()=>import('./homepage/carousel/carousel.component').then(m=>m.CarouselComponent)},
-  {path:'top-trends',loadComponent:()=>import('./homepage/top-trends/top-trends.component').then(m=>m.TopTrendsComponent)},
+
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: 'add-category',
+    component: AddCategoryComponent,
+  },
+  {
+    path: 'add-module',
+    component: AddModuleComponent,
+  },
+  {
+    path: 'add-menu-items',
+    component: AddMenuItemsComponent,
+  },
+  {
+    path: 'add-role-menu-items',
+    component: AddRoleMenuItemsComponent,
+  },
+  {
+    path: 'carousel',
+    component: CarouselComponent,
+  },
+  {
+    path: 'top-trends',
+    component: TopTrendsComponent,
+  },
 ];
 
 @NgModule({
