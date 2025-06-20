@@ -1,0 +1,21 @@
+.text-purple {
+  color: #6f42c1;
+}
+
+.btn-outline-purple {
+  border-color: #6f42c1;
+  color: #6f42c1;
+}
+
+.btn-outline-purple:hover {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}

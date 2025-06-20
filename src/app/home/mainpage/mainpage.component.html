@@ -1,0 +1,107 @@
+<div class="stats-container">
+  <div class="stat-block" *ngFor="let stat of stats; let i = index" #statBlock>
+    <img [src]="stat.icon" [alt]="stat.label" class="stat-icon" />
+    <div class="stat-text">
+      <div class="stat-value">{{ stat.currentValue | number }}{{ stat.suffix }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="turnkey-section">
+  <div class="turnkey-card turnkey-card-main">
+    <h2>Complete Learning Experience</h2>
+    <p>With a focus on creativity, innovation, and career-ready skills, we provide a seamless learning journey from concept to mastery.</p>
+    <a class="know-more-link" href="#" (click)="openConsultationModal($event)">KNOW MORE <span>&rarr;</span></a>
+  </div>
+  <div class="turnkey-card">
+    <img src="images/a.svg" alt="We Design" class="turnkey-img" />
+    <h3>🧪We Train</h3>
+    <p>We provide guided projects, interactive exercises, and real-world challenges to ensure learners apply what they learn and build job-ready portfolios.</p>
+  </div>
+  <div class="turnkey-card">
+    <img src="images/b.svg" alt="We Execute" class="turnkey-img" />
+    <h3>📐 We Teach</h3>
+    <p>Our expert-led courses help learners master tools and techniques in UI/UX, graphic design, product thinking, and more—through hands-on, industry-aligned content.
+    </div>
+    <div class="turnkey-card">
+    <img src="images/c.svg" alt="We Execute" class="turnkey-img" />
+    <h3>🎯 We Support</h3>
+    <p>Our mentors and support team offer personalized feedback, regular evaluations, and career guidance—ensuring you’re never alone in your journey.
+</p>
+  </div>
+</div>
+
+<div class="consultation-modal-overlay" *ngIf="showConsultationModal">
+  <div class="consultation-modal">
+    <button class="close-btn" (click)="closeConsultationModal()">&times;</button>
+    <h2>Get Started with Your Training</h2>
+    <form class="consultation-form">
+      <input type="text" placeholder="Name*" required />
+      <div class="input-row">
+        <select class="country-code">
+          <option>+91</option>
+          <!-- Add more country codes as needed -->
+        </select>
+        <input type="tel" placeholder="Mobile*" required />
+      </div>
+      <input type="email" placeholder="Email*" required />
+      <select required>
+        <option value="" disabled selected>Choose City</option>
+        <option>Hyderabad</option>
+        <option>Bangalore</option>
+        <option>Chennai</option>
+        <!-- Add more cities as needed -->
+      </select>
+      <div class="checkbox-row">
+        <label class="custom-checkbox">
+          <input type="checkbox" checked />
+          <span class="checkmark"></span>
+        </label>
+        <span>You can reach me on <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon" /> WhatsApp</span>
+      </div>
+      <button type="submit" class="consultation-btn">🔘 Enroll for Free</button>
+      <p class="form-note">
+        By submitting this form, you agree to the <a href="#">privacy policy</a> and <a href="#">terms of use</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- Design Ideas for Every Space Section -->
+<div class="design-ideas-section">
+  <h2 class="design-ideas-title">Learning Resources for Every User</h2>
+  <p class="design-ideas-subtitle">Because every learner deserves the right tools for success.</p>
+
+  <!-- Category Tabs -->
+  <div class="design-ideas-tabs">
+    <button class="tab-arrow" disabled>&lt;</button>
+
+    <button
+      *ngFor="let category of categories"
+      class="tab"
+      [class.active]="activeCategory === category"
+      (click)="setActiveCategory(category)"
+    >
+      {{ category }}
+    </button>
+
+    <button class="tab-arrow" disabled>&gt;</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="design-ideas-cards">
+    <div *ngFor="let card of filteredCards" class="design-idea-card">
+      <img [src]="card.image" [alt]="card.title" />
+      <div class="design-idea-card-title">{{ card.title }}</div>
+    </div>
+
+    <!-- Optional: Show a message if no cards exist for a tab -->
+    <div *ngIf="filteredCards.length === 0" class="no-results">
+      <p>No content available for this category.</p>
+    </div>
+  </div>
+</div>

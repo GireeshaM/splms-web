@@ -1,0 +1,315 @@
+<app-navbar></app-navbar>
+<div class="profile-container">
+  <aside class="sidebar">
+    <div class="avatar-section">
+      <!-- Circular Avatar -->
+      <div class="avatar-circle">
+        <!-- Webcam Feed -->
+        <video #video *ngIf="isCameraOn" autoplay muted playsinline></video>
+
+        <!-- Profile Image -->
+        <img
+          *ngIf="!isCameraOn && (previewImage || capturedImage)"
+          [src]="previewImage || capturedImage"
+          alt="Profile"
+        />
+
+        <!-- Empty Circle Placeholder -->
+        <ng-template [ngIf]="!isCameraOn && !previewImage && !capturedImage">
+          <div class="empty-circle"></div>
+        </ng-template>
+      </div>
+
+      <!-- Upload & Webcam Controls -->
+      <div class="avatar-controls">
+        <input
+          type="file"
+          #fileInput
+          accept=".jpg,.jpeg,.png"
+          hidden
+          (change)="onFileSelected($event)"
+        />
+        <button (click)="fileInput.click()">
+          <i class="fas fa-file-upload"></i> Choose File
+        </button>
+        <button *ngIf="!isCameraOn" (click)="startCamera()">
+          <i class="fas fa-camera"></i> Webcam
+        </button>
+        <button *ngIf="isCameraOn" (click)="captureImage()">
+          <i class="fas fa-check-circle"></i> Capture
+        </button>
+        <button *ngIf="isCameraOn" (click)="stopCamera()">
+          <i class="fas fa-times-circle"></i> Stop
+        </button>
+      </div>
+
+      <!-- User Info Display -->
+      <div class="user-info-top">
+        <h3>{{ fullName }}</h3>
+        <p>{{ profileForm.get("email")?.value }}</p>
+        <p>{{ profileForm.get("phoneNumber")?.value }}</p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="details-section">
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button
+        [class.active]="activeTab === 'personal'"
+        (click)="activeTab = 'personal'"
+        [attr.aria-selected]="activeTab === 'personal' ? 'true' : 'false'"
+      >
+        <i class="fas fa-user"></i> Personal Details
+      </button>
+      <button
+        [class.active]="activeTab === 'education'"
+        (click)="activeTab = 'education'"
+        [attr.aria-selected]="activeTab === 'education' ? 'true' : 'false'"
+      >
+        <i class="fas fa-graduation-cap"></i> Educational Details
+      </button>
+    </nav>
+
+    <!-- Tab content -->
+    <section
+      class="tab-content"
+      [@tabSwitchAnimation]="activeTab"
+      *ngIf="activeTab === 'personal'"
+    >
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="onSubmit()"
+        class="container-fluid"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <label for="dateOfBirth">Date of Birth:</label>
+              <input
+                type="date"
+                id="dateOfBirth"
+                formControlName="dateOfBirth"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="maritalStatus">Marital Status:</label>
+              <select formControlName="maritalStatus" id="maritalStatus">
+                <option value="">Select</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+              </select>
+            </div>
+
+            <div class="form-row" style="position: relative; width: 250px">
+              <label>Country:</label>
+
+              <div
+                class="custom-select"
+                (click)="toggleDropdown()"
+                style="
+                  display: flex;
+                  align-items: center;
+                  border: 1px solid #ccc;
+                  padding: 5px;
+                  cursor: pointer;
+                  user-select: none;
+                "
+              >
+                <img
+                  *ngIf="selectedCountry"
+                  [src]="
+                    'https://flagcdn.com/w20/' +
+                    selectedCountry.isoCode.toLowerCase() +
+                    '.png'
+                  "
+                  alt="{{ selectedCountry.name }} flag"
+                  width="20"
+                  height="15"
+                  style="margin-right: 8px"
+                />
+                <span>{{
+                  selectedCountry?.name || "Select Your Country"
+                }}</span>
+              </div>
+
+              <ul
+                *ngIf="dropdownOpen"
+                class="dropdown-list"
+                style="
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  right: 0;
+                  max-height: 200px;
+                  overflow-y: auto;
+                  border: 1px solid #ccc;
+                  background: white;
+                  margin: 0;
+                  padding: 0;
+                  list-style: none;
+                  z-index: 10;
+                "
+              >
+                <li
+                  *ngFor="let country of countries"
+                  (click)="selectCountry(country)"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    padding: 5px;
+                    cursor: pointer;
+                  "
+                  [ngClass]="{
+                    selected: country.isoCode === selectedCountry?.isoCode
+                  }"
+                >
+                  <img
+                    [src]="
+                      'https://flagcdn.com/w20/' +
+                      country.isoCode.toLowerCase() +
+                      '.png'
+                    "
+                    alt="{{ country.name }} flag"
+                    width="20"
+                    height="15"
+                    style="margin-right: 8px"
+                  />
+                  {{ country.name }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="form-row">
+              <label>City:</label>
+              <select formControlName="city" (change)="onCityChange()">
+                <option [ngValue]="null">-- Select Your City --</option>
+                <option *ngFor="let city of cities" [ngValue]="city">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-row">
+              <label>Gender:</label>
+              <select formControlName="gender">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Alternate Mobile Number:</label>
+              <input
+                type="text"
+                formControlName="alternateMobileNumber"
+                maxlength="10"
+                pattern="^[0-9]{10}$"
+                inputmode="numeric"
+                title="Enter a 10-digit mobile number"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label>State:</label>
+              <select formControlName="state" (change)="onStateChange()">
+                <option [ngValue]="null">-- Select Your State --</option>
+                <option *ngFor="let state of states" [ngValue]="state">
+                  {{ state.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section
+      class="tab-content"
+      [@tabSwitchAnimation]="activeTab"
+      *ngIf="activeTab === 'education'"
+    >
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="onSubmit()"
+        class="container-fluid"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-row">
+              <label for="highestQualification">Highest Qualification:</label>
+              <select
+                id="highestQualification"
+                formControlName="highestQualification"
+                class="form-control dropdown"
+              >
+                <option value="" disabled selected>-- select one --</option>
+                <option value="No formal education">No formal education</option>
+                <option value="Primary education">Primary education</option>
+                <option value="Secondary education">
+                  Secondary education or high school
+                </option>
+                <option value="GED">GED</option>
+                <option value="Vocational qualification">
+                  Vocational qualification
+                </option>
+                <option value="Bachelor's degree">Bachelor's degree</option>
+                <option value="Master's degree">Master's degree</option>
+                <option value="Doctorate or higher">Doctorate or higher</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>College Name:</label>
+              <input type="text" formControlName="collegeName" />
+            </div>
+            <div class="form-row">
+              <label>Designation:</label>
+              <input type="text" formControlName="designation" />
+            </div>
+            <div class="form-row">
+              <label>Experience (Years):</label>
+              <input type="number" step="0.1" formControlName="experience" />
+            </div>
+            <div class="form-row">
+              <label>LinkedIn URL:</label>
+              <input type="url" formControlName="linkedInUrl" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-row">
+              <label>Qualification Stream:</label>
+              <input type="text" formControlName="qualificationStream" />
+            </div>
+            <div class="form-row">
+              <label>Passed Out Year:</label>
+              <input type="number" formControlName="passedOutYear" />
+            </div>
+            <div class="form-row">
+              <label>Job Title:</label>
+              <input type="text" formControlName="jobTitle" />
+            </div>
+            <div class="form-row">
+              <label>GitHub URL:</label>
+              <input type="url" formControlName="gitHubUrl" />
+            </div>
+            
+          </div>
+        </div>
+        <div class="d-flex justify-content-start mt-4">
+          <button
+            type="submit"
+            class="btn-submit"
+            [disabled]="profileForm.invalid"
+          >
+            {{ isEditMode ? "Update Profile" : "Create Profile" }}
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>

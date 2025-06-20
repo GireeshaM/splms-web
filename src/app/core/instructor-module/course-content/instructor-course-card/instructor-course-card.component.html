@@ -1,0 +1,13 @@
+<div class="course-card">
+    <div class="thumbnail">
+      <img [src]="'data:image/jpeg;base64,' + course.thumbnail" alt="Course Thumbnail" />
+    </div>
+    <div class="course-details">
+      <h3>{{ course.courseTitle }}</h3>
+      <p class="level">Level: {{ course.level }}</p>
+      <div class="actions">
+        <button class="manage-btn">Manage Course</button>
+        <button class="preview-btn">Preview Course</button>
+      </div>
+    </div>
+  </div>

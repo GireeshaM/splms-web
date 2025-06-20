@@ -1,0 +1,196 @@
+.carousel-item img {
+    width: 1285.6px;
+    height: 500px; /* Increased height */
+    object-fit: cover;
+  }
+  
+  .carousel-indicators button {
+    background-color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .dynamic-text-box {
+    position: absolute;
+    top: 20%;
+    left: 20%; /* Moved to the right */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Increased width */
+  }
+  
+  .dynamic-text-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .dynamic-text-box p {
+    font-size: 16px;
+  }
+  
+  .mandatory-courses-heading {
+    position: relative;
+    left: 50px; /* Decreased left padding */
+    top: 30px;
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Professional font */
+    margin-bottom: 45px; /* Increased bottom margin to add space */
+  }
+ /* General Styles */
+.mandatory-courses-heading {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Course Cards */
+.course-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.course-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course-info p {
+  font-size: 16px;
+  color: #666;
+}
+
+.go-to-course-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: -15px;
+}
+
+.go-to-course-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  width: 60%;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content ul {
+  text-align: left;
+  font-size: 16px;
+  color: #444;
+  margin: 20px 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-container button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button-container button:first-child:hover {
+  background-color: #a71d2a;
+}
+
+.button-container button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-container button:last-child:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-container button:last-child:hover:not(:disabled) {
+  background-color: #218838;
+}

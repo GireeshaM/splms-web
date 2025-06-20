@@ -1,0 +1,340 @@
+<div
+  *ngIf="showRegisterModal"
+  class="modal d-block pastel-modal"
+  tabindex="-1"
+  style="overflow: visible"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="overflow: visible; max-width: 1250px; width: 100%"
+  >
+    <div
+      class="modal-content pastel-content rounded-5 position-relative"
+      style="overflow: visible"
+    >
+      <!-- Close Button -->
+      <button
+        type="button"
+        class="btn animated-close"
+        aria-label="Close"
+        (click)="closeModal()"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div
+        class="d-flex flex-lg-row flex-column p-0"
+        style="min-height: 520px; overflow: visible; width: 100%"
+      >
+        <!-- Left Section (Logo, Title, Description, Button) -->
+        <div
+          class="w-50 d-none d-lg-flex flex-column align-items-center justify-content-center pastel-image-wrapper p-4"
+          style="
+            width: 55%;
+            background: linear-gradient(135deg, #c0395b 0%, #6c3bbf 100%);
+            border-radius: 32px 0 0 32px;
+          "
+        >
+          <div class="text-center w-100">
+            <!-- Logo -->
+            <div style="margin-bottom: 18px">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png"
+                alt="Girl"
+                style="width: 70px; filter: drop-shadow(0 2px 8px #fff8)"
+              />
+            </div>
+            <!-- App Name -->
+            <h2
+              style="
+                font-family: 'Pacifico', cursive;
+                font-size: 2.1rem;
+                color: #fff;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+              "
+            >
+              SprintPark LMS
+            </h2>
+            <!-- Description -->
+            <p
+              style="
+                color: #e2b6f9;
+                font-size: 0.98rem;
+                line-height: 1.5;
+                margin-bottom: 32px;
+              "
+            >
+              Welcome to SprintPark LMS! Enhance your learning experience, track
+              your progress, and connect with educators and peers. Join now to
+              unlock a world of knowledge and interactive courses designed for
+              your success.
+            </p>
+            <!-- Get Started Button -->
+            <button
+              class="btn pastel-btn"
+              style="
+                width: 70%;
+                font-size: 1.1rem;
+                padding: 13px 0;
+                background: linear-gradient(90deg, #c0395b 0%, #6c3bbf 100%);
+                box-shadow: 0 4px 24px #6c3bbf33;
+              "
+            >
+              GET STARTED
+            </button>
+            <!-- Already a member? -->
+            <div class="already-account-left mt-3">
+              <span style="color: #fff; font-size: 1rem"
+                >Already have an account?</span
+              >
+              <span
+                class="link-violet ms-1"
+                style="
+                  color: #fff;
+                  text-decoration: underline;
+                  cursor: pointer;
+                  font-weight: 600;
+                "
+                (click)="goToLogin()"
+                >Sign in</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Wavy Divider (SVG) -->
+        <div class="d-none d-lg-block" style="width: 18px; position: relative">
+          <svg
+            width="18"
+            height="100%"
+            viewBox="0 0 18 520"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="height: 100%"
+          >
+            <path
+              d="M18 0 Q9 80 18 160 Q9 240 18 320 Q9 400 18 520 L0 520 L0 0 Z"
+              fill="#fff"
+            />
+          </svg>
+        </div>
+
+        <!-- Right Form Section -->
+        <div
+          class="w-80 p-4 animate-form d-flex flex-column justify-content-center"
+          style="background: #fff; overflow: visible"
+        >
+          <div class="modal-header border-0 mb-2 p-0">
+            <h3
+              class="modal-title fw-bold"
+              style="
+                font-size: 1.7rem;
+                font-weight: 700;
+                background: linear-gradient(90deg, #c0395b 0%, #6c3bbf 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              "
+            >
+              Register
+            </h3>
+          </div>
+          <div style="color: #888; font-size: 1.01rem; margin-bottom: 18px">
+            Create your account. It's free and only takes a minute.
+          </div>
+          <div class="modal-body p-0" style="overflow: visible">
+            <form
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmit()"
+              class="fade-in"
+              novalidate
+            >
+              <!-- Row 1: Full Name & Email -->
+              <div class="row mb-3">
+                <div
+                  class="col-12 col-md-6 mb-3 mb-md-0 floating-placeholder compact"
+                >
+                  <label for="fullName" class="form-label">Full Name</label>
+                  <input type="text" id="fullName" formControlName="fullName" />
+                  <span></span>
+                  <small
+                    class="text-danger"
+                    *ngIf="f['fullName'].touched && f['fullName'].invalid"
+                  >
+                    Full Name is required.
+                  </small>
+                </div>
+                <div class="col-12 col-md-6 floating-placeholder compact">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" formControlName="email" />
+                  <span></span>
+                  <small
+                    class="text-danger"
+                    style="display: block; margin-top: 5px"
+                    *ngIf="f['email'].touched && f['email'].invalid">
+                    Please enter a valid email
+                  </small>
+                </div>
+              </div>
+              <!-- Row 2: Phone Number & Role -->
+              <!-- Phone Number & Role Row -->
+              <div class="row mb-3">
+                <!-- Phone Number Field (Styled like others) -->
+                <div
+                  class="col-12 col-md-6 mb-3 mb-md-0 floating-placeholder compact position-relative"
+                >
+                  <label for="phoneNumber" class="form-label"
+                    >Phone Number</label
+                  >
+
+                  <div class="d-flex w-100">
+                    <!-- Country Dropdown -->
+                    <select
+                      formControlName="countryCode"
+                      class="form-select pastel-input me-2"
+                      style="max-width: 80px; height: 50px"
+                    >
+                      <option
+                        *ngFor="let country of countryList"
+                        [value]="country.code"
+                      >
+                        {{ country.flag }}
+                      </option>
+                    </select>
+
+                    <!-- Phone Input -->
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      formControlName="phoneNumber"
+                      class="form-control pastel-input"
+                      placeholder="Enter phone number"
+                      [appPhoneNumber]="selectedCountry.code"
+                      maxlength="10"
+                      style="padding: 6px 10px; height: 50px"
+                    />
+                  </div>
+
+                  <!-- Validation -->
+                  <small
+                    class="text-danger"
+                    *ngIf="f['phoneNumber']?.errors?.['pattern'] && f['phoneNumber'].touched && f['phoneNumber'].invalid"
+                  >
+                    Please enter a valid 10-digit phone number.
+                  </small>
+                </div>
+
+                <!-- Role Dropdown Section -->
+                <div class="col-12 col-md-6 floating-placeholder compact">
+                  <label for="rolesId" class="form-label">Role</label>
+                  <select
+                    id="rolesId"
+                    formControlName="rolesId"
+                    class="form-select pastel-input"
+                  >
+                    <option value="" disabled selected hidden>
+                      Select the role
+                    </option>
+                    <option *ngFor="let role of roles" [value]="role.rolesId">
+                      {{ role.name }}
+                    </option>
+                  </select>
+                  <small
+                    class="text-danger"
+                    *ngIf="f['rolesId'].touched && f['rolesId'].invalid"
+                  >
+                    Please select a role.
+                  </small>
+                </div>
+              </div>
+
+              <!-- Row 3: Password & Confirm Password -->
+              <div class="row mb-3">
+                <div
+                  class="col-12 col-md-6 mb-3 mb-md-0 floating-placeholder compact position-relative placeholder-up-2"
+                >
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                    class="form-control"
+                  />
+                  <span></span>
+                  <small
+                    class="text-danger"
+                    *ngIf="f['password'].touched && f['password'].invalid"
+                  >
+                    Password must be at least 6 characters.
+                  </small>
+                </div>
+                <div
+                  class="col-12 col-md-6 floating-placeholder compact position-relative"
+                >
+                  <label for="confirmPassword" class="form-label"
+                    >Confirm Password</label
+                  >
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    formControlName="confirmPassword"
+                    class="form-control"
+                  />
+                  <span></span>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      (f['confirmPassword'].touched ||
+                        f['confirmPassword'].dirty) &&
+                      (f['confirmPassword'].invalid ||
+                        registerForm.hasError('mismatch'))
+                    "
+                  >
+                    Passwords do not match.
+                  </small>
+                </div>
+              </div>
+
+              <!-- Terms Checkbox -->
+              <div class="form-check mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="terms"
+                  required
+                />
+                <label
+                  class="form-check-label"
+                  for="terms"
+                  style="font-size: 0.97rem"
+                >
+                  I accept the
+                  <a href="#" style="color: #a770ef">Terms of Use</a> &amp;
+                  <a href="#" style="color: #fc5c7d">Privacy Policy</a>
+                </label>
+              </div>
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="btn pastel-btn w-100 mt-2"
+                [disabled]="
+                  registerForm.invalid || registerForm.hasError('mismatch')
+                "
+                style="
+                  font-size: 1.1rem;
+                  background: linear-gradient(90deg, #c0395b 0%, #6c3bbf 100%);
+                  color: #fff;
+                  border: none;
+                "
+              >
+                SIGN UP
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,159 @@
+/* --- FAQ Card Styling --- */
+.faq-card {
+  border: none;
+  border-left: 5px solid #6f42c1;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.faq-card:hover {
+  transform: translateY(-2px);
+}
+
+/* --- FAQ Header (Collapsed) --- */
+.faq-header {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- FAQ Expand Toggle Button --- */
+.faq-card .btn-outline-primary {
+  border-color: #6f42c1;
+  color: #6f42c1;
+  padding: 4px 10px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.faq-card .btn-outline-primary:hover {
+  background-color: #6f42c1;
+  color: #fff;
+}
+
+/* --- FAQ Expanded Area --- */
+.faq-expanded {
+  background-color: #f6f2fc;
+  border-top: 1px dashed #c2b4e2;
+  margin-top: 15px;
+  padding: 15px 10px;
+  border-radius: 0 0 12px 12px;
+}
+
+/* --- Question & Answer Labels --- */
+.faq-expanded label {
+  font-weight: 600;
+  color: #6f42c1;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* --- Inputs & Textarea Fields --- */
+.faq-expanded input[type="text"],
+.faq-expanded textarea {
+  border: 1.5px solid #6f42c1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: #fdfdff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.faq-expanded input[type="text"]:focus,
+.faq-expanded textarea:focus {
+  border-color: #8e63e6;
+  background-color: #fff;
+  box-shadow: 0 0 0 0.2rem rgba(143, 103, 231, 0.2);
+}
+
+/* --- Readonly Fields --- */
+input[readonly],
+textarea[readonly] {
+  background-color: #f2f2f2;
+  color: #777;
+  cursor: default;
+}
+
+/* --- Action Buttons --- */
+button.btn-sm {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+button.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+button.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+button.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* --- Dropdown Course Selector --- */
+.form-select{
+  width:50%;
+}
+#courseSelect {
+  background-color: #ffffff;
+  border: 2px solid #ced4da;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  color: #495057;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#courseSelect:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+  outline: none;
+}
+
+/* --- Add More + Save Button Styling --- */
+.custom-add-faq-btn,
+button[type="submit"] {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-add-faq-btn {
+  background: linear-gradient(135deg, #6f42c1, #9f7aea);
+  border: none;
+  color: white;
+}
+
+.custom-add-faq-btn:hover {
+  background: linear-gradient(135deg, #5a35a6, #8c5fd1);
+}
+
+button[type="submit"] {
+  background-color: #198754;
+  border: none;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #157347;
+}

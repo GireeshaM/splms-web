@@ -1,0 +1,190 @@
+/* Layout & Base */
+.dashboard-wrapper {
+  background: linear-gradient(135deg, #f9f9f9, #e4f0f6);
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #374151;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #a7c7e7;
+  box-shadow: 0 4px 8px rgba(167, 199, 231, 0.4);
+}
+
+.user-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1e293b;
+}
+
+.metrics-box .metric {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+.highlight {
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.success {
+  background-color: #a7d7a7;
+  color: #2e7d32;
+}
+
+.warning {
+  background-color: #f9d29d;
+  color: #ef6c00;
+}
+
+.error {
+  background-color: #f8b7b7;
+  color: #d32f2f;
+}
+
+.info {
+  background-color: #9ccffb;
+  color: #1565c0;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #dcedf9;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(115, 141, 185, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(115, 141, 185, 0.35);
+}
+
+.card h3 {
+  font-size: 1rem;
+  color: #3b4252;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.stat {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #1f2937;
+}
+
+.trend {
+  font-size: 1rem;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  color: #34495e;
+  width: 18px;
+  height: 18px;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.chart-card {
+  background-color: #e7f0fb;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(109, 140, 196, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
+}
+
+.chart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 28px rgba(109, 140, 196, 0.4);
+}
+
+.chart-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #34495e;
+  font-style: italic;
+}
+
+canvas {
+  width: 100% !important;
+  height: 320px !important;
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+  border-radius: 8px;
+}
+
+.chart-card:hover canvas {
+  filter: drop-shadow(0 0 10px rgba(109, 140, 196, 0.5));
+  transition: filter 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+canvas {
+  width: 100% !important;
+  height: 320px !important;
+  display: block;
+}

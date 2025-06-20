@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h2>Roles</h2>
+
+  <div class="mb-3">
+    <input [(ngModel)]="newRole.name" class="form-control" placeholder="Role Name" />
+    <button class="btn btn-success mt-2" (click)="addRole()">Add Role</button>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let role of roles">
+      {{ role.name }}
+      <button class="btn btn-danger btn-sm" (click)="deleteRole(role.rolesId)">Delete</button>
+    </li>
+  </ul>
+</div>

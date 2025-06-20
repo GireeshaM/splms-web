@@ -1,0 +1,256 @@
+<app-navbar></app-navbar>
+<!-- <div class="container py-5"> -->
+<div class=" main-container col-12 col-md-10 mx-auto" *ngIf="course">
+  <!-- first course and its description -->
+  <div class="container">
+    <div class="left-section">
+      <!-- Label -->
+      <div class="d-flex align-items-center mb-2">
+        <span
+          class="bg-primary rounded-circle me-2"
+          style="height: 12px; width: 12px"></span>
+        <span class="text-primary fw-semibold text-uppercase small letter-spacing">
+          Course: {{ getCategoryName() }}/{{ getSubCategoryName() }}
+          </span>
+      </div>
+
+      <!-- Tagline -->
+      <h6 class="  text-muted mb-1">
+        🚀 Build in-demand skills and stand out in tech
+      </h6>
+
+      <!-- Title -->
+      <h1 class="fw-semibold mb-3 display-6 text-dark">
+        <i class="bi bi-lightning-fill texat-warning me-2"></i>
+        {{ course.courseTitle }}
+      </h1>
+
+      <!-- Badges -->
+      <div class=" badge-container mb-3">
+        <span class="badge bg-primary me-2 px-3 py-2 fs-6 rounded-pill">Development</span>
+        <span class="badge bg-secondary me-2 px-3 py-2 fs-6 rounded-pill">{{ course.level }}</span>
+      </div>
+
+      <!-- Description -->
+      <p class=" text-secondary mb-4  lh-lg">
+        {{ course.courseDescription }}
+      </p>
+
+      <!-- Instructor -->
+      <div class="instructor d-flex align-items-center mt-4">
+        <img
+          [src]="userProfile?.photoPath || getFallbackPhoto()"
+          alt="Instructor photo"
+          width="100"
+          class="rounded-circle me-3"
+        />
+        <span class="fw-bold fs-5 text-dark">by {{ user?.fullName }}</span>
+      </div>
+      <!-- CTA Button -->
+      <button
+        class="btn btn-primary mt-4 px-5 py-3 fs-5 fw-bold rounded-pill shadow-sm">
+        Get started
+      </button>
+    </div>
+  </div>
+  <div>
+    <!-- Info Boxes -->
+    <div class="course-details">
+      <!-- <div class=" row text-center  bg-white p-4 rounded shadow-sm g-4"> -->
+      <div class="detail-box col-6 col-md-2">
+        <strong class="d-block">{{ totalSections }} sections:</strong>
+        <small class="text-muted"
+          >Gain insight into a topic and learn the fundamentals.</small
+        >
+      </div>
+      <div class="detail-box col-6 col-md-2">
+        <strong class="d-block">4.6 ★</strong>
+        <small class="text-muted">(6,125 reviews)</small>
+      </div>
+      <div class="detail-box col-6 col-md-2">
+        <strong class="d-block">{{ course.level }}</strong>
+        <small class="text-muted">Course Level</small>
+      </div>
+      <div class="detail-box col-6 col-md-3">
+        <strong class="d-block">Flexible schedule</strong>
+        <small class="text-muted">{{ course.duration }} </small>
+      </div>
+      <div class="detail-box col-12 col-md-3 mt-3 mt-md-0">
+        <strong class="d-block">👍 97%</strong>
+        <small class="text-muted">Most learners liked this course</small>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- Demo Video + Overview -->
+    <div>
+      <div class="course-overview row mb-5 mt-5 align-items-center">
+        <div class="video-container col-lg-6 mb-4">
+          <video
+            width="100%"
+            height="300"
+            controls
+            *ngIf="course.demoVideo"
+            class="rounded shadow-sm w-100"
+          >
+            <source [src]="course.demoVideo" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="course-description col-lg-6">
+          <h3 class="fw-bold">Course Overview</h3>
+          <p class="text-muted fs-8">{{ course.courseOverview }}</p>
+          <button
+            enroll-btn
+            class="btn btn-primary mt-3 px-4 py-2 rounded-pill"
+          >
+            Enroll Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-requirements -->
+    <div
+      class="pre-requirements p-4 bg-light rounded shadow-sm border-start border-4 border-primary mt-5 mb-5">
+      <h4 class="fw-bold mb-3">Pre-requirements</h4>
+      <div class="pre" [innerHTML]="course.preRequirements"></div>
+    </div>
+
+    <!-- What You Will Learn -->
+    <div class="learn-section row mb-5">
+      <h3 class="learn-title fw-bold mb-3">What You Will Learn</h3>
+      <div class="learn-list">
+        <ul class="list-unstyled" [innerHTML]="course.whatYouWillLearn"></ul>
+      </div>
+    </div>
+
+    <!-- Skills You'll Gain -->
+    <div class="skills-section my-5 py-5 px-4 px-md-5 rounded">
+      <h3 class="fw-bold mb-4">Skills you'll gain</h3>
+
+      <div class="skills-list d-flex flex-wrap gap-2 mb-4">
+        <span *ngFor="let skill of displayedSkills" class="skill-pill">
+          {{ skill }}
+        </span>
+      </div>
+      <button
+        *ngIf="shouldShowSkillToggle()"
+        class="btn btn-primary"
+        (click)="toggleSkills()"
+      >
+        {{ showAllSkills ? "Show Less" : "View More" }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Course Content Accordion -->
+  <div class="section course-content">
+    <h2>Course content</h2>
+    <div class="content-header">
+      <p>{{ totalSections }} sections · {{ totalVideoCount }} lectures ·{{getTotalDurationInHours() }} Minutes </p>
+    </div>
+    <div class="accordion mt-5 shadow-sm" id="courseAccordion">
+      <div class="accordion-item" *ngFor="let section of sections">
+        <h2 class="accordion-header">
+          <!-- ── Add totalDuration right next to sectionName ── -->
+          <button
+            class="accordion-button collapsed fw-semibold d-flex justify-content-between align-items-center"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#section' + section.sectionId"
+            aria-expanded="false">
+            <!-- Left side: section title -->
+            <span>{{ section.sectionName }}</span>
+          </button>
+        </h2>
+
+        <div
+          [id]="'section' + section.sectionId"
+          class="accordion-collapse collapse"
+          data-bs-parent="#courseAccordion" >
+          <div class="accordion-body bg-light">
+            <!-- ── List each video, showing its individual duration ── -->
+            <div
+              *ngFor="let video of section.video"
+              class="mb-2 d-flex justify-content-between">
+              <!-- Video title -->
+              <span >📽 <span class="fw-semibold">{{ video.videoName }}- Duration: {{ video.videoDuration }} mins</span></span  >
+              <!-- Individual video duration -->
+            </div>
+            <!-- ── Quizzes (unchanged) ── -->
+            <div *ngIf="section.quiz && section.quiz.length > 0" class="mt-3">
+              <ul class="ps-3 mt-2">
+                <li *ngFor="let quiz of section.quiz" class="mb-2">
+                  <div class="fw-semibold">📝 {{ quiz.quizTitle }}</div>
+                  <!-- <div class="text-muted small">{{ quiz.quizDescription }}</div> -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Section -->
+  <div
+    class="career-certificate d-flex justify-content-between align-items-center p-4 rounded mb-5 flex-wrap">
+    <div class="certificate-text me-4 flex-grow-1">
+      <h4 class="fw-bold text-primary mb-2">Earn a career certificate</h4>
+      <p class="mb-1 text-muted">
+        Add this credential to your LinkedIn profile, resume, or CV
+      </p>
+      <p class="mb-0 text-muted">
+        Share it on social media and in your performance review
+      </p>
+    </div>
+    <div class="certificate-badge">
+      <img
+        src="/images/Certificate.jpg"
+        alt="Certificate Preview"
+        class="img-fluid rounded shadow-sm"
+        style="max-width: 280px"/>
+    </div>
+  </div>
+
+<div class="faq-section mt-4" style="width: 100%;">
+  <h4 class="mt-5 mb-4">Course FAQs</h4>
+
+  <div class="faq-container d-flex" style="display: flex; align-items: flex-start; gap: 2rem;">
+    <!-- Left: Image -->
+    <div class="faq-image" style="flex: 0 0 200px; text-align: center;">
+      <img src="/images/faqs.png" alt="FAQs" style="max-width: 100%; height: auto;">
+    </div>
+
+    <!-- Right: FAQs -->
+    <div class="faq-list" style="flex: 1;">
+      <div *ngIf="faqs.length > 0; else noFaqs">
+        <div *ngFor="let faq of faqs; let i = index" class="accordion mb-2">
+          <div class="card">
+            <div
+              class="card-header"
+              (click)="toggleFaq(i)"
+              [class.open]="expandedIndex === i"
+              style="cursor: pointer; background-color: #f8f9fa">
+              <strong> {{ faq.faqQuestion }}</strong>
+            </div>
+            <div
+              class="card-body"
+              *ngIf="expandedIndex === i"
+              style="background-color: #fff">
+              {{ faq.faqAnswer }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noFaqs>
+        <p>No FAQs available for this course.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+
+</div>

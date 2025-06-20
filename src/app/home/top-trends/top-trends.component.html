@@ -1,0 +1,464 @@
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   -->
+<br>
+<br>
+<br>
+<br>
+<br>
+ <section class="subject-section">
+  <div class="subject-header">
+    <span class="subject-badge">Learning Journey</span>
+    <h1>LearnSphere of SLMS</h1>
+    <p>The Learning Journey of SLMS starts with secure onboarding, followed by role-based access. It includes easy course enrollment, dynamic content creation, and ends with progress tracking and feedback.</p>
+    <button class="explore-button" (click)="showExploreSlide()">Explore More as Instructor→</button>
+      <!-- <button class="trends-button" (click)="openExplore('user')">Explore more as User</button> -->
+
+  </div>
+
+  <div class="subject-content">
+    <div class="subject-img">
+      <div class="subject-img-inner">
+        <div class="subject-img-front">
+          <img src="images/Enrollment (300 x 250 px)(1).svg" alt="Business Studies Icon">
+        </div>
+        <div class="subject-img-back">
+          <span class="material-icons icon">dashboard</span>
+          <p>Welcome! Sign in to access your smart learning dashboard.</p>
+        </div>
+      </div>
+    </div>
+    <div class="subject-img">
+      <div class="subject-img-inner">
+        <div class="subject-img-front">
+          <img src="images/enrollment.svg" alt="Artist & Design Icon">
+        </div>
+        <div class="subject-img-back">
+          <span class="material-icons icon">school</span>
+          <p>Enroll now to unlock your courses and start smart learning.</p>
+        </div>
+      </div>
+    </div>
+    <div class="subject-img">
+      <div class="subject-img-inner">
+        <div class="subject-img-front">
+          <img src="images/Enrollment (300 x 250 px) (2).svg" alt="Machine Learning Icon">
+        </div>
+        <div class="subject-img-back">
+          <span class="material-icons icon">account_circle</span>
+          <p>Create your account to begin your smart learning journey today.</p>
+        </div>
+      </div>
+    </div>
+    <div class="subject-img">
+      <div class="subject-img-inner">
+        <div class="subject-img-front">
+          <img src="images/Enrollment (300 x 250 px) (3).svg" alt="Artist & Design Icon">
+        </div>
+        <div class="subject-img-back">
+          <span class="material-icons icon">trending_up</span>
+          <p>Track your learning progress and achieve your goals efficiently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br />
+<br />
+<br />
+
+<section class="trends-section">
+  <div class="trends-container">
+    <!-- Left Section: Text -->
+    <div class="trends-text">
+      <h1>Top trends for the future of work</h1>
+      <p>
+        Our 2025 Global Learning & Skills Trends Report is out now! Find out how
+        to build the skills to keep pace with change.
+      </p>
+      <button class="trends-button" (click)="showTrendsSlide()">
+        Get the report →
+      </button>
+    </div>
+    <!-- Right Section: Image -->
+    <div class="trends-image">
+      <img
+        src="images/Untitled design.svg"
+        alt="2025 Global Learning & Skills Trends Report"
+      />
+    </div>
+  </div>
+</section>
+
+<div class="explore-slide" [class.active]="isExploreSlideVisible">
+  <div class="explore-container">
+    <button class="close-button top-right" (click)="hideExploreSlide()">
+      ×
+    </button>
+    <div class="slide-content">
+      <!-- <h2>Explore More About SLMS</h2> -->
+      <!-- Replicated Section -->
+      <section class="reasons-section">
+        <h2>So many reasons to start</h2>
+        <div class="reasons-container">
+          <div class="reason">
+            <span class="material-icons">school</span>
+            <h3>Teach your way</h3>
+            <p>
+              Publish the course you want, in the way you want, and always have
+              control of your own content.
+            </p>
+          </div>
+          <div class="reason">
+            <span class="material-icons">emoji_people</span>
+            <h3>Inspire learners</h3>
+            <p>
+              Teach what you know and help learners explore their interests,
+              gain new skills, and advance their careers.
+            </p>
+          </div>
+          <div class="reason">
+            <span class="material-icons">monetization_on</span>
+            <h3>Get rewarded</h3>
+            <p>
+              Expand your professional network, build your expertise, and earn
+              money on each paid enrollment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to begin Section -->
+      <section class="how-to-begin-section">
+        <h2>How to begin</h2>
+        <div class="tabs">
+          <div
+            class="tab"
+            [class.active]="activeTab === 'plan'"
+            (click)="setActiveTab('plan')"
+          >
+            Plan your curriculum
+          </div>
+          <div
+            class="tab"
+            [class.active]="activeTab === 'record'"
+            (click)="setActiveTab('record')"
+          >
+            Record your video
+          </div>
+          <div
+            class="tab"
+            [class.active]="activeTab === 'launch'"
+            (click)="setActiveTab('launch')"
+          >
+            Launch your course
+          </div>
+        </div>
+        <div class="how-to-content" *ngIf="activeTab === 'plan'">
+          <div class="text-content">
+            <p>
+              You start with your passion and knowledge. Then choose a promising
+              topic with the help of our Marketplace Insights tool.
+            </p>
+            <p>The way that you teach — what you bring to it — is up to you.</p>
+            <strong>How we help you</strong>
+            <p>
+              We offer plenty of resources on how to create your first course.
+              And, our instructor dashboard and curriculum pages help keep you
+              organized.
+            </p>
+          </div>
+          <div class="image-content">
+            <img
+              src="images/Untitled (480 x 480 px) (1).svg"
+              alt="How to begin illustration"
+            />
+          </div>
+        </div>
+        <div class="how-to-content" *ngIf="activeTab === 'record'">
+          <div class="text-content">
+            <p>
+              Use basic tools like a smartphone or a DSLR camera. Add a good
+              microphone and you’re ready to start.
+            </p>
+            <p>
+              If you don’t like being on camera, just capture your screen.
+              Either way, we recommend two hours or more of video for a paid
+              course.
+            </p>
+            <strong>How we help you</strong>
+            <p>
+              Our support team is available to help you throughout the process
+              and provide feedback on test videos.
+            </p>
+          </div>
+          <div class="image-content">
+            <img
+              src="images/Untitled (480 x 480 px) (2).svg"
+              alt="Record your video illustration"
+            />
+          </div>
+        </div>
+        <div class="how-to-content" *ngIf="activeTab === 'launch'">
+          <div class="text-content">
+            <p>
+              Gather your first ratings and reviews by promoting your course
+              through social media and your professional networks.
+            </p>
+            <p>
+              Your course will be discoverable in our marketplace where you earn
+              revenue from each paid enrollment.
+            </p>
+            <strong>How we help you</strong>
+            <p>
+              Our custom coupon tool lets you offer enrollment incentives while
+              our global promotions drive traffic to courses. There’s even more
+              opportunity for courses chosen for Udemy Business.
+            </p>
+          </div>
+          <div class="image-content">
+            <img
+              src="images/Untitled (480 x 480 px) (4).svg"
+              alt="Launch your course illustration"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="trends-slide" [class.active]="isTrendsSlideVisible">
+  <button class="close-button top-right" (click)="hideTrendsSlide()">×</button>
+  <div class="slide-content">
+    <div class="trends-container">
+      <div class="trends-left">
+        <h2>Skills for today and tomorrow’s work</h2>
+        <p>
+          To thrive in the modern world of work, companies must keep up with the
+          pace of change. Discover how to get ahead with the 2025 Global
+          Learning & Skills Trends Report.
+        </p>
+        <p>
+          Gain key insights into how to bridge skills gaps, including how to
+          stay current as GenAI continues to revolutionize the ways we work.
+          Organizational leaders, especially in learning and development, play
+          an essential role, as success hinges on their ability to engage all
+          employees in developing their skills and maintaining their competitive
+          edge.
+        </p>
+        <p>
+          Download the report to understand how the talent landscape is changing
+          and see what skills matter most, based on what the employees of more
+          than 16,000 enterprise customers are learning on the Udemy platform.
+        </p>
+      </div>
+      <div class="trends-right">
+        <h3>Unlock the trends and skills data</h3>
+        <form>
+          <input type="text" placeholder="First Name *" required />
+          <input type="text" placeholder="Last Name *" required />
+          <input type="email" placeholder="Work Email *" required />
+          <input type="text" placeholder="Company Name *" required />
+          <input type="text" placeholder="Job Title *" required />
+          <select required>
+            <option value="" disabled selected>Company Size *</option>
+            <option value="1-10">1-10</option>
+            <option value="11-50">11-50</option>
+            <option value="51-200">51-200</option>
+            <option value="201-500">201-500</option>
+            <option value="501-1000">501-1000</option>
+            <option value="1001+">1001+</option>
+          </select>
+          <div class="toggle-container">
+            <label
+              >Send me special offers, event updates, and learning tips.</label
+            >
+            <input type="checkbox" />
+          </div>
+          <button type="submit" class="submit-button">Submit</button>
+          <p class="terms">
+            By signing up, you agree to our <a href="#">Terms</a> and
+            <a href="#">Privacy Policy</a>. You agree that we can contact you
+            about Udemy and use data from third parties to personalize your
+            experience.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
+<div class="achievements-container">
+  <section id="achievements" class="achievements-section">
+    <div class="achievement">
+      <div class="icon-and-number">
+        <span class="material-icons">emoji_events</span>
+        <h2><span class="count" data-target="27">0</span>+</h2>
+      </div>
+      <p>Total Achievement</p>
+    </div>
+    <div class="achievement">
+      <div class="icon-and-number">
+        <span class="material-icons">school</span>
+        <h2><span class="count" data-target="145">0</span>+</h2>
+      </div>
+      <p>Total Students</p>
+    </div>
+    <div class="achievement">
+      <div class="icon-and-number">
+        <span class="material-icons">people</span>
+        <h2><span class="count" data-target="10000">0</span></h2>
+      </div>
+      <p>Total Instructors</p>
+    </div>
+    <div class="achievement">
+      <div class="icon-and-number">
+        <span class="material-icons">public</span>
+        <h2><span class="count" data-target="214">0</span>+</h2>
+      </div>
+      <p>Over the World</p>
+    </div>
+    <div class="achievement">
+      <div class="icon-and-number">
+        <span class="material-icons">menu_book</span>
+        <h2><span class="count" data-target="50">0</span>+</h2>
+      </div>
+      <p>Total Courses</p>
+    </div>
+  </section>
+</div> -->
+
+<section class="pricing-section">
+  <h2>Accelerate growth – for you or your organization</h2>
+  <p>
+    Reach goals faster with one of our plans or programs. Try one free today or
+    contact sales to learn more.
+  </p>
+  <div class="pricing-cards">
+    <div class="pricing-card">
+      <div class="pricing-details">
+        <h3>Personal Plan</h3>
+        <p class="subtitle">For you</p>
+      </div>
+      <button class="pricing-button">Start subscription →</button>
+      <ul>
+        <li>Access to 12,000+ top courses</li>
+        <li>Certification prep</li>
+        <li>Goal-focused recommendations</li>
+        <li>AI-powered coding exercises</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-details">
+        <h3>Team Plan</h3>
+        <p class="subtitle">For your team</p>
+      </div>
+      <button class="pricing-button">Start subscription →</button>
+      <ul>
+        <li>Access to 12,000+ top courses</li>
+        <li>Certification prep</li>
+        <li>Goal-focused recommendations</li>
+        <li>AI-powered coding exercises</li>
+        <li>Analytics and adoption reports</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-details">
+        <h3>Enterprise Plan</h3>
+        <p class="subtitle">For your whole organization</p>
+      </div>
+      <button class="pricing-button" (click)="showDemoSlide()">
+        Request a demo →
+      </button>
+      <ul>
+        <li>Access to 27,000+ top courses</li>
+        <li>Certification prep</li>
+        <li>Goal-focused recommendations</li>
+        <li>AI-powered coding exercises</li>
+        <li>Advanced analytics and insights</li>
+        <li>Dedicated customer success team</li>
+        <li>International course collection featuring 15 languages</li>
+        <li>Customizable content</li>
+        <li>Hands-on tech training with add-on</li>
+        <li>Strategic implementation services with add-on</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Removed .learning-goals-section -->
+<div class="testimonial-slider">
+  <h2>What Our Learners Say</h2>
+  <div class="testimonial-container">
+    <button class="slider-button prev" (click)="prevSlide()">‹</button>
+    <div class="carousel-track">
+      <div class="testimonial-slide" *ngFor="let card of cards">
+        <img [src]="card.image" alt="Testimonial Image" />
+        <blockquote>
+          <p>{{ card.quote }}</p>
+
+          <footer>— {{ card.author }}</footer>
+        </blockquote>
+      </div>
+    </div>
+    <button class="slider-button next" (click)="nextSlide()">›</button>
+  </div>
+</div>
+<div class="modren-slider">
+  <app-modren></app-modren>
+</div>
+
+<div class="demo-slide" [class.active]="isDemoSlideVisible">
+  <button class="close-button top-right" (click)="hideDemoSlide()">×</button>
+  <div class="slide-content">
+    <div class="left-content">
+      <h1>Get your demo</h1>
+      <p>
+        Tell us your needs and we’ll start on a custom plan to drive results.
+      </p>
+      <ul>
+        <li>
+          Train your entire workforce with over 27,000+ courses in 15 languages
+        </li>
+        <li>
+          Prep employees for over 200 industry-recognized certification exams
+        </li>
+        <li>
+          Develop highly skilled tech teams in risk-free practice environments
+        </li>
+        <li>
+          Identify emerging skills gaps, learning trends, and industry
+          benchmarks
+        </li>
+        <li>Integrate content with your existing learning management system</li>
+      </ul>
+    </div>
+    <form>
+      <input type="text" placeholder="First Name *" required />
+      <input type="text" placeholder="Last Name *" required />
+      <input type="email" placeholder="Work Email *" required />
+      <input type="text" placeholder="Phone Number *" required />
+      <select required>
+        <option value="" disabled selected>Where are you located *</option>
+        <option value="US">United States</option>
+        <option value="UK">United Kingdom</option>
+        <!-- Add more options as needed -->
+      </select>
+      <input type="text" placeholder="Company Name *" required />
+      <select required>
+        <option value="" disabled selected>Company Size *</option>
+        <option value="1-10">1-10</option>
+        <option value="11-50">11-50</option>
+        <option value="51-200">51-200</option>
+        <option value="201-500">201-500</option>
+        <option value="501-1000">501-1000</option>
+        <option value="1001+">1001+</option>
+      </select>
+      <input type="text" placeholder="Job Title *" required />
+      <textarea
+        placeholder="What are your organization’s training needs? (Optional)"
+      ></textarea>
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+</div>

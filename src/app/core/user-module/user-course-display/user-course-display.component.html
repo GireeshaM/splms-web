@@ -1,0 +1,660 @@
+<app-navbar></app-navbar>
+<div class="container-fluid p-0">
+  <div class="row g-0" style="height: 100vh">
+    <!-- Sidebar -->
+    <nav
+      *ngIf="sidebarOpen"
+      class="col-12 col-md-4 col-lg-3 bg-black border-end border-secondary shadow-sm h-100"
+      style="min-width: 320px; max-width: 420px; overflow-y: auto"
+    >
+      <div class="sidebar-sticky pt-3">
+        <div
+          class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom border-secondary"
+        >
+          <span class="fw-bold text-white fs-5">Contents</span>
+          <button
+            class="btn btn-link text-white p-0"
+            (click)="sidebarOpen = false"
+          >
+            <i class="fas fa-times fa-lg"></i>
+          </button>
+        </div>
+        <div class="list-group list-group-flush">
+          <div *ngFor="let section of sections" class="mb-0">
+            <div
+              class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center px-3 py-2 border border-secondary rounded-top"
+              [class.active]="
+                expandedSectionIds.includes(section.sectionId ?? -1)
+              "
+              (click)="toggleSection(section)"
+              style="cursor: pointer; font-weight: 500"
+            >
+              <span class="fs-6">{{ section.sectionName }}</span>
+              <i
+                class="fas"
+                [ngClass]="
+                  expandedSectionIds.includes(section.sectionId ?? -1)
+                    ? 'fa-chevron-up'
+                    : 'fa-chevron-down'
+                "
+              ></i>
+            </div>
+            <div
+              *ngIf="expandedSectionIds.includes(section.sectionId ?? -1)"
+              class="bg-black border-bottom border-start border-end border-secondary rounded-bottom pb-2"
+            >
+              <!-- Videos List -->
+              <div
+                *ngIf="section.videos?.length"
+                class="list-group list-group-flush ms-2 mt-2"
+              >
+                <div
+                  *ngFor="let video of section.videos; let last = last"
+                  class="list-group-item bg-transparent text-white px-2 py-2 border-0 d-flex align-items-center"
+                  [ngClass]="{
+                    'border-bottom border-secondary': !last,
+                    'mb-2': !last,
+                    'pb-2': !last,
+                    active: selectedVideo?.videoId === video.videoId
+                  }"
+                  (click)="selectVideo(video)"
+                  style="cursor: pointer; font-size: 0.97rem"
+                >
+                  <ng-container *ngIf="video.fileType === '.mp4'; else docIcon">
+                    <i class="fas fa-play-circle me-2 text-white-50"></i>
+                  </ng-container>
+                  <ng-template #docIcon>
+                    <span
+                      class="me-2"
+                      style="
+                        font-size: 1.2em;
+                        vertical-align: middle;
+                        color: #bbb;
+                      "
+                      >📄</span
+                    >
+                  </ng-template>
+                  <span class="fw-medium">{{ video.videoName }}</span>
+                </div>
+              </div>
+              <!-- Quizzes List -->
+              <div
+                *ngIf="section.quizzes?.length"
+                class="list-group list-group-flush ms-2 mt-2"
+              >
+                <div
+                  *ngFor="let quiz of section.quizzes; let last = last"
+                  class="list-group-item bg-transparent text-white-50 px-2 py-2 border-0 d-flex align-items-center"
+                  [ngClass]="{
+                    'border-bottom border-secondary': !last,
+                    'mb-2': !last,
+                    'pb-2': !last,
+                    active: selectedQuiz?.createQuizId === quiz.createQuizId
+                  }"
+                  (click)="selectQuiz(quiz)"
+                  style="cursor: pointer; font-size: 0.97rem"
+                >
+                  <i class="fas fa-question-circle me-2"></i>
+                  <span class="fw-medium">{{ quiz.quizTitle }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main
+      [ngClass]="
+        sidebarOpen
+          ? 'col px-0 d-flex flex-column h-100'
+          : 'col-12 px-0 d-flex flex-column h-100'
+      "
+      style="background: #181818"
+    >
+      <!-- Topbar -->
+      <div
+        class="bg-black border-bottom border-secondary text-center py-3 shadow-sm position-relative"
+      >
+        <!-- Hamburger button inside topbar, left-aligned -->
+        <button
+          *ngIf="!sidebarOpen"
+          class="btn btn-link position-absolute top-50 start-0 translate-middle-y ms-3"
+          (click)="sidebarOpen = true"
+          aria-label="Open sidebar"
+        >
+          <i class="fas fa-bars fa-lg text-white"></i>
+        </button>
+        <span class="fs-4 fw-semibold text-white fst-italic">{{
+          courseName
+        }}</span>
+      </div>
+      <!-- Fixed Video/Quiz Player -->
+      <div class="flex-shrink-0" style="background: #181818">
+        <div class="container-fluid px-0" style="max-width: 1600px">
+          <ng-container *ngIf="selectedQuiz; else videoOrPlaceholder">
+            <div
+              class="position-relative bg-black rounded-3 border border-secondary shadow-sm overflow-hidden w-100"
+              style="
+                width: 100%;
+                max-width: 1600px;
+                min-height: 550px;
+                max-height: 550px;
+                height: 550px;
+              "
+            >
+              <!-- Quiz name overlay (like video name) -->
+              <div
+                class="position-absolute top-0 start-0 w-100 d-flex align-items-center px-4 py-3 border-bottom border-secondary bg-dark"
+                style="z-index: 10"
+              >
+                <i class="fas fa-question-circle text-white-50 fs-4 me-2"></i>
+                <span class="fs-5 fw-bold text-white fst-italic">{{
+                  selectedQuiz.quizTitle
+                }}</span>
+              </div>
+              <!-- Quiz content scrollable area -->
+              <div
+                class="h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+                style="
+                  padding-top: 56px;
+                  overflow-y: auto;
+                  font-family: 'Segoe UI', Arial, sans-serif;
+                  font-size: 0.97rem;
+                "
+              >
+                <ng-container
+                  *ngIf="!quizStarted && quizQuestions.length === 0"
+                >
+                  <i
+                    class="fas fa-question-circle fa-3x mb-3 text-white-50"
+                  ></i>
+                  <div class="fs-4 fw-bold text-white mb-2">
+                    {{ selectedQuiz.quizTitle }}
+                  </div>
+                  <div class="mb-3 text-secondary fst-italic">
+                    {{
+                      selectedQuiz.quizDescription ||
+                        "No description available."
+                    }}
+                  </div>
+                  <button
+                    class="btn btn-light btn-sm px-4 py-2 fw-semibold"
+                    (click)="startQuiz()"
+                  >
+                    Start Now
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="quizStarted && quizQuestions.length > 0">
+                  <!-- Quiz questions here -->
+                  <div
+                    class="mb-3 d-flex justify-content-between align-items-center w-100 px-4"
+                  >
+                    <div class="fw-semibold text-white-50">
+                      Q{{ currentQuestionIndex + 1 }} /
+                      {{ quizQuestions.length }}
+                    </div>
+                    <div class="fw-semibold text-danger">
+                      Time Left: {{ quizTimer | number : "2.0" }}s
+                    </div>
+                  </div>
+                  <div class="mb-3 w-100 px-4">
+                    <div class="fw-semibold mb-2 text-white fs-6">
+                      {{ quizQuestions[currentQuestionIndex].quizQuestionText }}
+                    </div>
+                    <div
+                      *ngIf="
+                        quizQuestions[currentQuestionIndex]?.answers?.length ===
+                        0
+                      "
+                      class="text-danger"
+                    >
+                      No answers found for this question.
+                    </div>
+                    <div
+                      *ngFor="
+                        let ans of quizQuestions[currentQuestionIndex]?.answers
+                      "
+                      class="mb-2"
+                    >
+                      <ng-container
+                        *ngIf="
+                          isMultiAnswer(quizQuestions[currentQuestionIndex]);
+                          else singleAnswer
+                        "
+                      >
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            #cb
+                            [name]="
+                              'q' +
+                              quizQuestions[currentQuestionIndex].quizQuestionId
+                            "
+                            [value]="
+                              ans.QuizAnswerText ||
+                              ans.quizAnswerText ||
+                              ans.answerText
+                            "
+                            [checked]="
+                              (
+                                quizAnswers[
+                                  quizQuestions[currentQuestionIndex]
+                                    .quizQuestionId!
+                                ] || []
+                              ).includes(
+                                ans.QuizAnswerText ||
+                                  ans.quizAnswerText ||
+                                  ans.answerText
+                              )
+                            "
+                            (change)="
+                              toggleMultiAnswer(
+                                quizQuestions[currentQuestionIndex]
+                                  .quizQuestionId!,
+                                ans.QuizAnswerText ||
+                                  ans.quizAnswerText ||
+                                  ans.answerText,
+                                cb.checked
+                              )
+                            "
+                          />
+                          <label class="form-check-label text-white-50 small">
+                            {{
+                              ans.QuizAnswerText ||
+                                ans.quizAnswerText ||
+                                ans.answerText
+                            }}
+                          </label>
+                        </div>
+                      </ng-container>
+                      <ng-template #singleAnswer>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            [name]="
+                              'q' +
+                              quizQuestions[currentQuestionIndex].quizQuestionId
+                            "
+                            [value]="
+                              ans.QuizAnswerText ||
+                              ans.quizAnswerText ||
+                              ans.answerText
+                            "
+                            [checked]="
+                              quizAnswers[
+                                quizQuestions[currentQuestionIndex]
+                                  .quizQuestionId!
+                              ] ===
+                              (ans.QuizAnswerText ||
+                                ans.quizAnswerText ||
+                                ans.answerText)
+                            "
+                            (change)="
+                              selectAnswer(
+                                quizQuestions[currentQuestionIndex]
+                                  .quizQuestionId!,
+                                ans.QuizAnswerText ||
+                                  ans.quizAnswerText ||
+                                  ans.answerText
+                              )
+                            "
+                          />
+                          <label class="form-check-label text-white-50 small">
+                            {{
+                              ans.QuizAnswerText ||
+                                ans.quizAnswerText ||
+                                ans.answerText
+                            }}
+                          </label>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="d-flex justify-content-between mt-4 w-100 px-4">
+                    <button
+                      class="btn btn-outline-light btn-sm px-3"
+                      (click)="prevQuestion()"
+                      [disabled]="currentQuestionIndex === 0"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      class="btn btn-outline-light btn-sm px-3"
+                      (click)="nextQuestion()"
+                      [disabled]="
+                        currentQuestionIndex === quizQuestions.length - 1
+                      "
+                    >
+                      Next
+                    </button>
+                    <button
+                      class="btn btn-light btn-sm px-4"
+                      (click)="submitQuiz()"
+                      *ngIf="currentQuestionIndex === quizQuestions.length - 1"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!quizStarted && quizQuestions.length > 0">
+                  <!-- Quiz results here -->
+                  <h5 class="fw-bold text-success mb-3">Quiz Results</h5>
+                  <div class="fs-6 mb-3 text-white">
+                    Your Score: <b>{{ totalMarks }}</b> /
+                    {{ quizQuestions.length }}
+                  </div>
+                  <div
+                    *ngFor="let q of quizQuestions; let i = index"
+                    class="mb-4"
+                  >
+                    <ng-container *ngIf="q.quizQuestionId as qid">
+                      <div class="fw-semibold mb-1 text-white-50">
+                        Q{{ i + 1 }}. {{ q.quizQuestionText }}
+                      </div>
+                      <div *ngFor="let ans of q.answers" class="ms-3">
+                        <span
+                          class="small"
+                          [ngClass]="{
+                            'text-success':
+                              (isMultiAnswer(q) &&
+                                quizResults[qid].correctAnswer
+                                  ?.split(', ')
+                                  .includes(
+                                    ans.QuizAnswerText ||
+                                      ans.quizAnswerText ||
+                                      ans.answerText
+                                  )) ||
+                              (!isMultiAnswer(q) &&
+                                quizResults[qid].correctAnswer ===
+                                  (ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText)),
+                            'text-danger':
+                              (isMultiAnswer(q) &&
+                                quizResults[qid].selected?.includes(
+                                  ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText
+                                )) ||
+                              (!isMultiAnswer(q) &&
+                                quizResults[qid].selected ===
+                                  (ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText))
+                          }"
+                        >
+                          <i
+                            *ngIf="
+                              isMultiAnswer(q) &&
+                              quizResults[qid]?.selected?.includes(
+                                ans.QuizAnswerText ||
+                                  ans.quizAnswerText ||
+                                  ans.answerText
+                              )
+                            "
+                            class="fas"
+                            [ngClass]="
+                              quizResults[qid].isCorrect &&
+                              quizResults[qid].correctAnswer
+                                ?.split(', ')
+                                .includes(
+                                  ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText
+                                )
+                                ? 'fa-check-circle text-success'
+                                : 'fa-times-circle text-danger'
+                            "
+                          ></i>
+                          <i
+                            *ngIf="
+                              !isMultiAnswer(q) &&
+                              quizResults[qid]?.selected ===
+                                (ans.QuizAnswerText ||
+                                  ans.quizAnswerText ||
+                                  ans.answerText)
+                            "
+                            class="fas"
+                            [ngClass]="
+                              quizResults[qid].isCorrect
+                                ? 'fa-check-circle text-success'
+                                : 'fa-times-circle text-danger'
+                            "
+                          ></i>
+                          <i
+                            *ngIf="
+                              (isMultiAnswer(q) &&
+                                quizResults[qid]?.correctAnswer
+                                  ?.split(', ')
+                                  .includes(
+                                    ans.QuizAnswerText ||
+                                      ans.quizAnswerText ||
+                                      ans.answerText
+                                  ) &&
+                                !(quizResults[qid]?.selected || []).includes(
+                                  ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText
+                                )) ||
+                              (!isMultiAnswer(q) &&
+                                quizResults[qid]?.correctAnswer ===
+                                  (ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText) &&
+                                quizResults[qid]?.selected !==
+                                  (ans.QuizAnswerText ||
+                                    ans.quizAnswerText ||
+                                    ans.answerText))
+                            "
+                            class="fas fa-check text-success"
+                          ></i>
+                          {{
+                            ans.QuizAnswerText ||
+                              ans.quizAnswerText ||
+                              ans.answerText
+                          }}
+                        </span>
+                      </div>
+                      <!-- Explanations -->
+                      <div *ngIf="quizResults[qid]?.selected">
+                        <ng-container
+                          *ngIf="isMultiAnswer(q); else singleExplain"
+                        >
+                          <div
+                            *ngFor="let selected of quizResults[qid]?.selected"
+                          >
+                            <ng-container *ngIf="q.answers">
+                              <div *ngFor="let ansObj of q.answers">
+                                <ng-container
+                                  *ngIf="
+                                    (ansObj.QuizAnswerText ||
+                                      ansObj.quizAnswerText ||
+                                      ansObj.answerText) === selected &&
+                                    ansObj.answerDescription
+                                  "
+                                >
+                                  <div class="ms-3 text-white-50 small">
+                                    <b>Explanation:</b>
+                                    {{ ansObj.answerDescription }}
+                                  </div>
+                                </ng-container>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                        <ng-template #singleExplain>
+                          <ng-container *ngIf="q.answers">
+                            <div *ngFor="let ansObj of q.answers">
+                              <ng-container
+                                *ngIf="
+                                  (ansObj.QuizAnswerText ||
+                                    ansObj.quizAnswerText ||
+                                    ansObj.answerText) ===
+                                    quizResults[qid]?.selected &&
+                                  ansObj.answerDescription
+                                "
+                              >
+                                <div class="ms-3 text-white-50 small">
+                                  <b>Explanation:</b>
+                                  {{ ansObj.answerDescription }}
+                                </div>
+                              </ng-container>
+                            </div>
+                          </ng-container>
+                        </ng-template>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="d-flex justify-content-end gap-2 mt-4 w-100 px-4">
+                    <button
+                      class="btn btn-outline-light btn-sm px-3"
+                      (click)="retakeQuiz()"
+                    >
+                      Retake the Test
+                    </button>
+                    <button
+                      class="btn btn-light btn-sm px-4"
+                      (click)="goToNextSectionVideo()"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #videoOrPlaceholder>
+            <ng-container *ngIf="selectedVideo && videoUrl; else placeholder">
+              <div
+                class="position-relative bg-black rounded-3 border border-secondary shadow-sm overflow-hidden w-100"
+                style="
+                  width: 100%;
+                  max-width: 1600px;
+                  min-height: 550px;
+                  max-height: 550px;
+                  height: 550px;
+                "
+              >
+                <ng-container
+                  *ngIf="selectedVideo.fileType === '.pdf'; else videoBlock"
+                >
+                  <iframe
+                    [src]="videoUrl"
+                    class="w-100"
+                    style="
+                      height: 100%;
+                      border: none;
+                      border-radius: 8px;
+                      background: #222;
+                      min-height: 550px;
+                      max-height: 550px;
+                    "
+                  ></iframe>
+                </ng-container>
+                <ng-template #videoBlock>
+                  <video
+                    [src]="videoUrl"
+                    controls
+                    autoplay
+                    class="w-100 rounded-3 h-100"
+                    style="
+                      background: #000;
+                      min-height: 550px;
+                      max-height: 550px;
+                      height: 100%;
+                    "
+                  ></video>
+                </ng-template>
+                <div
+                  class="position-absolute top-0 start-0 w-100 d-flex justify-content-between align-items-start px-4 py-3 border-bottom border-secondary bg-dark"
+                  style="z-index: 10"
+                >
+                  <div>
+                    <div class="fs-5 fw-bold text-white">
+                      {{ selectedVideo.videoName }}
+                    </div>
+                  </div>
+                  <div class="d-flex gap-3">
+                    <span class="text-white-50"
+                      ><i class="fas fa-thumbs-up me-1"></i>18,014</span
+                    >
+                    <span class="text-white-50"
+                      ><i class="fas fa-bookmark me-1"></i>446,599</span
+                    >
+                    <span class="text-white-50"
+                      ><i class="fas fa-plus"></i
+                    ></span>
+                    <span class="text-white-50"
+                      ><i class="fas fa-share"></i
+                    ></span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-outline-light position-absolute bottom-0 start-0 m-4"
+                  (click)="goToPrevVideo()"
+                  *ngIf="selectedVideo && getPrevVideo()"
+                  aria-label="Previous video"
+                >
+                  &larr; Previous
+                </button>
+                <button
+                  class="btn btn-light position-absolute bottom-0 end-0 m-4"
+                  (click)="goToNextVideo()"
+                  *ngIf="selectedVideo && getNextVideo()"
+                  aria-label="Next video"
+                >
+                  Next &rarr;
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #placeholder>
+              <div
+                class="d-flex flex-column align-items-center justify-content-center bg-black border border-secondary rounded-3 shadow-sm"
+                style="
+                  width: 100%;
+                  max-width: 1600px;
+                  min-height: 550px;
+                  max-height: 550px;
+                  height: 550px;
+                "
+              >
+                <i class="fas fa-play-circle fa-4x mb-3 text-white-50"></i>
+                <div class="text-white-50">Select a video to play</div>
+              </div>
+            </ng-template>
+          </ng-template>
+          <div
+            *ngIf="loadingVideo"
+            class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center bg-black bg-opacity-75"
+            style="z-index: 2000"
+          >
+            <div class="fw-bold text-white mb-3">LMS Player</div>
+            <div class="d-flex gap-2 mb-3">
+              <span
+                class="spinner-grow text-light"
+                style="width: 1.5rem; height: 1.5rem"
+              ></span>
+              <span
+                class="spinner-grow text-light"
+                style="width: 1.5rem; height: 1.5rem"
+              ></span>
+              <span
+                class="spinner-grow text-light"
+                style="width: 1.5rem; height: 1.5rem"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Scrollable Content (if needed) -->
+      <div class="flex-fill overflow-auto" style="background: #181818">
+        <!-- Place for additional content if needed -->
+      </div>
+    </main>
+  </div>
+</div>

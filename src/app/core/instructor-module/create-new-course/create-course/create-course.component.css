@@ -1,0 +1,414 @@
+/* Global Pastel Theme with Mixed Pastel Colors */
+body {
+  background-color: #fcf9f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4a4a4a;
+}
+
+/* Course Header with Gradient of Pastel Pink and Green */
+.course-header {
+  background: linear-gradient(90deg, #c8e6c9, #f8bbd0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(178, 223, 219, 0.4);
+  min-height: 120px;
+}
+
+.course-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2e3e2f; /* Dark greenish */
+  margin: 0;
+}
+
+.course-title-input {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(135, 182, 143, 0.5);
+  color: #2e3e2f;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.course-title-input::placeholder {
+  color: rgba(75, 99, 73, 0.5);
+  font-weight: 400;
+}
+
+.course-title-input:focus {
+  border-bottom: 2px solid #81c784; /* pastel green */
+}
+
+.edit-title-btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f48fb1; /* pastel pink */
+}
+
+/* Form Container */
+.form-container {
+  background-color: #fffdf9;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(255, 209, 220, 0.3);
+}
+
+/* Labels and Icons */
+.form-label {
+  font-weight: 600;
+  color: #556b2f; /* Olive green */
+}
+
+/* Input + Add Button inside input box */
+.input-with-add-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-add-btn select,
+.input-with-add-btn input {
+  width: 100%;
+  padding-right: 4.5rem; /* leave space for button */
+  border: 1.5px solid #b2dfdb; /* pastel teal */
+  border-radius: 8px;
+  height: 2.8rem;
+  font-size: 1rem;
+  background-color: #e0f2f1; /* pastel teal background */
+  color: #33691e;
+  transition: border-color 0.3s ease;
+}
+
+.input-with-add-btn select:focus,
+.input-with-add-btn input:focus {
+  border-color: #80cbc4; /* brighter pastel teal */
+  outline: none;
+}
+
+/* + Add button inside the input box on the right */
+.input-with-add-btn button.add-btn {
+  position: absolute;
+  right: 0.25rem;
+  height: 2.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffcc80; /* pastel orange */
+  border: none;
+  color: #4e342e; /* dark brown */
+  font-weight: 700;
+  padding: 0 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(255, 204, 128, 0.5);
+}
+
+.input-with-add-btn button.add-btn:hover {
+  background-color: #ffb74d;
+  color: #3e2723;
+}
+
+/* Buttons */
+.btn {
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.animated-add-btn,
+.animated-remove-btn,
+.submit-btn {
+  border-radius: 8px;
+}
+
+.animated-add-btn {
+  background-color: #ce93d8; /* pastel purple */
+  color: #4a148c;
+}
+
+.animated-add-btn:hover {
+  background-color: #ba68c8;
+  color: #38006b;
+}
+
+.animated-remove-btn {
+  background-color: #ef9a9a; /* pastel red */
+  color: #b71c1c;
+}
+
+.animated-remove-btn:hover {
+  background-color: #e57373;
+  color: #7f0000;
+}
+
+.submit-btn {
+  background-color: #aed581; /* pastel green */
+  color: #33691e;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.2rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #9ccc65;
+  box-shadow: 0 4px 12px rgba(156, 204, 101, 0.6);
+  color: #1b5e20;
+}
+
+/* Media Preview Area */
+.media-upload-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.media-preview-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  height: 250px;
+  background-color: #f3e5f5; /* pastel purple background */
+  border: 2px dashed #ce93d8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.media-preview-box img,
+.media-preview-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-upload-panel {
+  flex: 1;
+  min-width: 300px;
+}
+
+.placeholder-text {
+  font-style: italic;
+  color: #aaa;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #5d4037;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #8d6e63;
+}
+
+/* Animated Pastel Gradient Banner */
+@keyframes pastelGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.course-header {
+  background: linear-gradient(
+    270deg,
+    #ffb3ba,  /* pastel pink */
+    #bae1ff,  /* pastel blue */
+    #baffc9,  /* pastel green */
+    #ffffba,  /* pastel yellow */
+    #ffdfba   /* pastel peach */
+  );
+  background-size: 1000% 1000%;
+  animation: pastelGradientShift 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  width: 100%;
+  position: relative;
+  min-height: 120px;
+  border-radius: 0 0 24px 24px;
+  /* Removed box-shadow */
+}
+
+/* Remove glow effects on hover/focus */
+.course-header:hover,
+.course-header:focus-within {
+  box-shadow: none;
+}
+
+/* Title text with pastel gradient for static text */
+.course-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #ff9a9e,
+    #fad0c4,
+    #a1c4fd,
+    #c2e9fb
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  transition: background-position 1.5s ease;
+}
+
+/* Input styling inside banner with solid pastel text color */
+.course-title-input {
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(55, 71, 79, 0.3);
+  outline: none;
+  padding: 0.25rem 0;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #37474f; /* dark pastel slate, visible color */
+}
+
+/* Placeholder text color */
+.course-title-input::placeholder {
+  color: rgba(55, 71, 79, 0.5);
+  font-weight: 400;
+}
+
+/* Edit button - subtle pastel accent */
+.edit-title-btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f48fb1; /* pastel pink */
+  transition: color 0.3s ease;
+}
+
+.edit-title-btn:hover {
+  color: #f06292;
+}
+
+.terms-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 248, 240, 0.95);
+  z-index: 1000;
+}
+
+.terms-modal {
+  max-width: 500px;
+  background: #fff3e0;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 204, 128, 0.6);
+  color: #4e342e;
+}
+
+.terms-modal h3 {
+  color: #6d4c41;
+}
+
+.terms-modal ul {
+  padding-left: 1.2rem;
+}
+
+.terms-modal button {
+  background-color: #aed581;
+  color: #33691e;
+  font-weight: bold;
+}
+.terms-section {
+  background-color: #fff7f0; /* pastel peach background */
+  color: #5d4037;
+  font-size: 1rem;
+}
+
+.terms-section h2 {
+  color: #6a1b9a;
+}
+
+.terms-section ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.link-primary {
+  color: #42a5f5;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.pastel-bg {
+  background-color: #fff7f0;
+  color: #5d4037;
+}
+
+.terms-section ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.link-primary {
+  color: #42a5f5;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.btn-success {
+  background-color: #aed581;
+  color: #33691e;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-success:disabled {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.pastel-border {
+  border: 4px solid #f8bbd0;
+}
+/* Blurred background for course form section */
+.blurred-bg {
+  background-color: rgba(255, 255, 255, 0.6); /* Light pastel white */
+  backdrop-filter: blur(12px); /* Works on supported browsers */
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.mybtn{
+  margin-left: 600px;
+}

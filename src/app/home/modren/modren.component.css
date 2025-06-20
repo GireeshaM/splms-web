@@ -1,0 +1,592 @@
+/* Make the video fill the screen */
+.video-background {
+  background-image: url("/images/ChatGPT Image Apr 23, 2025, 02_45_46 PM.png");
+  position: relative;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay content styles */
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  height: 100vh; /* Ensure it fills the full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+  padding: 0; /* Remove extra padding */
+}
+
+h1 {
+  position: sticky;
+  top: 0;
+  transition: transform 0.5s ease;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ffff00; /* Set the text color to yellow */
+  text-align: left; /* Align the text to the left */
+  align-items: left; /* Align items to the left */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.head {
+  position: sticky;
+  top: 0;
+}
+.overlay-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.overlay-content button {
+  padding: 0.5rem 1.5rem; /* Reduce padding */
+  font-size: 0.9rem; /* Reduce font size */
+  background-color: #3f51b5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 160px; /* Set a fixed width */
+  height: auto;
+}
+
+.overlay-content button:hover {
+  background-color: #303f9f;
+}
+
+.overlay-content h1,
+.overlay-content p {
+  margin-top: 100px; /* Move text further downward */
+}
+
+.interactive-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.interactive-section .slide {
+  position: absolute;
+  top: 0;
+  right: -100%; /* Start off-screen */
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 2;
+  transition: right 0.5s ease-in-out; /* Smooth slide-in effect */
+}
+
+.interactive-section .toggle-slide:checked ~ .slide {
+  right: 0; /* Slide into view */
+}
+
+.interactive-section .button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: #3f51b5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.interactive-section .button:hover {
+  background-color: #303f9f;
+}
+
+.explore-button {
+  background-color: #4b006e; /* Purple background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 5px 10px; /* Reduce padding to make the button smaller */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #6a008f; /* Slightly lighter purple on hover */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.modal-content button {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  background-color: #4b006e; /* Purple background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #6a008f; /* Slightly lighter purple on hover */
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Move it to the right side of the page */
+  width: 40px;
+  height: 40px;
+  background: #ff0000; /* Red background for visibility */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Make it circular */
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+.small-circle-close {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Position it at the right side of the modal */
+  width: 25px; /* Set width */
+  height: 25px; /* Set height to match width */
+  background: #ff0000; /* Red background for visibility */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Ensure it is circular */
+  font-size: 0.9rem; /* Adjust font size for better alignment */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  transition: background-color 0.3s ease;
+}
+
+.small-circle-close:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+.trainer-slide {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Start off-screen */
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  transition: right 0.3s ease-in-out;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.trainer-slide.active {
+  right: 0; /* Slide into view */
+}
+
+.trainer-slide .close-slide {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.trainer-slide .close-slide:hover {
+  background-color: #cc0000;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-content {
+  position: relative;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.popup-content img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.close-popup:hover {
+  background-color: #cc0000;
+}
+
+.parallax-text {
+  position: relative;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.video-text-overlay {
+  position: absolute;
+  top: 70%; /* Move further down */
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.business-section {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: flex-start;
+  background-image: url("/images/robot.png"); /* Add background image */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-attachment: fixed; /* Fix the background image */
+  color: white;
+  padding: 10px; /* Reduce padding to decrease overall size */
+  position: relative; /* Ensure proper positioning */
+  width: 100%; /* Decrease the width of the section */
+  height: 70%; /* Decrease the height of the background image */
+  margin: 0 auto; /* Center the section horizontally */
+}
+
+.business-left {
+  position: sticky; /* Make it fixed within its section */
+  top: 0; /* Stick to the top of the section */
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+  padding: 20px; /* Add padding for spacing */
+  /* background-color: #0a1a3f;  */
+  color: black; /* Ensure text is readable */
+  z-index: 5; /* Ensure it stays above other content */
+  overflow-y: auto;
+}
+
+.business-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Reduce gap between items */
+  margin-left: 20%; /* Further reduce the left margin to move the section more to the left */
+}
+
+.business-text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0; /* Initially hidden */
+  transform: scale(0.95); /* Slightly smaller when hidden */
+  pointer-events: none; /* Prevent interaction with hidden sections */
+}
+
+.business-text .icon img {
+  width: 60px;
+  height: 60px;
+}
+
+.business-text .content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.business-text .content p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.business-text.highlight {
+  background-color: #1e3a8a; /* Highlight color */
+  color: white; /* Ensure text is readable */
+  transform: scale(1.05); /* Slight zoom effect */
+  opacity: 1; /* Fully visible when highlighted */
+  transform: scale(1); /* Normal size when highlighted */
+  pointer-events: auto; /* Allow interaction */
+}
+
+.business-text.hidden {
+  display: none; /* Completely hide non-highlighted sections */
+}
+
+.business-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: #11254a;
+  padding: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.business-card .icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.business-card .content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.business-card .content p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.business-card.highlight {
+  background-color: #1e3a8a; /* Highlight color */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.business-item {
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
+  transition: border 0.3s ease, transform 0.3s ease;
+  opacity: 0.8; /* Default opacity */
+  border: 2px solid transparent; /* Default border */
+  background-color: transparent; /* Default background */
+  max-width: 80%; /* Reduce the maximum width of the business item */
+  margin: 0 auto; /* Center the business item horizontally */
+}
+
+.business-item h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.business-item p {
+  font-size: 1rem;
+  line-height: 1.9;
+  max-width: 600px; /* Decrease the width of the paragraph */
+}
+
+.business-item.highlight {
+  border: 2px solid black; /* Bright white border when highlighted */
+  background-color: #1e3a8a; /* Change background color when highlighted */
+  transform: scale(1.05); /* Slight zoom effect */
+  opacity: 1; /* Fully visible when highlighted */
+  color: white; /* Change text color to white when highlighted */
+}
+
+.business-item.highlight h2,
+.business-item.highlight p {
+  color: white; /* Ensure both heading and paragraph text are white */
+}
+
+.business-item:hover {
+  background-color: #1e3a8a;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.business-item-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px; /* Add spacing between the icon and the text */
+}
+
+.business-icon {
+  width: 48px; /* Set a fixed width for the icon */
+  height: 48px; /* Set a fixed height for the icon */
+  border: 2px solid #ffffff; /* Bright white border */
+  border-radius: 50%; /* Ensure the icon remains circular */
+  padding: 5px; /* Add padding inside the border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  background-color: white; /* Bright yellow background */
+  padding: 10px; /* Add padding to create space inside the background */
+  border-radius: 50%; /* Ensure the icon remains circular */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.business-item:hover .business-icon {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhance the shadow on hover */
+  border-color: #ffcc00; /* Change border color to bright yellow on hover */
+  background-color: #ffa500; /* Slightly darker yellow on hover */
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.business-item-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px; /* Add spacing between the image and the text */
+}
+
+.business-icon {
+  width: 40px; /* Set a fixed width for the icon */
+  height: 40px; /* Set a fixed height for the icon */
+  flex-shrink: 0; /* Prevent the icon from shrinking */
+  border-radius: 50%; /* Optional: Make the icon circular */
+  border: 2px solid #ffffff; /* Add a bright white border */
+  padding: 5px; /* Add padding inside the border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
+}
+
+.ai-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: #ffffff; /* White background */
+  margin-bottom: 40px; /* Add spacing before the business section */
+}
+
+.ai-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  flex-direction: row-reverse; /* Reverse the order to place the image on the right */
+}
+
+.ai-image img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transform: translateX(10%); /* Move the image slightly to the right */
+}
+
+.ai-text {
+  flex: 1;
+  text-align: left;
+}
+
+.ai-text h1 {
+  font-size: 2rem; /* Decrease the font size of the heading */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000000; /* Black text */
+}
+
+.ai-text p {
+  font-size: 1rem; /* Decrease the font size of the paragraph */
+  line-height: 1.4; /* Adjust line height for better readability */
+  color: #555555; /* Gray text */
+}
+
+.ai-wrapper {
+  border: 2px solid #ffcc00; /* Bright yellow border */
+  background-color: #f9f9f9; /* Light gray background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Reduce padding inside the container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 20px; /* Add spacing below the container */
+  max-width: 80%; /* Reduce the width of the container */
+  margin-left: 100px; /* Center the container horizontally */
+  margin-right: auto; /* Center the container horizontally */
+}

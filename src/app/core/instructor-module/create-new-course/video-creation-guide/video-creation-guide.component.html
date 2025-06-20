@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+<div class="get-started-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Master Video Creation for Impactful Learning</h1>
+        <p class="subtitle">Elevate your course with high-quality video content. From scripting to editing, we provide the tools and knowledge to create professional, engaging, and accessible videos.</p>
+        <button class="cta-btn-primary" (click)="startLearning()">Start Learning Now</button>
+      </div>
+      <div class="hero-image">
+        <img src="https://www.educatorstechnology.com/wp-content/uploads/2023/05/videotools.png" alt="Video Production">
+      </div>
+    </section>
+  
+    <!-- Key Features Section -->
+    <section class="features-section">
+      <h2>Key Features for Quality Video Production</h2>
+      <div class="features-grid">
+        <div class="feature-card" (mouseover)="toggleCard('scripting')">
+          <div class="icon">
+            <img src="https://cdn.sanity.io/images/xcatvyn0/production/2bca7f1943d0d6032d4ae6bca79d9ef443d4e459-1801x1201.png?fit=max&auto=format" alt="Scripting Icon" width="600">
+          </div>
+          <h3>Scripting Your Video</h3>
+          <p>Craft compelling scripts that captivate your audience and deliver your message effectively.</p>
+        </div>
+        <div class="feature-card" (mouseover)="toggleCard('lighting')">
+          <div class="icon">
+            <img src="https://png.pngtree.com/png-clipart/20230915/original/pngtree-businessman-presents-teacher-writes-lesson-in-blogging-camera-and-lighting-setup-png-image_12210239.png" alt="Lighting Icon">
+          </div>
+          <h3>Lighting Setup</h3>
+          <p>Learn how to set up professional lighting for clear and visually appealing videos.</p>
+        </div>
+        <div class="feature-card" (mouseover)="toggleCard('microphone')">
+          <div class="icon">
+            <img src="https://lh5.googleusercontent.com/oAnu2LGHmOpZgu6o5yH_vJ8-PFRoMi_nXW3dTH4Qiv86RjasS2FwKxjoRvcxChAoyjEBBOYEK3DRoWom0rEKHuPnnNNg5WDHNBx-NBoh01qxrSoushOAbJuNsEe1UX6LSLfHgEV7" alt="Microphone Icon">
+          </div>
+          <h3>Audio Quality</h3>
+          <p>Choose the right microphone for crystal-clear audio that enhances your video quality.</p>
+        </div>
+        <div class="feature-card" (mouseover)="toggleCard('editing')">
+          <div class="icon">
+            <img src="https://animationexplainers.com/wp-content/uploads/2022/02/Video-Editing.jpg" alt="Editing Icon">
+          </div>
+          <h3>Video Editing</h3>
+          <p>Edit like a pro with tips and tools to polish your videos and make them stand out.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Video Tutorials Section -->
+    <section class="tutorials-section">
+      <h2>Step-by-Step Video Tutorials</h2>
+      <div class="tutorials-carousel">
+        <div class="tutorial-card">
+          <iframe src="https://www.youtube.com/shorts/o2C2JJ4gppc?feature=share" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+          <h3>Scripting Basics</h3>
+          <p>Learn how to write engaging scripts for your videos.</p>
+        </div>
+        <div class="tutorial-card">
+          <iframe src="video_link_here" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+          <h3>Lighting Setup 101</h3>
+          <p>Master the art of lighting for professional-quality videos.</p>
+        </div>
+        <div class="tutorial-card">
+          <iframe src="video_link_here" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+          <h3>Best Microphones for Video</h3>
+          <p>Discover the best microphones for clear and crisp audio.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Visual Aids Section -->
+    <section class="infographics-section">
+        <h2>Explore Interactive Infographics</h2>
+        <div class="infographics-grid">
+          <div class="infographic-card" *ngFor="let infographic of infographics">
+            <img [src]="infographic.image" alt="Infographic">
+            <div class="overlay">
+              <h3>{{ infographic.title }}</h3>
+              <p>{{ infographic.description }}</p>
+              <button class="info-btn" (click)="showDetails(infographic)">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+    <!-- Accessibility Section -->
+    <section class="accessibility-section">
+      <h2>Make Your Videos Accessible</h2>
+      <p>Ensure your videos are inclusive by adding captions, using clear language, and providing transcripts. Test your video accessibility with our tools.</p>
+      <button class="cta-btn-secondary" (click)="startQuiz()">Take the Accessibility Quiz</button>
+    </section>
+  
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <h2>Ready to Create Your Masterpiece?</h2>
+      <p>Submit your video for expert review and feedback to ensure it meets the highest standards.</p>
+      <button class="cta-btn-primary" (click)="submitVideoForReview()">Submit Your Video</button>
+    </section>
+  </div>

@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+  <div class="image-container">
+    <img src="images/inst.svg" alt="Background" class="full-width-image" />
+    <a href="#start" class="btn btn-warning btn-lg fw-bold start-now-button">Start Now</a>
+  </div>
+  <div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold">📊 Platform Statistics</h4>
+    <div class="btn-group" role="group" aria-label="Time Range">
+      <button type="button" class="btn btn-outline-primary btn-sm" [class.active]="selectedRange === '1w'" (click)="selectedRange = '1w'">1 Week</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" [class.active]="selectedRange === '1m'" (click)="selectedRange = '1m'">1 Month</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" [class.active]="selectedRange === '6m'" (click)="selectedRange = '6m'">6 Months</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" [class.active]="selectedRange === '1y'" (click)="selectedRange = '1y'">1 Year</button>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Total Courses -->
+    <div class="col-md-4 col-sm-6">
+      <div class="card border-0 shadow rounded-4 bg-light h-100">
+        <div class="card-body d-flex align-items-center">
+          <div class="icon-circle bg-warning text-white me-3">
+            <i class="bi bi-journal-bookmark-fill fs-3"></i>
+          </div>
+          <div>
+            <h6 class="mb-1 fw-semibold text-uppercase">Total Courses</h6>
+            <h4 class="mb-0 fw-bold">{{ stats[selectedRange].totalCourses }}</h4>
+<span class="badge mt-1" [ngClass]="getBadgeClass(stats[selectedRange].totalCoursesChange)">
+  <i class="bi" [ngClass]="getArrowIcon(stats[selectedRange].totalCoursesChange)"></i>
+  {{ stats[selectedRange].totalCoursesChange }}%
+</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Courses -->
+    <div class="col-md-4 col-sm-6">
+      <div class="card border-0 shadow rounded-4 bg-light h-100">
+        <div class="card-body d-flex align-items-center">
+          <div class="icon-circle bg-success text-white me-3">
+            <i class="bi bi-play-circle-fill fs-3"></i>
+          </div>
+          <div>
+            <h6 class="mb-1 fw-semibold text-uppercase">Active Courses</h6>
+            <h4 class="mb-0 fw-bold">85</h4>
+            <span class="badge bg-danger mt-1">
+              <i class="bi bi-arrow-down-right"></i> 2.4% ↓
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Students Enrolled -->
+    <div class="col-md-4 col-sm-6">
+      <div class="card border-0 shadow rounded-4 bg-light h-100">
+        <div class="card-body d-flex align-items-center">
+          <div class="icon-circle bg-primary text-white me-3">
+            <i class="bi bi-people-fill fs-3"></i>
+          </div>
+          <div>
+            <h6 class="mb-1 fw-semibold text-uppercase">Students Enrolled</h6>
+            <h4 class="mb-0 fw-bold">2,430</h4>
+            <span class="badge bg-success mt-1">
+              <i class="bi bi-arrow-up-right"></i> 8.1% ↑
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="course-creation-section py-5">
+  <div class="container text-center mb-5">
+    <h2 class="section-title">Steps to Create Your Course</h2>
+    <p class="section-description">
+      Follow these easy steps to launch a successful course. We've got you covered from planning to promotion.
+    </p>
+    <a href="/create-course" class="btn btn-primary">Create Your Course</a>
+  </div>
+
+  <!-- Cards Grid -->
+<div class="cards-grid-flip">
+  <div class="flip-card" *ngFor="let card of cards">
+    <div class="flip-card-inner">
+      <!-- Front of Card -->
+      <div class="flip-card-front">
+        <img [src]="card.image" alt="{{ card.title }}" />
+        <h5 class="mt-3">{{ card.title }}</h5>
+      </div>
+
+      <!-- Back of Card -->
+      <div class="flip-card-back">
+        <p>{{ card.description }}</p>
+                <a [href]="card.link" class="btn btn-primary mt-2">Learn More</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+

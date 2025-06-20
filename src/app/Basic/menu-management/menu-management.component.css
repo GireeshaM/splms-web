@@ -1,0 +1,65 @@
+.bg-pastel-olive {
+  background-color: #eaf4ea;
+}
+
+.pastel-card {
+  background-color: #f3f8f2;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.pastel-card:hover {
+  transform: translateY(-3px);
+}
+
+.section-header {
+  font-weight: bold;
+  cursor: pointer;
+  color: #3d5a40;
+  margin-bottom: 1rem;
+}
+
+.scroll-area {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: #f9fcf7;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.badge-card {
+  background-color: #d2e3c8;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.badge-card:hover {
+  background-color: #c3d8b7;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-header {
+  font-weight: bold;
+  cursor: pointer;
+  color: #3d5a40;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}

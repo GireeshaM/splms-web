@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h3>My Enrolled Courses</h3>
+
+  <div *ngIf="enrolledCourses.length === 0">
+    <p>You haven't enrolled in any courses yet.</p>
+  </div>
+
+  <div class="course-grid">
+    <div
+      class="course-card"
+      *ngFor="let course of enrolledCourses"
+      (click)="onCourseClick(course)"
+      style="cursor:pointer"
+    >
+      <img [src]="getThumbnail(course.thumbnail)" alt="Course Image" />
+      <h5>{{ course.courseTitle }}</h5>
+      <!-- Pass both user IDs to the child component -->
+    
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container-fluid p-4 bg-pastel-olive text-dark" style="min-height: 100vh;">
+  <div class="row">
+    <!-- Modules Section -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow p-3 border-0 pastel-card">
+        <h4 class="section-header" (click)="resetModuleForm()">📦 Modules</h4>
+        <div class="scroll-area fade-in">
+          <div class="d-flex flex-wrap gap-2">
+            <div *ngFor="let mod of modules" (click)="fillModuleForm(mod)" class="badge-card">
+              <i class="{{ mod.icon }}"></i> {{ mod.moduleName }}
+            </div>
+          </div>
+        </div>
+
+        <form [formGroup]="moduleForm" (ngSubmit)="addModule()" class="mt-3">
+          <div class="row g-2">
+            <div class="col-6">
+              <input class="form-control" formControlName="moduleName" placeholder="Module Name" />
+            </div>
+            <div class="col-6">
+              <input class="form-control" formControlName="icon" placeholder="Icon (e.g. fa fa-box)" />
+            </div>
+          </div>
+          <input class="form-control mt-2" formControlName="url" placeholder="URL" />
+          <button class="btn btn-success mt-3 w-100" [disabled]="moduleForm.invalid">Add Module</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Menu Items Section -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow p-3 border-0 pastel-card">
+        <h4 class="section-header" (click)="resetMenuForm()">📋 Menu Items</h4>
+        <div class="scroll-area fade-in">
+          <div class="d-flex flex-wrap gap-2">
+            <div *ngFor="let item of menuItems" (click)="fillMenuForm(item)" class="badge-card">
+              <i class="{{ item.icon }}"></i> {{ item.menuItemName }}
+            </div>
+          </div>
+        </div>
+
+        <form [formGroup]="menuForm" (ngSubmit)="addMenuItem()" class="mt-3">
+          <div class="row g-2">
+            <div class="col-6">
+              <input class="form-control" formControlName="menuItemName" placeholder="Menu Item Name" />
+            </div>
+            <div class="col-6">
+              <select class="form-select" formControlName="moduleId">
+                <option value="">Select Module</option>
+                <option *ngFor="let mod of modules" [value]="mod.moduleId">{{ mod.moduleName }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row g-2 mt-2">
+            <div class="col-6">
+              <input class="form-control" formControlName="icon" placeholder="Icon (e.g. fa fa-link)" />
+            </div>
+            <div class="col-6">
+              <input class="form-control" formControlName="url" placeholder="URL" />
+            </div>
+          </div>
+          <button class="btn btn-success mt-3 w-100" [disabled]="menuForm.invalid">Add Menu Item</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Role to Menu Item Assignment Section -->
+<div class="col-12 mt-4">
+  <div class="card shadow p-3 border-0 pastel-card">
+    <h4 class="section-header">🔑 Assign Menu Items to Roles</h4>
+
+    <form [formGroup]="roleMenuForm" (ngSubmit)="assignRoleMenuItem()">
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Select Role</label>
+          <select class="form-select" formControlName="rolesId">
+            <option value="">-- Select Role --</option>
+            <option *ngFor="let role of roles" [value]="role.rolesId">{{ role.name }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Select Menu Item</label>
+          <select class="form-select" formControlName="menuId">
+            <option value="">-- Select Menu Item --</option>
+            <option *ngFor="let item of menuItems" [value]="item.menuId">{{ item.menuItemName }}</option>
+          </select>
+        </div>
+
+        <div class="col-12 mt-3">
+          <button class="btn btn-success mt-3 w-100" [disabled]="roleMenuForm.invalid">
+            Assign Menu Item to Role
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>

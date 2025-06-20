@@ -1,0 +1,82 @@
+<header>
+  <nav class="navbar navbar-expand-lg fixed-top fancy-navbar">
+    <div class="container-fluid px-4">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold fs-4 text-gradient" href="#">
+        <img src="images/SLMSSSS.svg" alt="niopic" height="50px" />
+      </a>
+
+      <!-- Toggler -->
+      <button
+        class="navbar-toggler custom-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link fancy-link" href="#">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fancy-link" href="#">About</a>
+          </li>
+        </ul>
+
+        <!-- Search bar center -->
+        <form class="d-flex mx-auto search-wrapper">
+          <div class="input-group">
+            <span class="input-group-text bg-dark border-black border-end-0">
+              <i class="fas fa-search text-white"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-black border-start-0 fancy-search"
+              placeholder="Search something..."
+            />
+          </div>
+        </form>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+            <li class="nav-item">
+            <a class="nav-link fancy-link" href="#">Trending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fancy-link" href="#">Latest</a>
+          </li>
+          <!-- Show when logged in -->
+          <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link d-flex align-items-center user-info"
+               [routerLink]="dashboardRoute"
+               style="cursor:pointer;">
+              <img [src]="photoUrl" class="rounded-circle me-2" width="35" height="35" />
+              <span class="fw-semibold">{{ fullName }}</span>
+            </a>
+          </li>
+
+
+          <!-- Show only when NOT logged in -->
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link fancy-link btn" (click)="openLoginModal()">
+              <i class="fas fa-sign-in-alt me-1"></i> Login
+            </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link fancy-link btn" (click)="openRegisterModal()">
+              <i class="fas fa-user-plus me-1"></i> Register
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<app-login *ngIf="showLoginModal"></app-login>
+<app-register *ngIf="showRegisterModal"></app-register>

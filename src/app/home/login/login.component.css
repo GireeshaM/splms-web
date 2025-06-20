@@ -1,0 +1,293 @@
+/* Modal Background Gradient (pink to purple to light purple) */
+.pastel-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* Glassmorphism Modal Content */
+.pastel-content {
+  background: rgba(255, 245, 252, 0.96);
+  border-radius: 32px;
+  box-shadow: 0 16px 48px 0 rgba(252,92,125,0.13), 0 2px 8px 0 rgba(167,112,239,0.10);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1.5px solid rgba(252, 92, 125, 0.13);
+  animation: fadeInModal 0.8s cubic-bezier(.4,0,.2,1);
+  max-width: 1100px;      /* Increase modal width */
+  width: 95vw;
+  min-height: 400px;      /* Decreased height by 40px from previous 520px */
+  height: auto;           /* Expand with content */
+  font-size: 0.95rem;
+  overflow: visible;      /* Allow content to expand */
+}
+.pastel-content::-webkit-scrollbar {
+  width: 0 !important;        /* Chrome, Safari, Opera */
+  background: transparent !important;
+}
+
+/* Image Section */
+.pastel-image-wrapper {
+  background: linear-gradient(135deg, #fc5c7d 0%, #a770ef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  border-right: none;
+}
+.pastel-image {
+  width: 92%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(252, 92, 125, 0.10);
+}
+
+/* Animated Close Button */
+.animated-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 2.1rem;
+  color: #fc5c7d;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), color 0.3s;
+  z-index: 2;
+}
+.animated-close:hover {
+  transform: rotate(90deg) scale(1.15);
+  color: #a770ef;
+  background: rgba(167, 112, 239, 0.10);
+  border-radius: 50%;
+}
+
+/* Button Style */
+.pastel-btn,
+.btn.pastel-btn {
+  background: linear-gradient(90deg, #fc5c7d 0%, #a770ef 100%);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px #fc5c7d55;
+  font-size: 1.1rem;
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s, filter 0.2s;
+  filter: brightness(1.28) saturate(1.15);
+}
+.pastel-btn:hover,
+.pastel-btn:focus,
+.btn.pastel-btn:hover,
+.btn.pastel-btn:focus {
+  background: linear-gradient(90deg, #a770ef 0%, #f3c6f9 100%);
+  color: #fff;
+  box-shadow: 0 6px 32px #a770ef55;
+  filter: brightness(1.38) saturate(1.18);
+}
+
+/* Link Style */
+.link-violet {
+  color: #a770ef !important;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.2s, text-shadow 0.2s;
+  font-size: 0.95rem;
+}
+.link-violet:hover {
+  color: #fc5c7d !important;
+  text-shadow: 0 2px 8px #fc5c7d88;
+}
+
+/* Modal Animation */
+@keyframes fadeInModal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Smooth form transitions */
+.fade-in {
+  animation: fadeInForm 0.6s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeInForm {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Modal Width and Container Expansion */
+@media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 1100px;
+    width: 95vw;
+  }
+  .left-image {
+    width: 44%;
+  }
+  .right-form {
+    width: 56%;
+  }
+  .w-50 {
+    width: 60% !important; /* Increase left/right container width */
+  }
+}
+
+/* Floating Placeholder Field */
+.floating-placeholder {
+  position: relative;
+  margin-bottom: 1.45rem;
+}
+
+/* Smooth, modern input design */
+.floating-placeholder input,
+.floating-placeholder select {
+  width: 100%;
+  padding: 15px 18px;
+  font-size: 1rem;
+  border: 1.5px solid #f3c6f9;
+  border-radius: 16px;
+  background: rgba(255,245,252,0.85);
+  color: #a770ef;
+  outline: none;
+  transition: 
+    border-color 0.22s cubic-bezier(.4,0,.2,1),
+    box-shadow 0.22s cubic-bezier(.4,0,.2,1),
+    background 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 12px 0 #a770ef22;
+  font-family: inherit;
+}
+
+.floating-placeholder input:focus,
+.floating-placeholder select:focus {
+  border-color: #a770ef;
+  background: #fff;
+  box-shadow: 0 0 0 3px #a770ef33;
+}
+
+.floating-placeholder input:hover,
+.floating-placeholder select:hover {
+  background: #f3c6f9;
+  border-color: #fc5c7d;
+}
+
+/* Floating label: smooth transition */
+.floating-placeholder span {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #b48ad6;
+  background: transparent;
+  padding: 0 6px;
+  pointer-events: none;
+  transition: 
+    top 0.18s cubic-bezier(.4,0,.2,1),
+    left 0.18s cubic-bezier(.4,0,.2,1),
+    font-size 0.18s cubic-bezier(.4,0,.2,1),
+    color 0.18s cubic-bezier(.4,0,.2,1),
+    background 0.18s cubic-bezier(.4,0,.2,1),
+    opacity 0.18s cubic-bezier(.4,0,.2,1);
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.floating-placeholder input:focus + span,
+.floating-placeholder input:not(:placeholder-shown) + span,
+.floating-placeholder select:focus + span,
+.floating-placeholder select:valid + span {
+  top: -13px;
+  left: 14px;
+  font-size: 0.82rem;
+  color: #a770ef;
+  background: #f3c6f9;
+  opacity: 1;
+  padding: 0 8px;
+  border-radius: 8px;
+}
+
+/* Error message styling */
+.text-danger {
+  font-size: 0.80rem;
+  margin-top: 2px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #fc5c7d;
+}
+
+/* Modal header and title */
+.modal-header {
+  padding-bottom: 0;
+  padding-top: 0.5rem;
+}
+.modal-title {
+  font-size: 1.4rem;
+  color: #a770ef !important;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .pastel-content {
+    flex-direction: column;
+    border-radius: 22px;
+    max-width: 98vw;
+  }
+  .pastel-image-wrapper {
+    display: none !important;
+  }
+  .w-50 {
+    width: 100% !important;
+  }
+}
+
+/* Compact input styles */
+.floating-placeholder.compact input,
+.floating-placeholder.compact select {
+  padding: 11px 11px;
+  font-size: 0.97rem;
+}
+
+.floating-placeholder.compact span {
+  font-size: 0.85rem;
+}
+
+.floating-placeholder.compact input:focus + span,
+.floating-placeholder.compact input:not(:placeholder-shown) + span,
+.floating-placeholder.compact select:focus + span {
+  top: -10px;
+  font-size: 0.75rem;
+}
+
+/* Style for the Bootstrap eye icon in the password field */
+.floating-placeholder .btn-link .bi-eye,
+.floating-placeholder .btn-link .bi-eye-slash {
+  color: #a770ef !important; /* Violet from login theme */
+  font-size: 1.2rem;
+  opacity: 0.85;
+  transition: color 0.2s;
+}
+
+.floating-placeholder .btn-link:hover .bi-eye,
+.floating-placeholder .btn-link:hover .bi-eye-slash,
+.floating-placeholder .btn-link:focus .bi-eye,
+.floating-placeholder .btn-link:focus .bi-eye-slash {
+  color: #fc5c7d !important; /* Pink from login theme */
+}

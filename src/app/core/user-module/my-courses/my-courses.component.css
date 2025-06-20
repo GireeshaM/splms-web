@@ -1,0 +1,19 @@
+.course-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-card {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.course-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+}

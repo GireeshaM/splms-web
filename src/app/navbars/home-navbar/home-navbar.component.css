@@ -1,0 +1,103 @@
+/* Fancy Navbar */
+.fancy-navbar {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: background 0.5s, box-shadow 0.5s;
+    animation: slideDown 1s ease forwards;
+}
+
+/* Logo Gradient Text */
+.text-gradient {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Fancy Links */
+.fancy-link {
+    color: rgb(0, 0, 0);
+    position: relative;
+    transition: color 0.4s;
+}
+
+.fancy-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #1c5108;
+    left: 50%;
+    bottom: 0;
+    transition: all 0.4s ease;
+}
+
+.fancy-link:hover {
+    color: #1c5108;
+}
+
+.fancy-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Search Styling */
+.search-wrapper .input-group {
+    background: transparent;
+}
+
+.fancy-search {
+    background: transparent;
+    border: 1px solid black;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 260px;
+}
+
+.fancy-search::placeholder {
+    color: #aaa;
+}
+
+/* Toggler */
+.custom-toggler {
+    border: none;
+}
+
+/* Navbar Animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Body spacing */
+body {
+    padding-top: 90px;
+    background: #0f2027;
+    /* fallback for old browsers */
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    /* dark background */
+    color: white;
+}
+.user-info {
+  margin-top: -3px; /* Adjust vertically to fine-tune */
+}
+
+.navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 10px; /* Optional spacing between nav items */
+}
+
+.navbar-nav img {
+  object-fit: cover;
+}

@@ -1,0 +1,97 @@
+.video-container {
+  background-color: #ede7f6;
+  border-left: 4px solid #7e57c2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-block {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border-left: 4px solid #7c3aed;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(106, 27, 154, 0.15);
+}
+
+.video-left-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #7e57c2, #ce93d8);
+  animation: borderPulse 3s ease-in-out infinite;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  /* fallback for solid color */
+  background-color: #7c3aed;
+  border-radius: 4px 0 0 4px;
+}
+
+@keyframes borderPulse {
+  0% {
+    opacity: 0.7;
+    transform: scaleY(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.btn-animated {
+  transition: all 0.25s ease, background 0.2s, color 0.2s;
+  position: relative;
+}
+
+.btn-animated:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+  background: #7c3aed;
+  color: #fff;
+}
+
+.btn-outline-purple {
+  color: #6a1b9a;
+  border-color: #6a1b9a;
+}
+
+.btn-outline-purple:hover {
+  background-color: #6a1b9a;
+  color: white;
+  box-shadow: 0 0 10px #ce93d8;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35em 0.6em;
+}
+
+.new-video-form, .edit-video-form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(106, 27, 154, 0.1);
+  padding: 1.5rem;
+}
+
+.filetype-badge {
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25em 0.75em;
+  font-size: 0.9em;
+}
+
+.bg-light-purple {
+  background: #f6f3ff;
+}
+
+.text-purple {
+  color: #7c3aed;
+}

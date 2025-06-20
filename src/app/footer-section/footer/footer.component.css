@@ -1,0 +1,113 @@
+.footer-pastel {
+  background: #fff;
+  color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.social-bg {
+  background-color: #e3f2fd; /* Light blue pastel */
+}
+
+.green-bg {
+  background-color: #e0f7e9; /* Light green pastel */
+}
+
+.pastel-bg {
+  background-color: #e3f2fd; /* Bottom section pastel blue */
+}
+
+.social-icons a {
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.footer-logo {
+  max-height: 70px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.link-hover {
+  color: #455a64;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-hover:hover {
+  color: #1565c0;
+}
+
+.about-text {
+  font-size: 0.95rem;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: justify;
+  font-weight: 500;
+  color: #546e7a;
+}
+
+.contact-info p {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+  font-weight: 500;
+}
+
+.footer-nav-link {
+  color: #ffffff;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-nav-link:hover {
+  color: #1565c0;
+}
+
+@media (max-width: 767px) {
+  .about-text {
+    max-width: 100%;
+  }
+
+  .social-icons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.container{
+  width: 100vw;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#footer-bottom{
+  background-color: rgb(23, 77, 77);
+  color: white  ;
+  
+}
+
+#social-media-section{
+  background-color: #eff4f8; /* Light blue pastel */
+}
+

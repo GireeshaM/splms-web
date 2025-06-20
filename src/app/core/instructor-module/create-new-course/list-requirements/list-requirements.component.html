@@ -1,0 +1,118 @@
+<app-navbar></app-navbar>
+<div class="instructor-dashboard">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1>👨‍🏫 Course Creation Guide</h1>
+    <p>Welcome back, {{ instructor.name }}! Follow these steps to create and publish your professional courses.</p>
+  </header>
+
+  <!-- Course Creation Steps -->
+  <section class="course-creation-steps">
+    <h2>Steps to Create a Course</h2>
+    <div class="steps-container">
+      <!-- Step 1: Define Your Course -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <h3>Define Your Course</h3>
+          <mat-icon>description</mat-icon>
+        </div>
+        <div class="step-content">
+          <p>Start by defining the <strong>title</strong>, <strong>description</strong>, and <strong>learning
+              objectives</strong> of your course.</p>
+          <ul>
+            <li>Use clear and concise language.</li>
+            <li>Focus on the skills professionals will gain.</li>
+          </ul>
+          <a href="#" class="step-link">Learn More →</a>
+        </div>
+      </div>
+
+      <!-- Step 2: Add Course Content -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h3>Add Course Content</h3>
+          <mat-icon>video_library</mat-icon>
+        </div>
+        <div class="step-content">
+          <p>Upload your course materials, including:</p>
+          <ul>
+            <li>Videos</li>
+            <li>Presentations</li>
+            <li>PDFs</li>
+            <li>Quizzes</li>
+          </ul>
+          <a href="#" class="step-link">View Content Guidelines →</a>
+        </div>
+      </div>
+
+      <!-- Step 3: Set Pricing and Access -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h3>Set Learning Goals and Outcomes</h3>
+          <mat-icon>school</mat-icon>
+        </div>
+        <div class="step-content">
+          <p>Define the key objectives and expected outcomes for your course:</p>
+          <ul>
+            <li>Break down goals into measurable milestones</li>
+            <li>Align outcomes with learner expectations</li>
+            <li>Ensure relevance to industry standards</li>
+          </ul>
+          <a href="#" class="step-link">Explore Goal-Setting Tips →</a>
+        </div>
+      </div>
+
+      <!-- Step 4: Publish and Promote -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">4</span>
+          <h3>Publish and Promote</h3>
+          <mat-icon>publish</mat-icon>
+        </div>
+        <div class="step-content">
+          <p>Once your course is ready, publish it and promote it to your audience:</p>
+          <ul>
+            <li>Share on LinkedIn</li>
+            <li>Email your network</li>
+            <li>Use AI-driven marketing tools</li>
+          </ul>
+          <a href="#" class="step-link">Get Promotion Tips →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visuals and Logos Section -->
+  <section class="visuals-section">
+    <h2>Visuals and Branding</h2>
+    <div class="visuals-container">
+      <div class="visual-card">
+        <img
+          src="https://cdn.dribbble.com/userupload/16462258/file/original-6c6bfe2dd9d928382a8a89e0afcb78df.jpg?format=webp&resize=400x300&vertical=center"
+          alt="Course Logo Example" class="visual-image" />
+        <p>Add a professional logo to represent your course.</p>
+      </div>
+      <div class="visual-card">
+        <img
+          src="https://dynamic.brandcrowd.com/template/preview/design/d04bc9ff-4081-4459-ae4e-88451a4c9320?v=4&designTemplateVersion=1&size=design-preview-standalone-1x"
+          alt="Course Banner Example" class="visual-image" />
+        <p>Use a banner image to make your course stand out.</p>
+      </div>
+      <div class="visual-card">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1709476287/catalog/1574790780991131648/sjvia22qqiewlgp41vb9.jpg"
+          alt="Course Thumbnail Example" class="visual-image" width="30" />
+        <p>Create an eye-catching thumbnail for your course.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <h2>Ready to Create Your Course?</h2>
+    <button mat-raised-button color="primary" (click)="createCourse()">Start Now</button>
+  </section>
+</div>

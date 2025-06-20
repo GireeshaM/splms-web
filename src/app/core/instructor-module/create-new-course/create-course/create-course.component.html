@@ -1,0 +1,428 @@
+<app-navbar></app-navbar>
+
+<!-- Terms and Conditions Section -->
+<div
+  *ngIf="!acceptedTerms"
+  class="container my-5 p-4 shadow rounded pastel-bg d-flex flex-wrap align-items-center justify-content-between"
+>
+  <!-- Terms Content (Left Side) -->
+  <div class="terms-text col-md-7">
+    <h2 class="mb-3">Before You Create a Course</h2>
+    <p>Please read and accept the following terms and conditions:</p>
+    <ul>
+      <li>You must ensure all content is original or properly licensed.</li>
+      <li>Courses must maintain high educational and technical standards.</li>
+      <li>No promotion of harmful, misleading, or inappropriate content.</li>
+      <li>You are responsible for keeping course content up-to-date.</li>
+      <li>All submissions must comply with our community guidelines.</li>
+    </ul>
+
+    <div class="form-check mt-3">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="acceptTerms"
+        [(ngModel)]="termsAccepted"
+      />
+      <label class="form-check-label" for="acceptTerms">
+        I accept the terms and conditions
+      </label>
+    </div>
+
+    <p class="mt-3">
+      Refer to our
+      <a [routerLink]="'/define-learnings'" class="link-primary">
+        Course Creation Guidelines..... </a
+      >.
+    </p>
+
+    <button
+      class="btn btn-success mt-3"
+      [disabled]="!termsAccepted"
+      (click)="onStartCourse()"
+    >
+      {{ isEditMode ? "Continue Editing Course" : "Start Course" }}
+    </button>
+  </div>
+
+  <!-- Right Side Image -->
+  <div class="terms-image col-md-5 mt-4 mt-md-0 text-center">
+    <img
+      src="https://flearningstudio.com/wp-content/uploads/2024/10/Online-Course-Creation.jpg"
+      alt="Course Guidelines"
+      class="img-fluid rounded pastel-border"
+    />
+  </div>
+</div>
+
+<!-- Course Form Section -->
+<div *ngIf="acceptedTerms" class="course-form-wrapper">
+  <ng-container *ngTemplateOutlet="courseFormTemplate"></ng-container>
+</div>
+
+<ng-template #courseFormTemplate>
+  <!-- Your full course form goes here -->
+</ng-template>
+
+<div [formGroup]="courseForm" (ngSubmit)="onSubmit()" *ngIf="acceptedTerms">
+  <!-- Banner with Course Title -->
+  <div class="course-header" [formGroup]="courseForm">
+    <input
+      type="text"
+      class="course-title-input"
+      formControlName="courseTitle"
+      [readonly]="!isEditingTitle"
+      (blur)="finishTitleEdit()"
+      placeholder="Enter Course Title"
+      autofocus
+    />
+
+    <button
+      *ngIf="!courseForm.get('courseTitle')?.value || !isEditingTitle"
+      type="button"
+      class="edit-title-btn"
+      (click)="toggleEditTitle()"
+      aria-label="Edit Course Title"
+      title="Edit Course Title"
+    >
+      ✏
+    </button>
+  </div>
+
+  <div class="container-fluid form-container p-4">
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="course-form">
+      <!-- Category & Subcategory side by side -->
+      <div class="row gx-3 mb-4">
+        <div class="col-md-6 position-relative">
+          <label
+            for="categoryId"
+            class="form-label d-flex align-items-center gap-2"
+          >
+            <span class="animated-icon category-icon" aria-hidden="true"
+              >📂</span
+            >
+            Category
+            <span
+              class="info-icon"
+              tabindex="0"
+              aria-label="Create a new Category"
+              title="Create a new Category"
+              >ℹ</span
+            >
+          </label>
+          <div class="input-with-add-btn">
+            <select
+              id="categoryId"
+              class="form-select"
+              formControlName="categoryId"
+              (change)="onCategoryChange($any($event.target).value)"
+            >
+              <option value="" disabled selected>-- Select Category --</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category.categoriesId"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+            <button
+              type="button"
+              class="btn add-btn btn-success"
+              (click)="openAddCategoryModal()"
+              aria-label="Add Category"
+            >
+              + Add
+            </button>
+          </div>
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('categoryId')?.touched &&
+              courseForm.get('categoryId')?.invalid
+            "
+          >
+            Category is required.
+          </div>
+        </div>
+
+        <div class="col-md-6 position-relative">
+          <label
+            for="subCategoryId"
+            class="form-label d-flex align-items-center gap-2"
+          >
+            <span class="animated-icon subcategory-icon" aria-hidden="true"
+              >🗂</span
+            >
+            Subcategory
+            <span
+              class="info-icon"
+              tabindex="0"
+              aria-label="Create a new Subcategory"
+              title="Create a new Subcategory"
+              >ℹ</span
+            >
+          </label>
+          <div class="input-with-add-btn">
+            <select
+              id="subCategoryId"
+              class="form-select"
+              formControlName="subCategoryId"
+              [disabled]="subCategories.length === 0"
+            >
+              <option value="" disabled selected>
+                -- Select Subcategory --
+              </option>
+              <option
+                *ngFor="let sub of subCategories"
+                [value]="sub.subCategoriesId"
+              >
+                {{ sub.name }}
+              </option>
+            </select>
+            <button
+              type="button"
+              class="btn add-btn btn-success"
+              (click)="openAddSubCategoryModal()"
+              aria-label="Add Subcategory"
+            >
+              + Add
+            </button>
+          </div>
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('subCategoryId')?.touched &&
+              courseForm.get('subCategoryId')?.invalid
+            "
+          >
+            Subcategory is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- Level & Duration -->
+      <div class="row gx-3 mb-4">
+        <div class="col-md-6">
+          <label for="level" class="form-label d-flex align-items-center gap-2">
+            <span class="animated-icon level-icon" aria-hidden="true">🎯</span>
+            Level
+          </label>
+          <select id="level" class="form-select" formControlName="level">
+            <option value="" disabled selected>-- Select Level --</option>
+            <option value="Mandatory">Mandatory</option>
+            <option value="Advance">Advance</option>
+            <option value="Expert">Expert</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Beginner">Beginner</option>
+          </select>
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('level')?.touched &&
+              courseForm.get('level')?.invalid
+            "
+          >
+            Level is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="duration">
+            <span class="animated-icon duration-icon" aria-hidden="true"
+              >⏳</span
+            >
+            Duration
+          </label>
+          <input
+            type="text"
+            id="duration"
+            class="form-control"
+            formControlName="duration"
+            placeholder="e.g. 3 weeks"
+          />
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('duration')?.touched &&
+              courseForm.get('duration')?.invalid
+            "
+          >
+            Duration is required.
+          </div>
+        </div>
+      </div>
+      <!-- Course Description & Overview -->
+      <div class="row gx-3 mb-4">
+        <div class="col-md-6">
+          <label
+            for="courseDescription"
+            class="form-label d-flex align-items-center gap-2"
+          >
+            <span class="animated-icon description-icon" aria-hidden="true"
+              >📝</span
+            >
+            Course Description
+          </label>
+          <textarea
+            id="courseDescription"
+            rows="4"
+            class="form-control"
+            formControlName="courseDescription"
+            placeholder="Write a brief description"
+          ></textarea>
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('courseDescription')?.touched &&
+              courseForm.get('courseDescription')?.invalid
+            "
+          >
+            Course Description is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label
+            for="courseOverview"
+            class="form-label d-flex align-items-center gap-2"
+          >
+            <span class="animated-icon overview-icon" aria-hidden="true"
+              >📖</span
+            >
+            Course Overview
+          </label>
+          <textarea
+            id="courseOverview"
+            rows="4"
+            class="form-control"
+            formControlName="courseOverview"
+            placeholder="Provide an overview"
+          ></textarea>
+          <div
+            class="text-danger small"
+            *ngIf="
+              courseForm.get('courseOverview')?.touched &&
+              courseForm.get('courseOverview')?.invalid
+            "
+          >
+            Course Overview is required.
+          </div>
+        </div>
+      </div>
+      <!-- Pre-Requirements -->
+      <div class="mb-4">
+        <label class="form-label d-flex align-items-center gap-2">
+          <span class="animated-icon prereq-icon" aria-hidden="true">🛠</span>
+          Pre-Requirements
+        </label>
+        <quill-editor
+          formControlName="preRequirements"
+          [style]="{ height: '100px', width: '80%' }"
+          [modules]="simpleQuillModules"
+          placeholder="List the pre-requirements here..."
+        ></quill-editor>
+      </div>
+
+      <!-- Skills You Gain -->
+      <div class="mb-4">
+        <label class="form-label d-flex align-items-center gap-2">
+          <span class="animated-icon skills-icon" aria-hidden="true">✨</span>
+          Skills You Gain
+        </label>
+        <quill-editor
+          formControlName="skillsYouGain"
+          [style]="{ height: '100px', width: '80%' }"
+          [modules]="simpleQuillModules"
+          placeholder="Describe the skills learners will gain..."
+        ></quill-editor>
+      </div>
+
+      <!-- What You Will Learn -->
+      <div class="mb-4">
+        <label class="form-label d-flex align-items-center gap-2"
+          ><span class="animated-icon learn-icon" aria-hidden="true">📚</span>
+          What You Will Learn
+        </label>
+        <quill-editor
+          formControlName="whatYouWillLearn"
+          [style]="{ height: '100px', width: '80%' }"
+          [modules]="simpleQuillModules"
+          placeholder="Describe what learners will learn in this course..."
+        ></quill-editor>
+      </div>
+      <!-- Course Image and Promotional Video -->
+      <div class="media-upload-container">
+        <div class="media-preview-box">
+          <img
+            *ngIf="thumbnailBase64"
+            [src]="thumbnailBase64"
+            alt="Course Image Preview"
+            class="rounded"
+          />
+          <div *ngIf="!thumbnailBase64" class="placeholder-text">
+            Preview will appear here
+          </div>
+        </div>
+
+        <div class="media-upload-panel">
+          <label class="section-title">Course Image</label>
+          <p>
+            Upload your course image here. It must meet our
+            <a href="#">course image quality standards</a> to be accepted.
+          </p>
+          <p class="note">
+            Important guidelines: 750x422 pixels; .jpg, .jpeg, .gif, or .png. No
+            text on the image.
+          </p>
+          <input type="file" (change)="onFileSelected($event)" />
+        </div>
+      </div>
+
+      <div class="media-upload-container mt-4">
+        <div class="media-preview-box video-preview">
+          <video
+            *ngIf="demoVideoPreview"
+            [src]="demoVideoPreview"
+            controls
+            class="w-100 rounded mb-3"
+            style="max-height: 300px"
+          >
+            Your browser does not support the video tag.
+          </video>
+
+          <div *ngIf="!demoVideoPreview" class="placeholder-text">
+            Video preview will appear here
+          </div>
+        </div>
+
+        <div class="media-upload-panel">
+          <label class="section-title">Promotional Video</label>
+          <p>
+            Your promo video is a quick and compelling way for students to
+            preview what they’ll learn in your course. Students considering your
+            course are more likely to enroll if your promo video is well-made.
+            <a href="#" target="_blank"
+              >Learn how to make your promo video awesome!</a
+            >
+          </p>
+          <input
+            type="file"
+            accept="video/*"
+            class="form-control"
+            (change)="handleFileInput($event, 'demoVideo')"
+          />
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="col-12 mt-4">
+        <button
+          type="submit"
+          class="btn submit-btn mybtn"
+          [disabled]="courseForm.invalid"
+        >
+          {{ isEditMode ? "Update Course" : "Submit Course" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,197 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.review-container {
+  padding: 1.5rem; /* Reduced padding */
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  background-color: #f7fafd;
+}
+
+.heading {
+  font-size: 1.8rem; /* Reduced font size */
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem; /* Reduced margin */
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem; /* Reduced margin */
+}
+
+.column {
+  flex: 1;
+  min-width: 260px; /* Reduced minimum width */
+  max-width: 360px; /* Reduced maximum width */
+  margin: 0.8rem; /* Reduced margin */
+}
+
+.profile-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 10px; /* Slightly reduced border radius */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05); /* Slightly reduced shadow */
+  padding: 0.4rem; /* Reduced padding */
+  width: 160px; /* Set uniform width */
+  height: 200px; /* Set uniform height */
+  text-align: center;
+  border: 1px solid #ddd; /* Added border */
+}
+
+.profile-card img {
+  width: 100%;
+  height: 120px; /* Set uniform height */
+  border-radius: 8px; /* Slightly reduced border radius */
+  object-fit: cover;
+}
+
+.name {
+  font-weight: 600;
+  margin-top: 0.4rem; /* Reduced margin */
+  font-size: 0.9rem; /* Reduced font size */
+}
+
+.role {
+  font-size: 0.8rem; /* Reduced font size */
+  color: #555;
+}
+
+.center-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px; /* Increased margin to move the center card further down */
+}
+
+.center-card img {
+  width: 140px;
+  border-radius: 10px;
+  border: 2px solid #0284c7;
+}
+
+.center-card .student-label {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #1e293b;
+}
+
+.center-card .center-text {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: #555;
+  text-align: center;
+  max-width: 180px;
+  margin-inline: auto;
+}
+
+.combined-class {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: -100px; /* Increased negative margin to move the section further up */
+  margin-bottom: 1.5rem; /* Adjust spacing as needed */
+}
+
+.trainers-coaches-class {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem; /* Adjust spacing as needed */
+}
+
+strong {
+  color: #4b006e;
+}
+.who-we-work-with {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px;
+  background-color: #ffffff; /* White background */
+}
+
+.work-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937; /* Dark gray text */
+  margin-right: 20px;
+  font-family: "Poppins", sans-serif;
+  margin-left: 10%;
+}
+
+.work-description {
+  font-size: 1rem;
+  color: #6b7280; /* Softer gray text */
+  line-height: 1.6;
+  max-width: 600px;
+  font-family: "Poppins", sans-serif;
+}
+.logo-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
+  margin-top: -50px; /* Move the logo-section upwards */
+}
+
+.logo-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Carousel styling */
+.logo-carousel {
+  overflow: hidden;
+  /* Ensures only part of the logos are visible */
+  position: relative;
+  width: 100%;
+}
+
+.logos {
+  display: flex;
+  gap: 40px;
+  /* Space between logos */
+  animation: scroll 20s linear infinite;
+  /* Animation for moving logos */
+}
+
+.logos img {
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Keyframes for the animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logos img {
+    height: 40px;
+  }
+}

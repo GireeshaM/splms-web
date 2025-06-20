@@ -1,0 +1,22 @@
+.course-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  max-width: 300px;
+}
+.thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.course-details {
+  margin-top: 10px;
+}
+.level {
+  font-style: italic;
+  color: #555;
+}
+.actions button {
+  margin-right: 10px;
+}

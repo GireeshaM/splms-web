@@ -1,0 +1,546 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 78vh;
+  padding: 50px 80px;
+  background-color: #f4f9ff;
+  box-sizing: border-box;
+}
+
+.left-section {
+  max-width: 60%;
+}
+.course-container {
+  width: 100%;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.course-details {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: auto;
+}
+.detail-box {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.detail-box:last-child {
+  border-right: none;
+}
+
+/* Target any list inside .pre-requirements */
+/* Remove default bullets from any list inside .pre-requirements */
+.pre-requirements ul,
+.pre-requirements ol {
+  list-style: none !important;
+  padding-left: 40;
+  margin: 0;
+}
+
+/* Add tick mark to each list item */
+.pre-requirements li {
+  position: relative;
+  padding-left: 120px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.pre-requirements li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00509d; /* Bootstrap primary blue */
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 90px;
+}
+
+.skills-section {
+  width: 1500px;
+  text-align: left;
+  background-color: #f4f9ff; /* Light Pink Background */
+  padding: 50px 20px;
+  margin-left: -120px;
+  color: #161642;
+}
+
+.skills-section h3 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align items to the left */
+  max-width: 800px;
+  margin-left: 20px; /* Left alignment */
+  gap: 10px;
+  transition: max-height 0.3s ease-in-out;
+}
+.skills span {
+  background-color: #c2e2ff; /* Softer Pink */
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0056d2; /* Dark blue text for contrast */
+  display: inline-block;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-pill {
+  background-color: #d0e7ff;
+  color: #0056b3;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* .skill-badge {
+  background-color: #d6e9ff;
+  color: #003366;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 999px;
+} */
+
+.rounded-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+/* What You Will Learn Section */
+
+.learn-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.learn-list {
+  list-style-type: none;
+  padding: 0;
+  max-width: 900px;
+  margin: auto;
+}
+
+.learn-list li {
+  font-size: 18px;
+  margin: 10px 0;
+  text-align: left;
+  padding-left: 30px;
+  position: relative;
+  list-style: none; /* remove default bullet */
+}
+
+.learn-list li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2a4593; /* gold star color */
+  font-size: 18px;
+}
+
+/* Certificate section */
+.career-certificate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f9ff;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  width: 1490px;
+  margin-left: -120px;
+  margin-top: 80px;
+}
+
+.certificate-text {
+  max-width: 60%;
+}
+
+.certificate-text h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.certificate-text p {
+  font-size: 14px;
+  color: #666;
+}
+
+.certificate-badge {
+  position: absolute;
+  right: 10px;
+  top: -30px;
+}
+
+.certificate-badge img {
+  width: 300px; /* Adjust based on the exact size in the image */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+/* Course Content Section */
+.course-content {
+  width: 1300px !important; /* Slightly reduced width for a more focused look */
+  margin: 30px auto;
+  margin-top: 90px;
+  background-color: #f4f9ff;
+  padding: 30px 25px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.course-content h2 {
+  font-size: 22px; /* Decreased font size */
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 15px;
+}
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 18px; /* Reduced padding */
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px; /* Reduced font size */
+  font-weight: 500;
+}
+
+/* Sections,videos and quizzes */
+.accordion-header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Course Overview Section */
+.course-overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff; /* Light Pink Theme */
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: justify;
+}
+.video-container {
+  flex: 1;
+  max-width: 50%;
+  border-color: black;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(1, 0, 0, 0.1);
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 10px;
+}
+
+li {
+  margin-left: -30px;
+}
+
+/* Course Description */
+.course-description {
+  flex: 1;
+  padding-left: 30px;
+}
+
+.course-description h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #00509d;
+  margin-bottom: 10px;
+}
+
+.course-description p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.enroll-btn {
+  background: #00509d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.enroll-btn:hover {
+  background: #00509d;
+}
+
+.text-secondary {
+  text-align: justify;
+}
+
+.faq-section {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(to right, #eef5ff, #f4f9ff);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 80, 157, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.faq-section h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.accordion {
+  transition: all 0.3s ease-in-out;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 80, 157, 0.08);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 10px 22px rgba(0, 80, 157, 0.15);
+}
+
+.card-header {
+  padding: 18px 24px;
+  font-size: 17px;
+  background-color: #e3efff;
+  font-weight: 600;
+  color: #00509d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.card-header:hover {
+  background-color: #d6eaff;
+}
+
+.card-header::after {
+  content: "▼";
+  font-size: 14px;
+  color: #00509d;
+  position: absolute;
+  right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card-header.open::after {
+  transform: rotate(-180deg);
+}
+
+.card-body {
+  padding: 18px 24px;
+  font-size: 15px;
+  background-color: #f9fcff;
+  color: #444;
+  border-top: 1px solid #e0e0e0;
+  animation: fadeSlideDown 0.3s ease;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+ .main-container{
+  width:400px;
+ }
+  .container {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: -50px;
+    margin-bottom: -50px;
+  }
+  .text-primary{
+    font-size:small;
+    letter-spacing: 0cm;
+    white-space: nowrap;
+  }
+  .left-section h1 {
+    font-size: 1.6rem;
+    white-space: nowrap; 
+  }
+   .left-section h6 
+   {
+    white-space: nowrap;
+   }
+  .left-section p 
+  {
+      white-space: wrap;
+      margin-right: -90px;
+  }
+    .badge-container{
+    display: flex;
+    gap:0.5rem;
+    }
+  .left-section .badge {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .course-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .course-details .detail-box {
+    width: auto;
+  }
+ .course-overview {
+    flex-direction: column;
+    margin-right:10px;
+  }
+
+  .course-overview > div {
+    flex: 0 0 100%;
+  }
+
+  /* Optional: add some margin between stacked items */
+  .video-container {
+    margin-bottom: 1.5rem;
+
+  }
+
+  /* Adjust video height to auto for smaller widths */
+  .video-container video {
+    height: auto;
+     width:250px !important;
+     margin-left: -60px;
+  }
+
+  /* Optional smaller font size on mobile */
+  .course-description p {
+    font-size: 0.9rem;
+  }
+  .pre-requirements {
+    padding: 1.5rem; /* reduce padding on small devices */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem; /* slightly smaller font */
+    border-width: 3px !important; /* make border a bit thinner on small screens */
+    
+  }
+  
+  .pre-requirements div {
+    white-space: normal !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    font-size: 0.95rem;
+    margin-left: -60px;
+  }
+  .pre-requirements {
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+.skills-section {
+   margin-left: 5px;
+    width: fit-content;
+  }
+
+ .section {
+  width:400px !important;
+ }
+.content-header{
+  width: 350px;
+}
+.career-certificate{
+  width:fit-content;
+  flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    height:350px;
+}
+
+  .career-certificate {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left;
+    white-space: nowrap;
+    margin-left: 0px;
+    width: 400px;
+   
+  }
+
+  .certificate-badge {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .certificate-badge img {
+    max-width: 100%;
+    height: auto;
+    margin-top:120px;
+  }
+  
+}
+
+.toggle-icon i {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+.card-header:hover {
+  background-color: #e2e6ea;
+}

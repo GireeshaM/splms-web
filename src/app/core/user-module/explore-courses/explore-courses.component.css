@@ -1,0 +1,40 @@
+.banner-container {
+  height: auto;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+/* Image fills container */
+.banner-image {
+  object-fit: cover;
+  height: 100%;
+}
+
+/* Full overlay background */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: #fff;
+  padding: 1rem;
+}
+
+.input-group {
+  max-width: 600px;
+  margin: auto;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+}
+
+.modal-header, .modal-footer {
+  background-color: #f8f9fa;
+}
+
+.custom-modal-width {
+  max-width: 900px; /* Adjust as needed */
+}

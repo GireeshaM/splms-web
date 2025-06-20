@@ -1,0 +1,280 @@
+<nav
+  class="navbar navbar-expand-lg shadow sticky-top animate_animated animate_fadeInDown"
+  *ngIf="showNavbar"
+>
+  <div class="container-fluid">
+    <!-- Logo and Home -->
+    <a
+      class="navbar-brand d-flex align-items-center"
+      routerLink="/"
+      style="cursor: pointer"
+    >
+      <img src="images/SLMSSSS.svg" alt="niopic" height="50px" />
+    </a>
+
+    <button
+      class="btn ms-3 px-4 d-flex align-items-center gap-2"
+      (click)="goToDashboard()"
+      title="Home"
+      style="font-weight: 2000"
+    >
+      <i class="bi bi-house-door-fill"></i>
+    </button>
+
+    <!-- Toggler (Mobile View) -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Main Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- ADMIN NAV -->
+        <ng-container *ngIf="role === 'admin'">
+          <li class="nav-item dropdown" dropdown>
+            <a
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+              <i class="bi bi-person-video3"></i> Instructor Module
+            </a>
+            <ul class="dropdown-menu animate_animated animate_fadeIn">
+              <li>
+                <a class="dropdown-item" routerLink="/instructor-profile"
+                  >Instructor Profile</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/upload-course"
+                  >Upload Course</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/instructor-reviews"
+                  >Instructor Reviews</a
+                >
+              </li>
+            </ul>
+          </li>
+
+        <li
+  class="nav-item dropdown"
+  routerLinkActive="active-parent"
+  [routerLinkActiveOptions]="{ exact: false }"
+>
+  <a
+    class="nav-link dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+  >
+    <i class="bi bi-people-fill"></i> User Module
+  </a>
+  <ul class="dropdown-menu animate_animated animate_fadeIn">
+    <li>
+      <a class="dropdown-item" routerLink="/user-interest">User Interests</a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/user-trends">User Trends</a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/user-feedbacks">User Feedbacks</a>
+    </li>
+  </ul>
+</li>
+
+
+          <li
+  class="nav-item dropdown"
+  routerLinkActive="active-parent"
+  [routerLinkActiveOptions]="{ exact: false }"
+>
+  <a
+    class="nav-link dropdown-toggle"
+    role="button"
+    data-bs-toggle="dropdown"
+  >
+    <i class="bi bi-journal-bookmark-fill"></i> Courses Module
+  </a>
+  <ul class="dropdown-menu animate_animated animate_fadeIn">
+    <li>
+      <a class="dropdown-item" routerLink="/manage-courses">Manage Courses</a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/trending-courses">Trending Courses</a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/course-reviews">Course Reviews</a>
+    </li>
+  </ul>
+</li>
+
+        </ng-container>
+
+        <!-- INSTRUCTOR NAV -->
+<!-- INSTRUCTOR NAV -->
+<ng-container *ngIf="role === 'instructor'">
+  <ul class="navbar-nav d-flex flex-row gap-3">
+
+    <!-- Create Course -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/create-course">
+        <i class="bi bi-file-earmark-plus-fill"></i> Create Course
+      </a>
+    </li>
+
+    <!-- My Courses -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: false }">
+      <a class="nav-link" routerLink="/instructor-courses">
+        <i class="bi bi-journals"></i> My Courses
+      </a>
+    </li>
+
+    <!-- Add FAQs -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/add-faqs">
+        <i class="bi bi-question-circle-fill"></i> Add FAQs
+      </a>
+    </li>
+
+    <!-- Final Assessment -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/final-assessment">
+        <i class="bi bi-clipboard-check-fill"></i> Final Assessment
+      </a>
+    </li>
+
+    <!-- Course Reviews -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/course-reviews">
+        <i class="bi bi-star-fill"></i> Course Reviews
+      </a>
+    </li>
+
+    <!-- My Reviews -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/my-reviews">
+        <i class="bi bi-person-badge-fill"></i> My Reviews
+      </a>
+    </li>
+
+  </ul>
+</ng-container>
+
+
+
+        <!-- USER NAV -->
+<ng-container *ngIf="role === 'user'">
+  <ul class="navbar-nav d-flex flex-row align-items-center gap-3">
+
+    <!-- Explore Courses -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/explore-courses">
+        <i class="bi bi-compass-fill"></i> Explore Courses
+      </a>
+    </li>
+
+    <!-- My Courses -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/my-courses">
+        <i class="bi bi-collection-play-fill"></i> My Courses
+      </a>
+    </li>
+
+    <!-- My Assignments -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/my-assignments">
+        <i class="bi bi-journal-check"></i> My Assignments
+      </a>
+    </li>
+
+    <!-- My Certificates -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/my-certificates">
+        <i class="bi bi-patch-check-fill"></i> My Certificates
+      </a>
+    </li>
+
+    <!-- Learning Points -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/learning-points">
+        <i class="bi bi-graph-up-arrow"></i> Learning Points
+      </a>
+    </li>
+
+    <!-- Learning Paths -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/learning-paths">
+        <i class="bi bi-signpost-fill"></i> Learning Paths
+      </a>
+    </li>
+
+    <!-- Live Training -->
+    <li class="nav-item" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/live-training">
+        <i class="bi bi-camera-video-fill"></i> Live Training
+      </a>
+    </li>
+
+    <!-- Search Bar -->
+    <!-- <li class="nav-item d-flex align-items-center">
+      <div class="input-group input-group-sm ms-2">
+        <span class="input-group-text bg-white border-end-0">
+          <i class="bi bi-search"></i>
+        </span>
+        <input
+          type="text"
+          class="form-control border-start-0"
+          placeholder="Search..."
+        />
+      </div>
+    </li> -->
+
+  </ul>
+</ng-container>
+
+      </ul>
+
+      <!-- Profile Dropdown (Right Side) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+          >
+            <img
+              [src]="photoUrl"
+              class="rounded-circle me-2"
+              width="35"
+              height="35"
+            />
+            {{ fullName }}
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end animate_animated animate_fadeIn"
+            aria-labelledby="userDropdown"
+          >
+            <li>
+              <a class="dropdown-item" [routerLink]="profileRoute"
+                >👤 My Profile</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item text-danger" btn (click)="logout()"
+                >🚪 Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

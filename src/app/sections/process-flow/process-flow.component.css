@@ -1,0 +1,176 @@
+/* Container */
+.process-steps {
+  display: flex;
+  flex-wrap: nowrap; /* keep all steps in a single row */
+  justify-content: center;
+  gap: 25px;
+  padding: 50px 20px;
+  /* background-color: #f5f7fa; */
+  overflow-x: auto;
+}
+
+/* Step animation */
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Outer hexagon border */
+.hexagon-wrapper {
+  position: relative;
+  padding: 10px;
+  border: 1.5px solid black; /* thin black outer border */
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Outer glowing dashed border */
+.hexagon-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px dashed black;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  z-index: -1;
+  background-color: transparent;
+  opacity: 0.2;
+  animation: pulseBorder 2s infinite;
+}
+
+@keyframes pulseBorder {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.02);
+  }
+}
+
+/* Bigger hexagon */
+.hexagon {
+  width: 200px;
+  height: 180px;
+  clip-path: inherit;
+  background-color: #ccc;
+  color: #333;
+  padding: 20px 10px;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white; /* inner white border */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.hexagon-wrapper:hover .hexagon {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px currentColor, 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller animated icon */
+.animated-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+  animation: bounceIcon 2s infinite;
+  color: #000;
+}
+
+@keyframes bounceIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Hexagon text styles */
+.hexagon h2 {
+  font-size: 20px;
+  margin: 5px 0 0 0;
+  color: #000;
+}
+.hexagon .line {
+  width: 40px;
+  height: 2px;
+  background-color: #000;
+  margin: 10px auto;
+}
+.hexagon p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+  color: #333;
+  text-align: center;
+}
+
+/* Arrow between steps */
+.arrow-line {
+  width: 30px;
+  height: 2px;
+  background-color: #555;
+  position: relative;
+  margin: 0 10px;
+}
+.arrow-line::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #555;
+  transition: transform 0.3s ease;
+}
+.step:hover .arrow-line::after {
+  transform: translateX(2px);
+}
+
+/* Pastel background colors */
+.step1 .hexagon {
+  background-color: #bbdefb;
+}
+.step2 .hexagon {
+  background-color: #ffcdd2;
+}
+.step3 .hexagon {
+  background-color: #ffe0b2;
+}
+.step4 .hexagon {
+  background-color: #c8e6c9;
+}
+.step5 .hexagon {
+  background-color: #e1bee7;
+}
+.step6 .hexagon {
+  background-color: #b2ebf2;
+}
+
+/* Scroll behavior for smaller screens */
+@media (max-width: 1024px) {
+  .process-steps {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+}

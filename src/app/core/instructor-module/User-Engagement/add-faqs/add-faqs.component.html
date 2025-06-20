@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="card w-100 p-4 shadow-sm" style="max-width: 900px;">
+    <form [formGroup]="faqForm">
+      <!-- Course Selector -->
+      <div class="mb-4">
+        <label class="form-label fw-bold">Select Course</label>
+        <select class="form-select" formControlName="selectedCourseId"  (change)="onCourseChange(faqForm.value.selectedCourseId)">
+          <option [ngValue]="null" disabled hidden>Select a course</option>
+          <option *ngFor="let course of courses" [value]="course.createCourseId">
+            {{ course.courseTitle }}
+          </option>
+        </select>
+      </div>
+
+      <!-- FAQ List -->
+      <div formArrayName="faqList">
+        <div *ngFor="let faq of faqList.controls; let i = index" [formGroupName]="i"
+             class="border-start border-4 border-primary rounded mb-4 px-3 py-2 bg-white shadow-sm position-relative">
+
+          <!-- Header with Icons -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary rounded-circle px-3 py-2">{{ i + 1 }}</span>
+              <strong class="text-secondary">{{ faq.get('faqQuestion')?.value || 'FAQ Question' }}</strong>
+            </div>
+
+            <div class="d-flex gap-2 align-items-center">
+              <button type="button" class="btn btn-outline-secondary btn-sm"
+                      (click)="toggleFaqExpand(i)">
+                {{ faqExpanded[i] ? '➖' : '➕' }}
+              </button>
+              
+            </div>
+          </div>
+
+          <!-- Editable Section -->
+          <div *ngIf="faqExpanded[i]" class="ps-4">
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="faqQuestion"
+                placeholder="Enter question" />
+            </div>
+
+            <div class="mb-3">
+              <textarea
+                rows="3"
+                class="form-control"
+                formControlName="faqAnswer"
+                placeholder="Enter answer"></textarea>
+            </div>
+
+            <!-- Save + Delete Button -->
+            <div class="d-flex gap-2">
+              <button type="button" class="btn-custom btn-custom-green btn-sm" (click)="saveSingleFaq(i)">
+                💾 Save
+              </button>
+              <button type="button" class="btn-custom btn-custom-red btn-sm" (click)="deleteFaq(i, faq.value.courseFaqsId)">
+                ❌ Delete
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom info similar to quiz/video -->
+          <!-- <div class="mt-2 ps-4">
+            <span class="me-3 text-muted">📝 Question: {{ faq.get('faqQuestion')?.value?.length || 0 }}</span>
+            <span class="text-muted">📄 Answer: {{ faq.get('faqAnswer')?.value?.length || 0 }}</span>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Add FAQ Button -->
+      <div class="text-end">
+        <button type="button" class="btn-custom btn-custom-outline" (click)="addFaq()">➕ Add FAQ</button>
+      </div>
+    </form>
+  </div>
+</div>

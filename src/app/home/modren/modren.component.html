@@ -1,0 +1,143 @@
+<section class="ai-section">
+  <div class="ai-wrapper">
+    <div class="ai-container">
+      <div class="ai-image">
+        <img src="images/edits (1).svg" alt="AI Interface" />
+      </div>
+      <div class="ai-text px-4">
+        <h1>Embrace AI, generate comprehensive training</h1>
+        <p>
+          Quality content in just a few clicks? Check! Text, images, tests—cover
+          every element of course creation and accelerate along the path to L&D
+          success. Take pride in offering complete courses right on time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="business-section">
+  <div class="business-left">
+    <h1>Excellent services for your Learning.</h1>
+    <p>
+      We are committed to delivering excellent service in our SLMS platform.
+    </p>
+    <button class="explore-button" (click)="toggleModal()">
+      Explore More as Instructor →
+    </button>
+    <input type="checkbox" id="toggle-slide" class="toggle-slide" hidden />
+    <!-- <label for="toggle-slide" class="button">DISCOVER MORE</label> -->
+  </div>
+
+  <div
+    class="modal-overlay"
+    [class.active]="showModal"
+    (click)="closeModal($event)"
+  >
+    <div class="modal-content">
+      <h1>Join SLMS Academy today</h1>
+      <button (click)="showTrainerImage()">Trainer</button>
+      <button (click)="showUserImage()">User</button>
+    </div>
+  </div>
+
+  <!-- Popup for Trainer -->
+  <div
+    class="popup-overlay"
+    *ngIf="showTrainerPopup"
+    (click)="closeTrainerPopup()"
+  >
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="close-popup" (click)="closeTrainerPopup()">×</button>
+      <h2>{{ popupMessage }}</h2>
+      <img src="images/trainer.svg" alt="Trainer Image" />
+    </div>
+  </div>
+
+  <!-- Popup for User -->
+  <div class="popup-overlay" *ngIf="showUserPopup" (click)="closeUserPopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="close-popup" (click)="closeUserPopup()">×</button>
+      <h2>{{ popupMessage }}</h2>
+      <img src="images/user.svg" alt="User Image" />
+    </div>
+  </div>
+
+  <div class="business-right">
+    <div class="business-item">
+      <h2>Tailored Learning for Every User</h2>
+      <div class="business-item-content">
+        <img
+          src="https://img.icons8.com/color/48/000000/learning.png"
+          alt="Learning Icon"
+          class="business-icon"
+        />
+        <p>
+          Your SLMS adapts to each user’s needs with personalized learning
+          paths. Smart algorithms suggest content based on progress and
+          preferences, making learning efficient and user-focused.
+        </p>
+      </div>
+    </div>
+    <div class="business-item">
+      <h2>Expert Content and Guidance</h2>
+      <div class="business-item-content">
+        <img
+          src="https://img.icons8.com/color/48/000000/teacher.png"
+          alt="Teacher Icon"
+          class="business-icon"
+        />
+        <p>
+          All learning materials are developed by industry professionals and
+          experts. Users benefit from clear, practical content and optional
+          mentorship that adds real-world value.
+        </p>
+      </div>
+    </div>
+    <div class="business-item">
+      <h2>Smart Tools and Interactive Features</h2>
+      <div class="business-item-content">
+        <img
+          src="https://img.icons8.com/color/48/000000/toolbox.png"
+          alt="Toolbox Icon"
+          class="business-icon"
+        />
+        <p>
+          The platform uses AI tools, multimedia, and gamified assessments to
+          keep users engaged. Real-time progress tracking helps users stay on
+          top of their learning goals.
+        </p>
+      </div>
+    </div>
+    <div class="business-item">
+      <h2>Learn Anywhere, Anytime</h2>
+      <div class="business-item-content">
+        <img
+          src="https://img.icons8.com/color/48/000000/online.png"
+          alt="Online Learning Icon"
+          class="business-icon"
+        />
+        <p>
+          Your SLMS works across all devices, giving users the freedom to learn
+          on their schedule. Whether online or offline, the experience remains
+          smooth and accessible.
+        </p>
+      </div>
+    </div>
+    <div class="business-item">
+      <h2>Supportive and Connected Learning</h2>
+      <div class="business-item-content">
+        <img
+          src="https://img.icons8.com/color/48/000000/teamwork.png"
+          alt="Teamwork Icon"
+          class="business-icon"
+        />
+        <p>
+          With active forums, peer interaction, and expert support, users never
+          learn alone. The SLMS builds a strong, collaborative learning
+          community.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

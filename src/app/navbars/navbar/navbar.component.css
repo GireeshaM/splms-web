@@ -1,0 +1,175 @@
+/* Global font and icon size adjustments */
+.nav-link,
+.dropdown-item {
+  font-size: 0.85rem !important; /* Reduced font size */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+.bi {
+  font-size: 1.1rem; /* Reduced icon size */
+  transition: all 0.3s ease;
+}
+
+/* Navbar and Dropdown menu changes for hover effects */
+.navbar {
+  background: linear-gradient(90deg, #ffffff, #e3f2fd, #e1f5fe);
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #dceefb;
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); */
+  animation: slideDown 0.5s ease-in-out;
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+
+.navbar .nav-link:hover,
+.navbar .dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  color: #0077b6 !important; /* Change text color on hover */
+}
+
+.navbar .nav-link:hover i,
+.navbar .dropdown-item:hover i {
+  color: #0077b6; /* Change icon color on hover */
+}
+
+.navbar .nav-link,
+.navbar .dropdown-item {
+  color: #111111 !important;
+}
+
+/* Icon color and hover animation */
+.navbar .nav-link:hover i,
+.navbar .dropdown-item:hover i {
+  color: #ff5722; /* Color change on hover for icons */
+  transform: scale(1.15); /* Enlarge icons on hover */
+}
+
+/* Profile Image */
+img.rounded-circle {
+  border: 2px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+img.rounded-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown Menu Effects */
+.dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #e0f0f5;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: dropdownFade 0.35s ease-in-out;
+  transform-origin: top;
+}
+
+.dropdown-item {
+  color: #111;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f9ff;
+  color: #000;
+  transform: scale(1.03);
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+  background-color: #e1f5fe;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background-color: #bbdefb;
+}
+
+/* Animated Icon Hover Effects */
+.navbar .nav-link i,
+.navbar .dropdown-item i {
+  color: #0077b6; /* Initial color for icons */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover i,
+.navbar .dropdown-item:hover i {
+  color: #e2b57b; /* Icon color changes when hovering */
+  transform: scale(1.1); /* Slight icon enlargement */
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Search Input */
+input.form-control {
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  color: #111;
+  padding-left: 1rem;
+  height: 36px;
+  transition: all 0.3s ease-in-out;
+}
+
+input.form-control:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.2);
+}
+
+/* Smaller font for navbar and dropdown */
+.navbar,
+.dropdown-menu,
+.nav-link,
+.dropdown-item {
+  font-size: 0.85rem !important; /* Adjust font size for all navbar items */
+}
+.active-parent > .nav-link {
+  color: #0d6efd; /* Blue or your brand color */
+  font-weight: 600;
+  border-bottom: 2px solid #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.active-link {
+  font-weight: 600;
+  color: orange !important;
+  border-bottom: 2px solid orange;
+  background-color: rgba(255, 165, 0, 0.1); /* Optional background for highlight */
+}
+.active-link i {
+  color: orange !important;
+}
+.navbar .nav-item .active-link i {
+  color: orange !important;
+}

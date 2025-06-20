@@ -1,0 +1,60 @@
+/* General container for answer list and form */
+.p-3 {
+  padding: 16px;
+}
+
+.text-purple {
+  color: #6f42c1;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Form labels and inputs */
+label {
+  font-weight: bold;
+}
+
+input.form-control-sm, select.form-select-sm {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Add some margin between form fields */
+.form-control-sm, .form-select-sm {
+  margin-bottom: 12px;
+}
+
+/* Styling for Answer cards */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.btn-group {
+  margin-top: 5px;
+}
+
+.hr {
+  margin-top: 15px;
+}
+
+
+.answer-item {
+  transition: all 0.3s ease;
+}
+.answer-item:hover {
+  background-color: #f9f9f9;
+  border-color: #ccc;
+}
+.btn-group-sm .btn {
+  font-size: 0.75rem;
+}

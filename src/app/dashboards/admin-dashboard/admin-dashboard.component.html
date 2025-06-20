@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <div class="user-box">
+      <img src="images/rayarajesh.jpeg" alt="User Avatar" class="avatar" />
+      <div>
+        <h2>Welcome back</h2>
+        <p class="user-name">Have a Productive Day!</p>
+      </div>
+    </div>
+    <div class="metrics-box">
+      <p class="metric">
+        500+ <span class="highlight success">Today's Enrollments</span>
+      </p>
+      <p class="metric">
+        78.4% <span class="highlight warning">Growth Rate</span>
+      </p>
+    </div>
+  </header>
+
+  <section class="cards-grid">
+    <div class="card">
+      <h3><i class="fas fa-users icon"></i> Active Users</h3>
+      <p class="stat">42.5K</p>
+      <p class="trend warning">+78% (24K increase)</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-user-friends icon"></i> Total Users</h3>
+      <p class="stat">97.4K</p>
+      <p class="trend success">+12.5% from last month</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-mouse-pointer icon"></i> Total Clicks</h3>
+      <p class="stat">82.7K</p>
+      <p class="trend error">+12.5% from last month</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-eye icon"></i> Total Views</h3>
+      <p class="stat">68.4K</p>
+      <p class="trend info">+35K views</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-user-plus icon"></i> New Signups</h3>
+      <p class="stat">3,200</p>
+      <p class="trend success">+15% this month</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-chalkboard-teacher icon"></i> Total Instructors</h3>
+      <p class="stat">200+</p>
+      <p class="trend warning">+25 added</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-book icon"></i> Total Courses</h3>
+      <p class="stat">500+</p>
+      <p class="trend info">+100 courses</p>
+    </div>
+  </section>
+
+  <section class="charts-grid">
+    <div class="chart-card">
+      <h4><i class="fas fa-search icon"></i> Most Searched Course</h4>
+      <p class="chart-title">Data Science with Python</p>
+      <canvas id="deviceChart" width="400" height="300"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h4><i class="fas fa-user-graduate icon"></i> Course Enrollments</h4>
+      <p class="chart-title">This Month: 5,200</p>
+      <canvas id="enrollmentChart" width="400" height="300"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h4><i class="fas fa-chart-pie icon"></i> Most Enrolled Course</h4>
+      <p class="chart-title">Advanced Python</p>
+      <canvas id="courseRevenueChart" width="400" height="300"></canvas>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,34 @@
+<div class="sub-category-container">
+    <h2>SubCategories</h2>
+  
+    <!-- Category Dropdown -->
+    <div>
+      <label for="categorySelect">Select Category</label>
+      <select id="categorySelect" [(ngModel)]="selectedCategoryId" (change)="fetchSubCategories()">
+        <option value="0" disabled>Select Category</option>
+        <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.name }}</option>
+      </select>
+    </div>
+  
+    <!-- New SubCategory -->
+    <div *ngIf="selectedCategoryId">
+      <input [(ngModel)]="newSubCategory" type="text" placeholder="Enter new subcategory" />
+      <button (click)="addSubCategory()">Add SubCategory</button>
+    </div>
+  
+    <!-- SubCategory List -->
+    <div *ngIf="subCategories.length > 0">
+      <ul>
+        <li *ngFor="let subCategory of subCategories">
+          {{ subCategory.name }}
+          <button (click)="deleteSubCategory(subCategory.subCategoriesId)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- If no subcategories are available -->
+    <div *ngIf="subCategories.length === 0">
+      <p>No subcategories available for this category.</p>
+    </div>
+  </div>
+  

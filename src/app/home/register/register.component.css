@@ -1,0 +1,395 @@
+.pastel-content {
+  border-radius: 32px;
+  box-shadow: 0 16px 48px 0 rgba(252,92,125,0.13), 0 2px 8px 0 rgba(167,112,239,0.10);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1.5px solid rgba(252, 92, 125, 0.13);
+  animation: fadeInModal 0.8s cubic-bezier(.4,0,.2,1);
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-width: 1100px; /* Increase modal width */
+  width: 95vw;
+  min-height: 540px;
+  max-height: none;
+  height: auto;
+}
+.pastel-content::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Image Section */
+.pastel-image-wrapper {
+  background: linear-gradient(135deg, #fc5c7d 0%, #a770ef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  border-right: none;
+}
+.pastel-image {
+  width: 92%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(252, 92, 125, 0.10);
+}
+
+/* Divider for large screens */
+@media (min-width: 992px) {
+  .pastel-content .d-flex::before {
+    content: "";
+    display: block;
+    width: 2px;
+    background: linear-gradient(to bottom, #a770ef 0%, #fc5c7d 100%);
+    margin: 36px 0;
+    border-radius: 2px;
+  }
+}
+
+/* Animated Close Button */
+.animated-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 2.1rem;
+  color: #fc5c7d;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), color 0.3s;
+  z-index: 2;
+}
+.animated-close:hover {
+  transform: rotate(90deg) scale(1.15);
+  color: #a770ef;
+  background: rgba(167, 112, 239, 0.10);
+  border-radius: 50%;
+}
+
+/* Button Style */
+/* Even more brightness for SIGN UP button */
+.pastel-btn,
+.btn.pastel-btn {
+  background: linear-gradient(90deg, #fc5c7d 0%, #a770ef 100%);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px #fc5c7d55;
+  font-size: 1.1rem;
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s, filter 0.2s;
+  filter: brightness(1.28) saturate(1.15); /* Increased brightness and vibrancy */
+}
+.pastel-btn:hover,
+.pastel-btn:focus,
+.btn.pastel-btn:hover,
+.btn.pastel-btn:focus {
+  background: linear-gradient(90deg, #a770ef 0%, #f3c6f9 100%);
+  color: #fff;
+  box-shadow: 0 6px 32px #a770ef55;
+  filter: brightness(1.38) saturate(1.18); /* Even brighter on hover/focus */
+}
+
+/* Link Style */
+.link-violet {
+  color: #a770ef !important;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.2s, text-shadow 0.2s;
+  font-size: 0.95rem;
+}
+.link-violet:hover {
+  color: #fc5c7d !important;
+  text-shadow: 0 2px 8px #fc5c7d88;
+}
+
+/* Modal Animation */
+@keyframes fadeInModal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Smooth form transitions */
+.fade-in {
+  animation: fadeInForm 0.6s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeInForm {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Modal Width */
+@media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 1100px; /* Increase modal dialog width */
+    width: 95vw;
+  }
+  .left-image {
+    width: 44%;
+  }
+  .right-form {
+    width: 56%;
+  }
+}
+
+/* Floating Placeholder Field */
+.floating-placeholder {
+  position: relative;
+  margin-bottom: 1.45rem;
+}
+
+/* Smooth, modern input design */
+.floating-placeholder input,
+.floating-placeholder select {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 0.95rem;
+  border: 1.5px solid #f3c6f9;
+  border-radius: 16px;
+  background: rgba(255,245,252,0.85);
+  color: #a770ef;
+  outline: none;
+  transition: 
+    border-color 0.22s cubic-bezier(.4,0,.2,1),
+    box-shadow 0.22s cubic-bezier(.4,0,.2,1),
+    background 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 12px 0 #a770ef22;
+  font-family: inherit;
+}
+
+
+/* Floating label: smooth transition */
+.floating-placeholder span {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #b48ad6;
+  background: transparent;
+  padding: 0 6px;
+  pointer-events: none;
+  transition: 
+    top 0.18s cubic-bezier(.4,0,.2,1),
+    left 0.18s cubic-bezier(.4,0,.2,1),
+    font-size 0.18s cubic-bezier(.4,0,.2,1),
+    color 0.18s cubic-bezier(.4,0,.2,1),
+    background 0.18s cubic-bezier(.4,0,.2,1),
+    opacity 0.18s cubic-bezier(.4,0,.2,1);
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Remove floating label effect for inputs/selects with labels */
+.floating-placeholder label.form-label {
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
+  font-size: 0.97rem;
+  color: #a770ef;
+  background: transparent;
+  padding: 0 0 4px 2px;
+  pointer-events: auto;
+  opacity: 1;
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: block;
+}
+.floating-placeholder span {
+  display: none;
+}
+
+
+/* Password toggle button */
+.floating-placeholder .btn-link {
+  color: #a770ef;
+  font-size: 1.2rem;
+  opacity: 0.85;
+  transition: color 0.2s;
+  background: #f8fafc;
+  border-radius: 50%;
+  padding: 2px 6px;
+  border: 1px solid #a770ef;
+  box-shadow: 0 1px 3px #a770ef11;
+}
+.floating-placeholder .btn-link:hover,
+.floating-placeholder .btn-link:focus {
+  color: #fc5c7d;
+  background: #f3c6f9;
+  box-shadow: 0 2px 8px #fc5c7d44;
+  outline: none;
+}
+
+/* Smooth, modern input design for password and confirm password */
+.floating-placeholder input[type="password"],
+.floating-placeholder input[type="text"][formcontrolname="password"],
+.floating-placeholder input[formcontrolname="confirmPassword"] {
+  background: #f8fafc;
+  border: 1.5px solid #a770ef;
+  border-radius: 16px;
+  font-size: 1.08rem;
+  color: #a770ef;
+  padding: 15px 18px 15px 18px;
+  padding-right: 44px;
+  transition: 
+    border-color 0.22s cubic-bezier(.4,0,.2,1),
+    box-shadow 0.22s cubic-bezier(.4,0,.2,1),
+    background 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 12px 0 #a770ef22;
+  font-family: inherit;
+}
+
+.floating-placeholder input[type="password"]:focus,
+.floating-placeholder input[type="text"][formcontrolname="password"]:focus,
+.floating-placeholder input[formcontrolname="confirmPassword"]:focus {
+  border-color: #fc5c7d;
+  background: #fff;
+  box-shadow: 0 0 0 3px #fc5c7d33;
+}
+
+.floating-placeholder input[type="password"]:hover,
+.floating-placeholder input[type="text"][formcontrolname="password"]:hover,
+.floating-placeholder input[formcontrolname="confirmPassword"]:hover {
+  background: #f3c6f9;
+  border-color: #a770ef;
+}
+
+/* Error message styling */
+.text-danger {
+  font-size: 0.80rem;
+  margin-top: 2px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #fc5c7d;
+}
+
+/* Modal header and title */
+.modal-header {
+  padding-bottom: 0;
+  padding-top: 0.5rem;
+}
+.modal-title {
+  font-size: 1.4rem;
+  color: #a770ef !important;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+}
+
+/* Checkbox */
+.form-check-input:checked {
+  background-color: #fc5c7d;
+  border-color: #fc5c7d;
+}
+.form-check-label a {
+  color: #a770ef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .pastel-content {
+    flex-direction: column;
+    border-radius: 22px;
+    max-width: 98vw;
+  }
+  .pastel-image-wrapper {
+    display: none !important;
+  }
+  .w-50 {
+    width: 100% !important;
+  }
+}
+
+/* Compact input styles */
+.floating-placeholder.compact input,
+.floating-placeholder.compact select {
+  padding: 11px 11px;
+  font-size: 0.97rem;
+}
+
+.floating-placeholder.compact span {
+  display: none;
+}
+
+.floating-placeholder.compact label.form-label {
+  font-size: 0.85rem;
+}
+
+/* 2-input-per-row layout on all screen sizes */
+@media (min-width: 576px) {
+  .form-row .col-6 {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+.already-account-left {
+  text-align: center;
+  width: 80%;
+  margin: 22px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  background: rgba(255,245,252,0.13);
+  border-radius: 10px;
+  padding: 12px 22px 12px 16px;
+  box-shadow: 0 2px 12px 0 #a770ef22;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.already-account-left .link-violet {
+  color: #fc5c7d !important;
+  font-size: 1.18rem;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 6px;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+.already-account-left .link-violet:hover {
+  color: #fff !important;
+  text-shadow: 0 2px 8px #fc5c7d88;
+}
+/* Move placeholder text 2px up for specific fields */
+/* Move placeholder text 10px up for specific fields */
+.placeholder-up-2 span {
+  top: calc(50% - 15px);
+  display: none;
+}
+.placeholder-up-5 span {
+  top: calc(50% - 10px);
+  display: none;
+}
+
+/* Decrease the space between input rows */
+.row.mb-3 {
+  margin-bottom: 0.65rem !important;
+}
+
+.floating-placeholder {
+  margin-bottom: 0.7rem;
+}
+
+/* Increase width of input container for name and phone number by 10px */
+.floating-placeholder.compact input#fullName,
+.floating-placeholder.compact input#phoneNumber {
+  width: calc(100% + 10px);
+}

@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+<!-- filepath: c:\Users\rishi\OneDrive\Desktop\newtemp\temp\src\app\learning\create-path\create-path.component.html -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" (slide.bs.carousel)="onSlide($event)">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/img.png" class="d-block w-100" alt="...">
+        <div class="dynamic-text-box">
+          <h2>{{ dynamicText.title }}</h2>
+          <p>{{ dynamicText.description }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/img1.jpg" class="d-block w-100" alt="...">
+        <div class="dynamic-text-box">
+          <h2>{{ dynamicText.title }}</h2>
+          <p>{{ dynamicText.description }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/img3.jpg" class="d-block w-100" alt="...">
+        <div class="dynamic-text-box">
+          <h2>{{ dynamicText.title }}</h2>
+          <p>{{ dynamicText.description }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+  <!-- Add the heading below the carousel -->
+  <h2 class="mandatory-courses-heading">Workplace Learning</h2>
+  
+
+<div class="course-cards-container">
+  <div class="course-card" *ngFor="let course of courses">
+    <img [src]="course.image" alt="{{ course.title }}">
+    <div class="course-info">
+      <h5>{{ course.title }}</h5>
+      <p>{{ course.description }}</p>
+      <button class="go-to-course-btn" (click)="openTermsAndConditions(course.link)">Go to Course</button>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <h2>Terms and Conditions</h2>
+    <p>Please read and accept the terms and conditions before accessing the course.</p>
+    <ul>
+      <li>Access to the course is limited to registered users only.</li>
+      <li>Courses are non-refundable once enrolled.</li>
+      <li>Unauthorized sharing of course materials is prohibited.</li>
+      <li>Completion of the course does not guarantee job placement.</li>
+    </ul>
+    <div class="checkbox-container">
+      <input type="checkbox" id="acceptTerms" [(ngModel)]="termsAccepted">
+      <label for="acceptTerms">I accept the Terms and Conditions</label>
+    </div>
+    <div class="button-container">
+      <button (click)="closeModal()">Close</button>
+      <button [disabled]="!termsAccepted" (click)="acceptTerms()">Accept & Continue</button>
+    </div>
+  </div>
+</div>
